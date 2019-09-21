@@ -1,8 +1,69 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC:700&display=swap');
+
+.primary {
+  color: #3d95c1;
 }
 
-a {
-  color: #00B7FF;
+.secondary {
+  color: #97d0E8;
 }
+
+.success {
+  color: #dae2e7;
+}
+
+.warning {
+  color: #c39d99;
+}
+
+
+.amaticText {
+font-family: 'Amatic SC', cursive;
+}
+
+body {
+  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
+  margin: 0;
+  border: 0;
+}
+
+
+.page404Div {
+  margin: 0;
+  border: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("./../image/photos/photo-1527657580387-0f1e1aeba8b9.jpg");
+  background-size: cover;
+  background-position-y: -75px;
+}
+
+.backToButton {
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 20px;
+}
+
+.backToButtonPos {
+  position: relative;
+  left: 100px;
+  top: 450px;
+}
+
+
+.backToButton:hover {
+  color: #3d95c1;
+  border-color: #c39d99;
+  cursor: pointer;
+}
+
+.noProductPage {
+  background-color: #dae2e7;
+  height: 100vh;
+  padding: 50px;
+}
+
+.snowboarderIcon {
+  width: 200px;
+}
+

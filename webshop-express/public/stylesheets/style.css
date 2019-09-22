@@ -65,3 +65,57 @@ body {
 .snowboarderIcon {
   width: 200px;
 }
+
+.her-banner{
+  height: 400px;
+  width: 100%;
+}
+
+.hero-container{
+  position: relative;
+  widows: 100%;
+}
+
+.hero-container .hero-btn{
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 1100px) {
+  .hero-btn{
+    font-size: 15px;
+    width: 170px;
+  }
+
+  @media screen and (max-width: 900px) {
+    .hero-btn{
+      font-size: 13px;
+      width: 150px;
+    }
+
+    @media screen and (max-width: 810px) {
+      .hero-container .hero-btn{
+        font-size: 9px;
+        top: 87%;
+        width: 120px;
+      }
+
+    @media screen and (max-width: 500px) {
+      .hero-container .hero-btn{
+        font-size: 8px;
+        height: auto;
+        top: 85%;
+        width: 110px;
+      }
+
+footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+}

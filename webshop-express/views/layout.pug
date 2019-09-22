@@ -6,7 +6,32 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
 
   body
+    header
+      .hero-banner
+        .hero-container
+            img(src="/image/photos/banner.jpg" class="img-fluid" alt="Snowboard Hero Banner")
+            a.hero-btn.btn.btn-primary.btn-lg.mr-3(href="/products" role="button") Start shopping now
+    
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top
+      a.navbar-brand.mr-5(href="/") Snowboard Webshop
+      button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.mr-5
+            a.nav-link(href="/products") Snowboards
+          li.nav-item
+            a.nav-link(href="#") How to choose
+
     block content
+
+    footer.bg-light
+        .row
+          .col-12.col-md-4.ml-5
+            h4 Contact us
+            ul
+              li Phone
+              li Email
 
     script(src="/javascripts/jquery.min.js")
     script(src="/bootstrap/dist/js/bootstrap.min.js")

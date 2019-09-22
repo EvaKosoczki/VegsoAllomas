@@ -25,8 +25,9 @@ body {
   /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
   margin: 0;
   border: 0;
+  min-height: 100%;
+  position: relative;
 }
-
 
 .page404Div {
   margin: 0;
@@ -66,11 +67,6 @@ body {
   width: 200px;
 }
 
-.her-banner{
-  height: 400px;
-  width: 100%;
-}
-
 .hero-container{
   position: relative;
   widows: 100%;
@@ -89,12 +85,14 @@ body {
     font-size: 15px;
     width: 170px;
   }
+}
 
   @media screen and (max-width: 900px) {
     .hero-btn{
       font-size: 13px;
       width: 150px;
     }
+  }
 
     @media screen and (max-width: 810px) {
       .hero-container .hero-btn{
@@ -102,6 +100,7 @@ body {
         top: 87%;
         width: 120px;
       }
+    }
 
     @media screen and (max-width: 500px) {
       .hero-container .hero-btn{
@@ -110,12 +109,13 @@ body {
         top: 85%;
         width: 110px;
       }
+    }
 
 footer{
-  position: fixed;
+  position: relative;
   left: 0;
   bottom: 0;
   width: 100%;
 }
 
-}
+

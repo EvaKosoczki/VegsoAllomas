@@ -18,7 +18,7 @@
 
 
 .amaticText {
-font-family: 'Amatic SC', cursive;
+  font-family: 'Amatic SC', cursive;
 }
 
 body {
@@ -31,9 +31,8 @@ body {
 .page404Div {
   margin: 0;
   border: 0;
-  width: 100vw;
   height: 100vh;
-  background-image: url("./../image/photos/photo-1527657580387-0f1e1aeba8b9.jpg");
+  background-image: url("./../image/photos/photo-1527657580387-0f1e1aeba8b9 (4).jpg");
   background-size: cover;
   background-position-y: -75px;
 }
@@ -66,4 +65,3 @@ body {
 .snowboarderIcon {
   width: 200px;
 }
-

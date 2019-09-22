@@ -118,4 +118,33 @@ footer{
   width: 100%;
 }
 
+.custom-facebook-icon,
+.custom-twitter-icon,
+.custom-instagram-icon {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    text-align: center;
+}
+
+.custom-facebook-icon{
+  background: #4267B2;
+}
+
+.custom-twitter-icon{
+  background: #28AAE1;
+}
+
+.custom-instagram-icon{
+  background: #F21E00;
+}
+
+.custom-facebook-icon i,
+.custom-twitter-icon i,
+.custom-instagram-icon i {
+    color: #fff;
+    line-height: 100px;
+}
+
 

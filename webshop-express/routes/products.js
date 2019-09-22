@@ -16,23 +16,12 @@ const bl = new BL(); */
 router.get('/', async (req, res, next) => {
   const productDetails = await db.read();
 
-  res.json(productDetails);
-
-  /* res.render('products', {
+  res.render('products', {
     title: 'Our products!',
-  }); */
+    products: productDetails,
+  });
 });
 
-
-//---------------------------------------------------------------
-/* GET one product in JSON format based on the address. */
-/* router.get('/:postfix', async (req, res, next) => {
-  const oneProduct = await db.readOne(req.params.postfix);
-  console.log(req.params.postfix);
-  console.log(oneProduct);
-  res.json(oneProduct);
-}); */
-//---------------------------------------------------------------
 
 router.get('/*', (req, res, next) => {
   res.render('no-product', {

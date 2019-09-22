@@ -29,7 +29,7 @@ module.exports = class DB {
   }
 
   /* Returns one record with join based on the snowboards id */
-  async readOne(postfix) {
+  async readOne(id) {
     const sql = `
       SELECT s.id,
        s.name,
@@ -41,9 +41,8 @@ module.exports = class DB {
        s.price,
        s.picture
       FROM snowboards s JOIN brands b ON s.brand = b.id 
-      WHERE s.postfix = '${postfix}' 
+      WHERE s.id = ${id}
       `;
-
     const result = await this.conn.query(sql);
     return result;
   }

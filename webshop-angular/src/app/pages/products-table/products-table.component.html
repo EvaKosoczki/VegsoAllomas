@@ -9,15 +9,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of data">
-            <td>{{item.id}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.brandId}}</td>
-            <td>{{item.purpose}}</td>
-            <td>{{item.shape}}</td>
-            <td>{{item.size}}</td>
-            <td>{{item.postfix}}</td>
-            <td>{{item.price}}</td>
-            <td>{{item.picture}}</td>
+            <td *ngFor="let data of item | keyvalue">{{data.value}}</td>
           </tr>
 
         </tbody>

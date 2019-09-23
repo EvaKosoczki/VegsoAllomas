@@ -14,14 +14,14 @@ module.exports = class DB {
     const sql = `
       SELECT s.id,
        s.name,
-       b.name,
+       b.brandName,
        s.purpose,
        s.shape,
        s.size,
        s.postfix,
        s.price,
        s.picture
-      FROM snowboards s JOIN brands b ON s.brand = b.id        
+      FROM snowboards s JOIN brands b ON s.brandId = b.id        
       `;
 
     const result = await this.conn.query(sql);
@@ -33,14 +33,14 @@ module.exports = class DB {
     const sql = `
       SELECT s.id,
        s.name,
-       b.name,
+       b.brandName,
        s.purpose,
        s.shape,
        s.size,
        s.postfix,
        s.price,
        s.picture
-      FROM snowboards s JOIN brands b ON s.brand = b.id 
+      FROM snowboards s JOIN brands b ON s.brandId = b.id 
       WHERE s.id = '${postfix}'
       `;
     const result = await this.conn.query(sql);
@@ -73,9 +73,9 @@ module.exports = class DB {
   } */
   //--------------------------------------------------------------------------------------------
 
-  create() {}
+  create() { }
 
-  update() {}
+  update() { }
 
-  delete() {}
+  delete() { }
 };

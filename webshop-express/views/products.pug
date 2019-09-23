@@ -1,4 +1,17 @@
 extends layout
 
 block content
-  h1= title
+  h1.page-title= title
+
+  .container
+    .row
+      each product in products
+        .col-lg-3
+          .card
+            img.card-img-top(src=`./image/snowboards/${product.picture}` alt='...')
+            .card-body
+              h5.card-title #{product.name}
+              p.card-text $ #{product.price}
+              a.btn.btn-primary(href='#') Show
+
+    

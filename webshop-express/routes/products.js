@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
   const productDetails = await db.read();
 
   res.render('products', {
-    title: 'Our products!',
+    title: 'Snowboards',
     products: productDetails,
   });
 });

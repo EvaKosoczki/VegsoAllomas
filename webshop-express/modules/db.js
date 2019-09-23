@@ -15,16 +15,16 @@ module.exports = class DB {
   /* Returns the whole database with join */
   async read() {
     const sql = `
-      SELECT s.id AS id,
-       s.name AS name,
-       b.brandName AS brand,
-       s.purpose AS purpose,
-       s.shape AS shape,
-       s.size AS size,
-       s.postfix AS postfix,
-       s.price AS price,
-       s.picture AS picture
-      FROM snowboards s JOIN brands b ON s.brandId = b.id        
+      SELECT s.id,
+       s.name,
+       b.name,
+       s.purpose,
+       s.shape,
+       s.size,
+       s.postfix,
+       s.price,
+       s.picture
+      FROM snowboards as s JOIN brands as b ON s.brand = b.id        
       `;
 
     const result = await this.conn.query(sql);
@@ -79,6 +79,27 @@ module.exports = class DB {
     return result;
   } */
   //--------------------------------------------------------------------------------------------
+  async readJoin(table1, table2, column1, column2, postfix, ...args) {
+    let sql = ``;
+    if (postfix == 0) {
+      sql = `
+      SELECT ${args}
+      FROM ${table1} JOIN ${table2} ON ${table1}.${column1} = ${table2}.${column2}
+      LIMIT 12
+      `;
+    } else {
+      sql = `
+      SELECT ${args}
+      FROM ${table1} JOIN ${table2} ON ${table1}.${column1} = ${table2}.${column2}
+      WHERE postfix= '${postfix}'
+      `;
+    }
+
+
+    const result = await this.conn.query(sql);
+    return result;
+  }
+
 
   create() {}
 

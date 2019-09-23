@@ -9,8 +9,8 @@ block content
         .col-lg-3
           .card
             img.card-img-top(src=`./image/snowboards/${product.picture}` alt='...')
+            //- - let productUrl = `/products/${product.postfix}`;
             .card-body
               h5.card-title #{product.name}
               p.card-text $ #{product.price}
-              - let productUrl = `/products/${product.id}`;
-              a.btn.btn-primary(href=productUrl) Show
+              a.btn.btn-primary(href=`/products/${product.postfix}`) Show

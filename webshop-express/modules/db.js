@@ -33,6 +33,9 @@ module.exports = class DB {
 
   /* Should return one record with join based on the snowboards postfix */
   async readOne(postfix) {
+
+
+
     const sql = `
       SELECT s.id,
        s.name,

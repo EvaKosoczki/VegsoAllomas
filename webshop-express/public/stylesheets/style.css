@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC:700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Big+Shoulders+Display|Josefin+Sans|Roboto+Condensed&display=swap');
+
+/* font-family: 'Big Shoulders Display', cursive;
+font-family: 'Roboto Condensed', sans-serif;
+font-family: 'Josefin Sans', sans-serif; */
+
 
 .primary {
   color: #3d95c1;
@@ -22,11 +28,15 @@
 }
 
 body {
-  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
   margin: 0;
   border: 0;
   min-height: 100%;
   position: relative;
+  font-family: 'Big Shoulders Display', cursive;
+}
+
+nav a {
+  font-size: 120%;
 }
 
 .page404Div {
@@ -153,4 +163,50 @@ footer {
 
 .card {
   margin-bottom: 20px;
+}
+
+
+.uniquePic {
+  width: 100%;
+  min-height: 200px;
+}
+
+.brandIcon {
+  width: 20%;
+  min-height: 20px;
+}
+
+.prodNumber {
+  width: 40px;
+  padding: 3px;
+}
+
+.basketButton {
+  font-size: 20px;
+  padding: 3px;
+}
+
+.basketButton:hover {
+  background-color: #3d95c1;
+  border-color: #3d95c1;
+}
+
+.reviewsDiv {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.toggleDiv {
+  background-color: #dae2e7;
+}
+
+.toggleButtons {
+  margin: 10px;
 }

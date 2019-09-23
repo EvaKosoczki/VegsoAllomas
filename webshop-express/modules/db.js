@@ -76,7 +76,21 @@ module.exports = class DB {
   } */
   //--------------------------------------------------------------------------------------------
   async readJoin(table1, table2, column1, column2, postfix, ...args) {
-    let sql = '';
+    let sql = ``;
+    if (table2 == 0) {
+      if (postfix == 0) {
+        sql = `
+        SELECT ${args}
+        FROM ${table1}
+        `;
+      } else {
+        sql = `
+        SELECT ${args}
+        FROM ${table1}
+        WHERE postfix = '${postfix}'
+        `;
+      }
+    }
     if (postfix == 0) {
       sql = `
       SELECT ${args}

@@ -163,7 +163,7 @@ footer {
 
 .card {
   margin-bottom: 20px;
-  height: 
+  height: 432px;
 }
 
 
@@ -210,4 +210,9 @@ footer {
 
 .toggleButtons {
   margin: 10px;
+}
+
+.card-body a {
+  position: absolute;
+  bottom: 20px;
 }

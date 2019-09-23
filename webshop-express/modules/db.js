@@ -33,9 +33,6 @@ module.exports = class DB {
 
   /* Should return one record with join based on the snowboards postfix */
   async readOne(postfix) {
-
-
-
     const sql = `
       SELECT s.id,
        s.name,
@@ -85,6 +82,7 @@ module.exports = class DB {
       SELECT ${args}
       FROM ${table1} JOIN ${table2} ON ${table1}.${column1} = ${table2}.${column2}
       LIMIT 12
+    
       `;
     } else {
       sql = `

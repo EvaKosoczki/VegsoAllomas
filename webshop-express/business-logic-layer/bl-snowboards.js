@@ -23,7 +23,10 @@ module.exports = class BLSnowboards {
   } */
   //-----------------------------------------------------------------------------------------
   async readSnowboards(postfix = 0) {
-    const result = await db.readJoin('snowboards', 'brands', 'brandId', 'id', postfix, ['brands.brandName', 'snowboards.name', 'snowboards.price', 'snowboards.picture', ]);
+    const result = await db.readJoin('snowboards', 'brands', 'brandId', 'id', postfix,
+      ['brands.brandName', 'brands.logo', 'snowboards.price', 'snowboards.name',
+        'snowboards.purpose', 'snowboards.size', 'snowboards.shape', 'snowboards.picture', 'snowboards.postfix',
+      ]);
     return result;
   }
 };

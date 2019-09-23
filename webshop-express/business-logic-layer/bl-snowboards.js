@@ -8,7 +8,7 @@ module.exports = class BLSnowboards {
 
   //------------------------------------------------------------------------------------------
   /* Paraméterezős próbálkozás, ahol a lekérdezés minden adatát így adjuk meg */
-  /*async readJoinedProducst() {
+  /* async readJoinedProducst() {
     const result = await db.readJoin('snowboards', 'brands', 'snowboards.brand', 'brands.id',
       ['snowboards.id',
         'snowboards.name',
@@ -23,8 +23,10 @@ module.exports = class BLSnowboards {
   } */
   //-----------------------------------------------------------------------------------------
   async readSnowboards(postfix = 0) {
-    const result = await db.readJoin('snowboards', 'brands', 'brandId', 'id', postfix, ['brands.brandName', 'snowboards.name']);
-    return result
+    const result = await db.readJoin('snowboards', 'brands', 'brandId', 'id', postfix,
+      ['brands.brandName', 'brands.logo', 'snowboards.price', 'snowboards.name',
+        'snowboards.purpose', 'snowboards.size', 'snowboards.shape', 'snowboards.picture',
+      ]);
+    return result;
   }
-
 };

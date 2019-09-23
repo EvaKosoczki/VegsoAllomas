@@ -1,6 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
+const path = require('path');
 
 const DB = require('../modules/db');
 
@@ -13,10 +14,14 @@ const bl = new BL();
 
 router.get('/:postfix', async (req, res, next) => {
   const productDetails = await bl.readSnowboards(req.params.postfix);
+  const oneProduct = productDetails[0];
+  const img = path.join('/image', 'snowboards', oneProduct.picture);
+  const icon = path.join('/image', 'brands', oneProduct.logo);
 
-  res.render('products', {
-    title: 'Our products!',
-    products: productDetails,
+  res.render('product', {
+    product: oneProduct,
+    imgRoot: img,
+    iconRoot: icon,
   });
 });
 
@@ -29,8 +34,6 @@ router.get('/', async (req, res, next) => {
     products: productDetails,
   });
 });
-
-
 
 
 router.get('/*', (req, res, next) => {

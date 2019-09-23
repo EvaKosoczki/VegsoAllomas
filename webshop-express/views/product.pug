@@ -1,4 +1,52 @@
 extends layout
 
 block content
-  h1= title
+  h1.text-center.mt-5 #{product.name}
+  .container.mt-5.mb-5
+    .row
+      .col-12.col-md-6
+        img.uniquePic(src=imgRoot)
+      .col-12.col-md-6.mt-5
+        .col-12.mb-5
+          img.brandIcon(src=iconRoot)
+        .col-12
+          h4 #{product.shape}
+          h4 #{product.size}
+          h4 #{product.purpose}
+          h2 #{product.price} $
+        .col-12 Rating
+        .col-12
+            p.text-success Delivery time
+        .row
+          .col-3
+            .btn-toolbar(role='toolbar' aria-label='Toolbar with button groups')
+              .btn-group.mr-2(role='group' aria-label='First group')
+                button.btn.btn-secondary(type='button') ⯆
+                input.prodNumber.text-center(type='text', value='1')
+                button.btn.btn-secondary(type='button') ⯅
+          .col-5
+            button.btn.btn-dark.btn-block.basketButton Add to Basket
+  .container-fluid.toggleDiv
+    .row
+      .col-2.offset-5
+        script.
+          var showDesc = function () {
+            document.querySelector('.descriptionDiv').classList.remove('hide');
+            document.querySelector('.reviewsDiv').classList.remove('show');
+          }
+          var showRev = function () {
+            document.querySelector('.reviewsDiv').classList.add('show');
+            document.querySelector('.descriptionDiv').classList.add('hide');
+          }
+        button.btn.toggleButtons(href='#' type='button' onclick='showDesc()') Description
+        button.btn.toggleButtons(href='#' type='button' onclick='showRev()') Reviews
+    .descriptionDiv
+      .row
+        .col-12
+          h1 Description
+          p Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+    .reviewsDiv
+      .row
+        .col-12
+          h1 Reviews
+          p Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?

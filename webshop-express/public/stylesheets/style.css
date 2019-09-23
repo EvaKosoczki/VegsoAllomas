@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC:700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Big+Shoulders+Display|Josefin+Sans|Roboto+Condensed&display=swap');
+
+/* font-family: 'Big Shoulders Display', cursive;
+font-family: 'Roboto Condensed', sans-serif;
+font-family: 'Josefin Sans', sans-serif; */
+
 
 .primary {
   color: #3d95c1;
@@ -22,11 +28,15 @@
 }
 
 body {
-  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
   margin: 0;
   border: 0;
   min-height: 100%;
   position: relative;
+  font-family: 'Big Shoulders Display', cursive;
+}
+
+nav a {
+  font-size: 120%;
 }
 
 .page404Div {
@@ -67,12 +77,12 @@ body {
   width: 200px;
 }
 
-.hero-container{
+.hero-container {
   position: relative;
   widows: 100%;
 }
 
-.hero-container .hero-btn{
+.hero-container .hero-btn {
   position: absolute;
   top: 90%;
   left: 50%;
@@ -81,37 +91,37 @@ body {
 }
 
 @media screen and (max-width: 1100px) {
-  .hero-btn{
+  .hero-btn {
     font-size: 15px;
     width: 170px;
   }
 }
 
-  @media screen and (max-width: 900px) {
-    .hero-btn{
-      font-size: 13px;
-      width: 150px;
-    }
+@media screen and (max-width: 900px) {
+  .hero-btn {
+    font-size: 13px;
+    width: 150px;
   }
+}
 
-    @media screen and (max-width: 810px) {
-      .hero-container .hero-btn{
-        font-size: 9px;
-        top: 87%;
-        width: 120px;
-      }
-    }
+@media screen and (max-width: 810px) {
+  .hero-container .hero-btn {
+    font-size: 9px;
+    top: 87%;
+    width: 120px;
+  }
+}
 
-    @media screen and (max-width: 500px) {
-      .hero-container .hero-btn{
-        font-size: 8px;
-        height: auto;
-        top: 85%;
-        width: 110px;
-      }
-    }
+@media screen and (max-width: 500px) {
+  .hero-container .hero-btn {
+    font-size: 8px;
+    height: auto;
+    top: 85%;
+    width: 110px;
+  }
+}
 
-footer{
+footer {
   position: relative;
   left: 0;
   bottom: 0;
@@ -121,30 +131,74 @@ footer{
 .custom-facebook-icon,
 .custom-twitter-icon,
 .custom-instagram-icon {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
-    text-align: center;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  text-align: center;
 }
 
-.custom-facebook-icon{
+.custom-facebook-icon {
   background: #4267B2;
 }
 
-.custom-twitter-icon{
+.custom-twitter-icon {
   background: #28AAE1;
 }
 
-.custom-instagram-icon{
+.custom-instagram-icon {
   background: #F21E00;
 }
 
 .custom-facebook-icon i,
 .custom-twitter-icon i,
 .custom-instagram-icon i {
-    color: #fff;
-    line-height: 100px;
+  color: #fff;
+  line-height: 100px;
 }
 
 
+.uniquePic {
+  width: 100%;
+  min-height: 200px;
+}
+
+.brandIcon {
+  width: 20%;
+  min-height: 20px;
+}
+
+.prodNumber {
+  width: 40px;
+  padding: 3px;
+}
+
+.basketButton {
+  font-size: 20px;
+  padding: 3px;
+}
+
+.basketButton:hover {
+  background-color: #3d95c1;
+  border-color: #3d95c1;
+}
+
+.reviewsDiv {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.toggleDiv {
+  background-color: #dae2e7;
+}
+
+.toggleButtons {
+  margin: 10px;
+}

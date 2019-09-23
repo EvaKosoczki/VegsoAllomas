@@ -1,7 +1,10 @@
 const mariadb = require('mariadb');
 
 const pool = mariadb.createPool({
-  database: 'webshop', user: 'root', password: 'root', connectionLimit: 5,
+  database: 'webshop',
+  user: 'root',
+  password: 'root',
+  connectionLimit: 5,
 });
 
 module.exports = class DB {
@@ -12,16 +15,16 @@ module.exports = class DB {
   /* Returns the whole database with join */
   async read() {
     const sql = `
-      SELECT s.id,
-       s.name,
-       b.name,
-       s.purpose,
-       s.shape,
-       s.size,
-       s.postfix,
-       s.price,
-       s.picture
-      FROM snowboards s JOIN brands b ON s.brand = b.id        
+      SELECT s.id AS id,
+       s.name AS name,
+       b.brandName AS brand,
+       s.purpose AS purpose,
+       s.shape AS shape,
+       s.size AS size,
+       s.postfix AS postfix,
+       s.price AS price,
+       s.picture AS picture
+      FROM snowboards s JOIN brands b ON s.brandId = b.id        
       `;
 
     const result = await this.conn.query(sql);
@@ -30,18 +33,22 @@ module.exports = class DB {
 
   /* Should return one record with join based on the snowboards postfix */
   async readOne(postfix) {
+
+    
+
     const sql = `
-      SELECT s.id,
-       s.name,
-       b.name,
-       s.purpose,
-       s.shape,
-       s.size,
-       s.postfix,
-       s.price,
-       s.picture
-      FROM snowboards s JOIN brands b ON s.brand = b.id 
-      WHERE s.id = '${postfix}'
+      SELECT s.id AS id,
+        s.name AS name,
+        b.brandName AS brand,
+        s.purpose AS purpose,
+        s.shape AS shape,
+        s.size AS size,
+        s.postfix AS postfix,
+        s.price AS price,
+        s.picture AS picture,
+        b.logo AS logo
+      FROM snowboards s JOIN brands b ON s.brandId = b.id   
+      WHERE s.postfix = '${postfix}'
       `;
     const result = await this.conn.query(sql);
     return result;

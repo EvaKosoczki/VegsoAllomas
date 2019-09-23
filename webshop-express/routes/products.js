@@ -25,12 +25,10 @@ router.get('/', async (req, res, next) => {
   const productDetails = await bl.readSnowboards();
 
   res.render('products', {
-    title: 'Our products!',
+    title: 'Snowboards',
     products: productDetails,
   });
 });
-
-
 
 
 router.get('/*', (req, res, next) => {

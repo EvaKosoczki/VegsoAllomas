@@ -12,6 +12,5 @@ block content
             .card-body
               h5.card-title #{product.name}
               p.card-text $ #{product.price}
-              a.btn.btn-primary(href='#') Show
-
-    
+              - let productUrl = `/products/${product.id}`;
+              a.btn.btn-primary(href=productUrl) Show

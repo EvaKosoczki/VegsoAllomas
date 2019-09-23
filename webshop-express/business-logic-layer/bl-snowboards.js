@@ -3,7 +3,8 @@ const DB = require('../modules/db');
 const db = new DB();
 
 module.exports = class BLSnowboards {
-  constructor() {}
+  constructor() { }
+
 
   //------------------------------------------------------------------------------------------
   /* Paraméterezős próbálkozás, ahol a lekérdezés minden adatát így adjuk meg */
@@ -21,4 +22,8 @@ module.exports = class BLSnowboards {
     return result;
   } */
   //-----------------------------------------------------------------------------------------
+  async readSnowboards(postfix = 0) {
+    const result = await db.readJoin('snowboards', 'brands', 'brandId', 'id', postfix, ['brands.brandName', 'snowboards.name', 'snowboards.price', 'snowboards.picture']);
+    return result;
+  }
 };

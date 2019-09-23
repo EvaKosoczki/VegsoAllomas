@@ -23,6 +23,15 @@ html
             a.nav-link(href="/products") Snowboards
           li.nav-item
             a.nav-link(href="#") How to choose
+        //- ul.navbar-nav
+        //-   if user
+        //-     if user.id
+        //-       li
+        //-         span #{ user.name }
+        //-         a.btn.btn-defult(href="/logout") logout
+        //-     else
+        //-       li
+        //-         a.btn.btn-success(href="/login") login
 
     block content
 

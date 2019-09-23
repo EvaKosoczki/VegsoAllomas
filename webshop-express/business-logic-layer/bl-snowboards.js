@@ -29,4 +29,12 @@ module.exports = class BLSnowboards {
       ]);
     return result;
   }
+
+  async readUsers(table2 = 0, column1 = 0, column2 = 0, postfix = 0) {
+    const result = await db.readJoin('users', table2, column1, column2, postfix,
+      ['users.firstName', 'users.lastName', 'users.email', 'users.password', 'users.address',
+        'users.zip', 'users.city', 'users.cookie',
+      ]);
+    return result;
+  }
 };

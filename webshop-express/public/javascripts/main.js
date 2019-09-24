@@ -10,3 +10,11 @@ window.onscroll = function (ev) {
     basketSummary.classList.remove('fixed-position');
   }
 };
+
+function computedStyle(){
+  let basketSummary = document.querySelector('.basket-summary');
+  let style = window.getComputedStyle(basketSummary)
+  console.log(style.height);
+}
+
+computedStyle()

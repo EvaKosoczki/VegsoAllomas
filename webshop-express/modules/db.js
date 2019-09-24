@@ -1,120 +1,39 @@
 const mariadb = require('mariadb');
-
+const sqlParser = require('./sqlGetParser');
+const sqlDel = require('../modules/sqlDeleteParser');
+const sqlInsert = require('../modules/sqlInsertParser');
 const pool = mariadb.createPool({
-  database: 'webshop',
   user: 'root',
   password: 'root',
+  database: 'webshop',
   connectionLimit: 5,
 });
 
 module.exports = class DB {
   constructor() {
-    pool.getConnection().then(conn => this.conn = conn);
+    pool.getConnection().then((conn) => {
+      this.conn = conn;
+    });
   }
 
-  /* Returns the whole database with join */
-  async read() {
-    const sql = `
-      SELECT s.id,
-       s.name,
-       b.brandName,
-       s.purpose,
-       s.shape,
-       s.size,
-       s.postfix,
-       s.price,
-       s.picture
-      FROM snowboards s JOIN brands b ON s.brandId = b.id        
-      `;
-
-    const result = await this.conn.query(sql);
+  async get(params) {
+    let sql = await sqlParser(params)
+    console.log(sql);
+    let result = await this.conn.query(sql);
+    //console.log(result);
     return result;
   }
-
-  /* Should return one record with join based on the snowboards postfix */
-  async readOne(postfix) {
-    const sql = `
-      SELECT s.id,
-       s.name,
-       b.brandName,
-       s.purpose,
-       s.shape,
-       s.size,
-       s.postfix,
-       s.price,
-       s.picture
-      FROM snowboards s JOIN brands b ON s.brandId = b.id 
-      WHERE s.id = '${postfix}'
-      `;
-    const result = await this.conn.query(sql);
+  async del(params) {
+    let sql = await sqlDel(params);
+    console.log(sql);
+    let result = await this.conn.query(sql);
     return result;
   }
-
-  //---------------------------------------------------------------------------------------------
-  /* Paraméterezős próbálkozás, a függvény átalakítja a business-logic-layer/bl.snowboards.js-ben
-  tömbben megadott sorokat stringgé.
-   Ezt kéne átadni a readJoin SELECT-jébe, de itt valami promise-os gond van. */
-  /* async getRows(rowArray) {
-    let rows = '';
-    for (i = 0; i < rowArray.length; i++) {
-      rows += `${rowArray[i]}, `;
-    }
-    await rows;
-    return rows;
-  } */
-
-  /* A this.getRows(rows) {Object Promise} -t ad vissza, ezért nem fut le */
-  /* async readJoin(table, joinTable, joinRow1, joinRow2, rows) {
-    const queryRows = this.getRows(rows);
-    const sql = `
-         SELECT ${queryRows}
-         FROM ${table} JOIN ${joinTable} ON ${joinRow1} = ${joinRow2}
-         `;
-
-    const result = await this.conn.query(sql);
-    return result;
-  } */
-  //--------------------------------------------------------------------------------------------
-  async readJoin(table1, table2, column1, column2, postfix, ...args) {
-    let sql = ``;
-    if (table2 == 0) {
-      if (postfix == 0) {
-        sql = `
-        SELECT ${args}
-        FROM ${table1}
-        `;
-      } else {
-        sql = `
-        SELECT ${args}
-        FROM ${table1}
-        WHERE postfix = '${postfix}'
-        `;
-      }
-    }
-    if (postfix == 0) {
-      sql = `
-      SELECT ${args}
-      FROM ${table1} JOIN ${table2} ON ${table1}.${column1} = ${table2}.${column2}
-      LIMIT 12
-    
-      `;
-    } else {
-      sql = `
-      SELECT ${args}
-      FROM ${table1} JOIN ${table2} ON ${table1}.${column1} = ${table2}.${column2}
-      WHERE postfix= '${postfix}'
-      `;
-    }
-
-
-    const result = await this.conn.query(sql);
-    return result;
+  async create(params) {
+    let sql = await sqlInsert(params);
+    console.log(sql);
+    let result = await this.conn.query(sql);
+    return sql;
   }
 
-
-  create() { }
-
-  update() { }
-
-  delete() { }
-};
+}

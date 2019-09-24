@@ -13,12 +13,19 @@ const BL = require('../business-logic-layer/bl-snowboards');
 const bl = new BL();
 
 router.get('/:postfix', async (req, res, next) => {
-  const productDetails = await bl.readSnowboards(req.params.postfix);
+  const productDetails = await db.get({
+    select:'*',
+    from:'snowboards',
+    where:{postfix:`${req.params.postfix}`},
+    join:{join:'inner', table:'brands', 'snowboards.brand':'brands.brandId'},
+  })
   console.log(productDetails);
   const oneProduct = productDetails[0];
   const img = path.join('/image', 'snowboards', oneProduct.picture);
   console.log('Product details: ', oneProduct);
+  console.log(img);
   const icon = path.join('/image', 'brands', oneProduct.logo);
+  console.log(icon);
 
   res.render('product', {
     product: oneProduct,
@@ -29,7 +36,10 @@ router.get('/:postfix', async (req, res, next) => {
 
 /* GET all producst in JSON format */
 router.get('/', async (req, res, next) => {
-  const productDetails = await bl.readSnowboards();
+  const productDetails = await db.get({
+    select:'*',
+    from:"snowboards"
+  })
 
   res.render('products', {
     title: 'Snowboards',

@@ -12,10 +12,7 @@ const routes: Routes = [{
   path: 'products/new',
   component: ProductsNewComponent
 },
-{
-  path: '**',
-  component: ProductsTableComponent
-},
+
 ];
 
 @NgModule({

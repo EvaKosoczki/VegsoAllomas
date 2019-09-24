@@ -27,6 +27,7 @@ html(lang="en")
     link(href="/stylesheets/signin.css" rel="stylesheet")
   body.text-center.login-background
     form.form-signin(action="/login" method="post")
+      img.mb-4(src='../../assets/brand/bootstrap-solid.svg' alt='' width='72' height='72')
       h1.h3.mb-3.font-weight-normal Please sign in
       label.sr-only(for="inputEmail") Email address
       input#inputEmail.form-control(type="email" name="email" placeholder="Email" required)
@@ -37,4 +38,6 @@ html(lang="en")
           input(type="checkbox" value="remember-me")
           |  Remember me
       button.btn.btn-lg.btn-primary.btn-block(type="submit") Sign in
-      p.mt-5.mb-3.text-muted © 2019
+      p.mt-5.mb-3.text-muted Not a member?
+      strong
+        a(href='#') Sign up

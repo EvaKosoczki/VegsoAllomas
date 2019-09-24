@@ -6,10 +6,27 @@ block content
   .container
     .row
       each product in products
-        .col-lg-3
+        .col-xs-12.col-sm-6.col-md-4.col-lg-3
           .card
             img.card-img-top(src=`./image/snowboards/${product.picture}` alt='...')
             .card-body
               h5.card-title #{product.name}
               p.card-text $ #{product.price}
               a.btn.btn-primary(href=`/products/${product.postfix}`) Show
+
+    .row
+      .col-lg-2.offset-5
+        nav(aria-label='Page navigation example')
+          ul.pagination
+            li.page-item
+              a.page-link(href='#' aria-label='Previous')
+                span(aria-hidden='true') &laquo;
+            li.page-item
+              a.page-link(href='#') 1
+            li.page-item
+              a.page-link(href='#') 2
+            li.page-item
+              a.page-link(href='#') 3
+            li.page-item
+              a.page-link(href='#' aria-label='Next')
+                span(aria-hidden='true') &raquo;

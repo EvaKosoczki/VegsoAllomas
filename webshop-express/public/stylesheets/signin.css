@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC:700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Big+Shoulders+Display|Josefin+Sans|Roboto+Condensed&display=swap');
+
 html,
 body {
   height: 100%;
@@ -11,7 +14,7 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Big Shoulders Display', cursive;
 }
 
 .form-signin {
@@ -56,4 +59,8 @@ body {
   background-image: url("./../image/photos/photo-1504480899134-8d1752cc1162.jpg");
   background-size: cover;
   background-position-y: -75px;
+}
+
+#sign-up {
+  font-size: 20px;
 }

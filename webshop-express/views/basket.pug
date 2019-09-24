@@ -1,14 +1,14 @@
 extends layout
 
 block content
-  <div>
+
     .container
       .row
         .col-12.text-center
           h1 #{title}
   
       .row
-        .col-6
+        .col-5
           table.table.table-striped
             thead
               tr
@@ -23,6 +23,7 @@ block content
                 td MockName
                 td 1
                 td 200
+
         .col-4.offset-2
           .basket-summary.border.border-dark
             .row
@@ -80,10 +81,9 @@ block content
               label Phone Number
               input.form-control(name="phone" required)
               <small class="form-text text-muted">We will call you only if there is an issue with your order.</small>
-      .row
+      .row.mb-3
         .col-7.text-right
             button.order-buttons.btn.btn-success.btn-large.mr-5(type="submit") Place Order
             a.order-buttons.btn.btn-danger.btn-large(href="/products") Cancel
-  </div>
 
           

@@ -4,8 +4,59 @@ html
     title= title
     link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/@fortawesome/fontawesome-free/css/all.css')
+
   body
+    header
+      .hero-banner
+        .hero-container
+            img(src="/image/photos/banner.jpg" class="img-fluid" alt="Snowboard Hero Banner")
+            a.hero-btn.btn.btn-primary.btn-lg.mr-3(href="/products" role="button") Start shopping now
+    
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top
+      a.navbar-brand.mr-5(href="/") Snowboard Webshop
+      button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.mr-5
+            a.nav-link(href="/products") Snowboards
+          li.nav-item
+            a.nav-link(href="#") How to choose
+        //- ul.navbar-nav
+        //-   if user
+        //-     if user.id
+        //-       li
+        //-         span #{ user.name }
+        //-         a.btn.btn-defult(href="/logout") logout
+        //-     else
+        //-       li
+        //-         a.btn.btn-success(href="/login") login
+
     block content
+
+    
+
+    footer.bg-light
+        .row
+          .col-12.col-md-4.text-center.mt-3
+            h4 Contact us
+            div.mt-5
+              i.fas.fa-mobile.fa-3x
+            div.mt-3
+              i.fas.fa-at.fa-3x
+          .col-12.col-md-4.text-center.mt-3
+            h4 Follow us
+            a.mt-5.mr-3.custom-facebook-icon(href="")
+              i.fab.fa-facebook.fa-3x
+            a.mt-5.mr-3.custom-twitter-icon(href="")
+              i.fab.fa-twitter.fa-3x
+            a.mt-5.custom-instagram-icon(href="")
+              i.fab.fa-instagram.fa-3x
+          .col-12.col-md-4.text-center.mt-3
+            h4 Visit us
+            iframe(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2697.4613195638867!2d19.050849115625493!3d47.46143907917533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741dda0ed085467%3A0x154af5ad466feb10!2sBudapest%2C%20Budafoki%20%C3%BAt%2056%2C%201117!5e0!3m2!1shu!2shu!4v1569178781637!5m2!1shu!2shu"
+            width="400" height="200" frameborder="0" style="border:0;" allowfullscreen="")
 
     script(src="/javascripts/jquery.min.js")
     script(src="/bootstrap/dist/js/bootstrap.min.js")

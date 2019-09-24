@@ -1,6 +1,12 @@
-extends layout
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    .page404Div
+      a.backToButton.backToButtonPos.btn.btn-lg.text-white(href='/') Back to our homepage
 
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+    script(src="/javascripts/jquery.min.js")
+    script(src="/bootstrap/dist/js/bootstrap.min.js")

@@ -1,8 +1,218 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC:700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Big+Shoulders+Display|Josefin+Sans|Roboto+Condensed&display=swap');
+
+/* font-family: 'Big Shoulders Display', cursive;
+font-family: 'Roboto Condensed', sans-serif;
+font-family: 'Josefin Sans', sans-serif; */
+
+
+.primary {
+  color: #3d95c1;
 }
 
-a {
-  color: #00B7FF;
+.secondary {
+  color: #97d0E8;
+}
+
+.success {
+  color: #dae2e7;
+}
+
+.warning {
+  color: #c39d99;
+}
+
+
+.amaticText {
+  font-family: 'Amatic SC', cursive;
+}
+
+body {
+  margin: 0;
+  border: 0;
+  min-height: 100%;
+  position: relative;
+  font-family: 'Big Shoulders Display', cursive;
+}
+
+nav a {
+  font-size: 120%;
+}
+
+.page404Div {
+  margin: 0;
+  border: 0;
+  height: 100vh;
+  background-image: url("./../image/photos/photo-1527657580387-0f1e1aeba8b9 (4).jpg");
+  background-size: cover;
+  background-position-y: -75px;
+}
+
+.backToButton {
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 20px;
+}
+
+.backToButtonPos {
+  position: relative;
+  left: 100px;
+  top: 450px;
+}
+
+
+.backToButton:hover {
+  color: #3d95c1;
+  border-color: #c39d99;
+  cursor: pointer;
+}
+
+.noProductPage {
+  background-color: #dae2e7;
+  height: 100vh;
+  padding: 50px;
+}
+
+.snowboarderIcon {
+  width: 200px;
+}
+
+.hero-container {
+  position: relative;
+  widows: 100%;
+}
+
+.hero-container .hero-btn {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 1100px) {
+  .hero-btn {
+    font-size: 15px;
+    width: 170px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .hero-btn {
+    font-size: 13px;
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .hero-container .hero-btn {
+    font-size: 9px;
+    top: 87%;
+    width: 120px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .hero-container .hero-btn {
+    font-size: 8px;
+    height: auto;
+    top: 85%;
+    width: 110px;
+  }
+}
+
+footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.custom-facebook-icon,
+.custom-twitter-icon,
+.custom-instagram-icon {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  text-align: center;
+}
+
+.custom-facebook-icon {
+  background: #4267B2;
+}
+
+.custom-twitter-icon {
+  background: #28AAE1;
+}
+
+.custom-instagram-icon {
+  background: #F21E00;
+}
+
+.custom-facebook-icon i,
+.custom-twitter-icon i,
+.custom-instagram-icon i {
+  color: #fff;
+  line-height: 100px;
+}
+
+.page-title {
+  text-align: center;
+}
+
+.card {
+  margin-bottom: 20px;
+  height: 432px;
+}
+
+
+.uniquePic {
+  width: 100%;
+  min-height: 200px;
+}
+
+.brandIcon {
+  width: 20%;
+  min-height: 20px;
+}
+
+.prodNumber {
+  width: 40px;
+  padding: 3px;
+}
+
+.basketButton {
+  font-size: 20px;
+  padding: 3px;
+}
+
+.basketButton:hover {
+  background-color: #3d95c1;
+  border-color: #3d95c1;
+}
+
+.reviewsDiv {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.toggleDiv {
+  background-color: #dae2e7;
+}
+
+.toggleButtons {
+  margin: 10px;
+}
+
+.card-body a {
+  position: absolute;
+  bottom: 20px;
 }

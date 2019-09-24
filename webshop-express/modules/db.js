@@ -1,44 +1,39 @@
 const mariadb = require('mariadb');
-
+const sqlParser = require('./sqlGetParser');
+const sqlDel = require('../modules/sqlDeleteParser');
+const sqlInsert = require('../modules/sqlInsertParser');
 const pool = mariadb.createPool({
-  database: 'webshop',
   user: 'root',
   password: 'root',
+  database: 'webshop',
   connectionLimit: 5,
 });
 
-
-
 module.exports = class DB {
   constructor() {
-    pool.getConnection().then(conn => this.conn = conn);
+    pool.getConnection().then((conn) => {
+      this.conn = conn;
+    });
   }
 
-  async readJoin(table1, table2, column1, column2, postfix, ...args) {
-    let sql = '';
-    if (postfix == 0) {
-      sql = `
-      SELECT ${args}
-      FROM ${table1} JOIN ${table2} ON ${table1}.${column1} = ${table2}.${column2}
-      LIMIT 12
-      `;
-    } else {
-      sql = `
-      SELECT ${args}
-      FROM ${table1} JOIN ${table2} ON ${table1}.${column1} = ${table2}.${column2}
-      WHERE postfix= '${postfix}'
-      `;
-    }
-
-
-    const result = await this.conn.query(sql);
+  async get(params) {
+    let sql = await sqlParser(params)
+    console.log(sql);
+    let result = await this.conn.query(sql);
+    //console.log(result);
     return result;
   }
+  async del(params) {
+    let sql = await sqlDel(params);
+    console.log(sql);
+    let result = await this.conn.query(sql);
+    return result;
+  }
+  async create(params) {
+    let sql = await sqlInsert(params);
+    console.log(sql);
+    let result = await this.conn.query(sql);
+    return sql;
+  }
 
-
-  create() {}
-
-  update() {}
-
-  delete() {}
-};
+}

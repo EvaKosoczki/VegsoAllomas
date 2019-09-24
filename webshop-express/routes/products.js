@@ -14,6 +14,7 @@ router.get('/:postfix', async (req, res, next) => {
     from:'snowboards',
     where:{postfix:`${req.params.postfix}`},
     join:{join:'inner', table:'brands', 'snowboards.brand':'brands.brandId'},
+    orderby:{name:'asc', brandName:'asc'}
   })
   console.log(req.params.postfix);
   console.log(productDetails);

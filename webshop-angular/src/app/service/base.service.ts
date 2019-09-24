@@ -16,13 +16,29 @@ export class BaseService {
     let url = `${this.baseUrl}${this.entity}`;
     return url;
   }
+
   getAll(): Observable<any> {
     let url: string = this.getUrl()
     return this.http.get(url)
   }
 
+  getOne(id): Observable<any> {
+    let url: string = this.getUrl()
+    return this.http.get(`${url}/${id}`)
+  }
+
   delete(id): Observable<any> {
     let url: string = this.getUrl()
     return this.http.delete(`${url}/${id}`)
+  }
+
+  create(data): Observable<any> {
+    let url: string = this.getUrl()
+    return this.http.post<any>(url, data)
+  }
+
+  update(product: Product): Observable<any> {
+    let url: string = this.getUrl()
+    return this.http.post<any>(`${url}/${product.id}`, product)
   }
 }

@@ -7,17 +7,17 @@ const DB = require('../modules/db');
 
 const db = new DB();
 
-/* bl-snowboards.js betöltése, majd ha megy a paraméterezős lekérdezés */
-const BL = require('../business-logic-layer/bl-snowboards');
-
-const bl = new BL();
 
 router.get('/:postfix', async (req, res, next) => {
-  const productDetails = await bl.readSnowboards(req.params.postfix);
-  console.log(productDetails);
+  const productDetails = await db.get({
+    select:'*',
+    from:'snowboards',
+    where:{postfix:`${req.params.postfix}`},
+    join:{join:'inner', table:'brands', 'snowboards.brand':'brands.brandId'},
+    orderby:{name:'asc', brandName:'asc'}
+  })
   const oneProduct = productDetails[0];
   const img = path.join('/image', 'snowboards', oneProduct.picture);
-  console.log('Product details: ', img);
   const icon = path.join('/image', 'brands', oneProduct.logo);
 
   res.render('product', {
@@ -29,7 +29,10 @@ router.get('/:postfix', async (req, res, next) => {
 
 /* GET all producst in JSON format */
 router.get('/', async (req, res, next) => {
-  const productDetails = await bl.readSnowboards();
+  const productDetails = await db.get({
+    select:'*',
+    from:"snowboards"
+  })
 
   res.render('products', {
     title: 'Snowboards',

@@ -20,4 +20,8 @@ export class BaseService {
   getAll(): Observable<Product[]> {
     return this.http.get<Product[]>(this.routeUrl)
   }
+
+  delete(id): Observable<Product> {
+    return this.http.delete<Product>(`${this.routeUrl}/${id}`)
+  }
 }

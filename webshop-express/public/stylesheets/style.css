@@ -233,6 +233,14 @@ footer {
 }
 
 
+.absolute-position{
+  position: relative;
+  bottom: -800px;
+}
+
+
+
+
 .basket-summary {
   background-color: #fff;
   height: auto;

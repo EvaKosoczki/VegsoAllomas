@@ -17,7 +17,7 @@ router.get('/:postfix', async (req, res, next) => {
   console.log(productDetails);
   const oneProduct = productDetails[0];
   const img = path.join('/image', 'snowboards', oneProduct.picture);
-  console.log('Product details: ', oneProduct);
+  console.log('Product details: ', img);
   const icon = path.join('/image', 'brands', oneProduct.logo);
 
   res.render('product', {

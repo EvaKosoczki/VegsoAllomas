@@ -1,0 +1,89 @@
+extends layout
+
+block content
+
+    .container
+      .row
+        .col-12.text-center
+          h1 #{title}
+  
+      .row
+        .col-5
+          table.table.table-striped
+            thead
+              tr
+                th Picture
+                th Name
+                th Count
+                th Price
+            tbody
+              tr
+                td
+                  img(src="#", alt="mock" class="basket-pic")
+                td MockName
+                td 1
+                td 200
+
+        .col-4.offset-2
+          .basket-summary.border.border-dark
+            .row
+              .col-md-8.text-left
+                h2 Order Summary
+                p #items
+              .col-4.text-right
+                h2 ###$
+            hr
+            .row
+              .col-md-6.text-left
+                h4 ##Order Name
+                p ###Size
+                p ###Price
+              .col-md-6.text-right
+                h4 SubPrice
+            hr
+            .row
+              .col-12.col-md-6.text-left
+                h3 Order Total
+              .col-12.col--md-6.text-right
+                h3 ###TotalPrice
+            
+  
+      hr
+      .row
+        .col-12.text-left
+          h2 Shipping & billing info
+      .row
+        .col-7
+          form.form(action="", method="post")
+            .form-group
+              label Name
+              input.form-control(name="name" required)
+            .form-group
+              label Email
+              input.form-control(type="email" name="email" required)
+              <small class="form-text text-muted">We will confirm your order here.</small>
+            .form-group
+              label Country
+              input.form-control(name="country" required)
+            .form-group
+              label Address
+              input.form-control(name="address" required)
+            .form-group
+              label Postal Code
+              input.form-control(name="postalCode" required)
+            .form-group
+              label City
+              input.form-control(name="city" required)
+            .form-group
+              label State or Province
+              input.form-control(name="state" required)
+            .form-group
+              label Phone Number
+              input.form-control(name="phone" required)
+              <small class="form-text text-muted">We will call you only if there is an issue with your order.</small>
+      .row.mb-3
+        .col-7.text-right
+            button.order-buttons.btn.btn-success.btn-large.mr-5(type="submit") Place Order
+            a.order-buttons.btn.btn-danger.btn-large(href="/products") Cancel
+
+          

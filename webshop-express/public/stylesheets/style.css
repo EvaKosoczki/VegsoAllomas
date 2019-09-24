@@ -216,3 +216,43 @@ footer {
   position: absolute;
   bottom: 20px;
 }
+
+.basket-pic{
+  height: 50px;
+  width: 50px;
+}
+
+.order-buttons{
+  width: 100px;
+}
+
+.fixed-position{
+  position: fixed;
+  top: 60px;
+  z-index: 1000;
+}
+
+
+.basket-summary{
+  background-color: #fff;
+  height: auto;
+  width: 400px;;
+}
+
+@media screen and (max-width: 768px) {
+  .basket-summary{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1030px) {
+  .basket-summary{
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .basket-summary{
+    width: 300px;
+  }
+}

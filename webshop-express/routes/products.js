@@ -15,6 +15,7 @@ router.get('/:postfix', async (req, res, next) => {
     where:{postfix:`${req.params.postfix}`},
     join:{join:'inner', table:'brands', 'snowboards.brand':'brands.brandId'},
   })
+  console.log(req.params.postfix);
   console.log(productDetails);
   const oneProduct = productDetails[0];
   const img = path.join('/image', 'snowboards', oneProduct.picture);

@@ -19,7 +19,7 @@ module.exports = class DB {
   async get(params) {
     let sql = await sqlParser(params)
     console.log(sql);
-    let result = await this.conn.query(sql);
+    let result = await this.conn.query(sql[0],sql[1]);
     //console.log(result);
     return result;
   }

@@ -1,10 +1,18 @@
 const sqlMethods = require('./sqlGetMethods');
-module.exports =async function (sqlQuery) {
-  let sql ='';
-  for (let key in sqlMethods) {
+module.exports = async function (sqlQuery) {
+  sqlMethods.deleteQuerys();
+  let sql = '';
+  let queryParams = [];
+  for (let key in sqlMethods) { 
     if (sqlQuery[key]) {
-     sql += sqlMethods[key](sqlQuery[key], sql);
+      if (key === 'where') {
+        let result = sqlMethods[key](sqlQuery[key], sql);
+        sql += result[0];
+        queryParams = result[1];
+      } else {
+        sql += sqlMethods[key](sqlQuery[key], sql);
+      }
     }
   }
-  return sql;
+  return [sql, queryParams];
 }

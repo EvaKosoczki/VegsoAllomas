@@ -1,4 +1,6 @@
+//const queryParams = [];
 module.exports = {
+  queryParams:[],
   select(select) {
     let sql = 'select ';
     if (select == '*') {
@@ -34,14 +36,16 @@ module.exports = {
     let sql = "where ";
     for (let key in where) {
       if (typeof where[key] === "number") {
-        sql += `${key}=${where[key]} `;
+        sql += `${key}=? `;
+       this.queryParams.push(where[key]);
       } else if (key.indexOf("relation") > -1) {
         sql += `${where[key]} `
       } else {
-        sql += `${key}="${where[key]}" `;
+        sql += `${key}=? `;
+        this.queryParams.push(where[key]);
       }
     }
-    return sql;
+    return [sql,this.queryParams];
   },
   groupby(groupby) {
     let sql = ` group by ${groupby}`;
@@ -54,5 +58,8 @@ module.exports = {
     }
     sql = sql.replace(',', '');
     return sql;
+  },
+  deleteQuerys(){
+    this.queryParams=[];
   }
 }

@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class BaseService {
   routeUrl: string = '';
   entity: string;
-  baseUrl = 'http://localhost:3000/api'
+  baseUrl = 'http://localhost:3000/api/'
   constructor(protected http: HttpClient) { }
 
   getUrl(): any {

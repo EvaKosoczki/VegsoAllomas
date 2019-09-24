@@ -11,12 +11,12 @@ import { ProductsService } from 'src/app/service/products.service';
   styleUrls: ['./products-table.component.css']
 })
 export class ProductsTableComponent implements OnInit {
-  data;
+  allData: Product[] = [];
   changeCounter: number = 0;
 
 
   constructor(private productService: ProductsService) {
-    this.productService.getAll().subscribe(products => this.data = products)
+    this.productService.getAll().subscribe(products => this.allData = products)
   }
 
   ngOnInit() {
@@ -24,8 +24,8 @@ export class ProductsTableComponent implements OnInit {
   onDelete(picked: Product) {
     this.productService.delete(picked.id).subscribe(
       response => {
-        let index = this.data.indexOf(picked);
-        this.data.splice(index, 1);
+        let index = this.allData.indexOf(picked);
+        this.allData.splice(index, 1);
         this.changeCounter++;
       },
       err => console.error(err)

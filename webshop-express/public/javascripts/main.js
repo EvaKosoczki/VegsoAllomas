@@ -1,5 +1,7 @@
 window.onscroll = function (ev) {
-  //console.log(ev.currentTarget.scrollY);
+  console.log(ev.currentTarget.scrollY);
+  console.log("Window height:" + window.innerHeight);
+
 
   const basketSummary = document.querySelector('.basket-summary');
   const top = ev.currentTarget.scrollY;
@@ -13,8 +15,15 @@ window.onscroll = function (ev) {
 
 function computedStyle(){
   let basketSummary = document.querySelector('.basket-summary');
-  let style = window.getComputedStyle(basketSummary)
-  console.log(style.height);
+  let carousel = document.querySelector('.carousel');
+  let footer = document.querySelector('footer');
+  let basketStyle = window.getComputedStyle(basketSummary)
+  let carouselStyle = window.getComputedStyle(carousel)
+  let footerStyle = window.getComputedStyle(footer)
+  console.log("Basket height:" + basketStyle.height);
+  console.log("Carousel height:" + carouselStyle.height);
+  console.log("Footer height:" + footerStyle.height);
+  
 }
 
 computedStyle()

@@ -18,7 +18,11 @@ export class ProductsEditComponent implements OnInit {
       params => {
         this.selectedProductId = params.id
         this.productsService.getOne(this.selectedProductId).subscribe(
-          data => this.oneProduct = data
+          data => {
+            this.oneProduct = data[0];
+        console.log(this.oneProduct);
+          }
+          
         )
       }
     )

@@ -2,6 +2,7 @@ const mariadb = require('mariadb');
 const sqlParser = require('./sqlGetParser');
 const sqlDel = require('../modules/sqlDeleteParser');
 const sqlInsert = require('../modules/sqlInsertParser');
+const sqlUpdate = require('../modules/sqlUpdateParser');
 const pool = mariadb.createPool({
   user: 'root',
   password: 'root',
@@ -35,5 +36,11 @@ module.exports = class DB {
     let result = await this.conn.query(sql);
     return sql;
   }
+  async update(params){
+    let sql = await sqlUpdate(params);
+    let result = await this.conn.query(sql);
+    return result;
+  }
+  
 
 }

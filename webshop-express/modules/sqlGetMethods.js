@@ -59,6 +59,13 @@ module.exports = {
     sql = sql.replace(',', '');
     return sql;
   },
+  limit(limit){
+    let sql= ' limit ';
+    for(let key in limit){
+      sql+=`${key}, ${limit[key]}`
+    }
+    return sql;
+  },
   deleteQuerys(){
     this.queryParams=[];
   }

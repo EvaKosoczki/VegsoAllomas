@@ -216,3 +216,13 @@ footer {
   position: absolute;
   bottom: 20px;
 }
+
+
+.basket-pic{
+  height: 50px;
+  width: 50px;
+}
+
+.order-buttons{
+  width: 100px;
+}

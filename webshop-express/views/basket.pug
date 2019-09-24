@@ -28,7 +28,7 @@ block content
           .basket-summary.border.border-dark
             .row
               .col-md-8.text-left
-                h2 Order Summary
+                h2 #{basket}
                 p #items
               .col-4.text-right
                 h2 ###$
@@ -88,4 +88,79 @@ block content
             button.order-buttons.btn.btn-success.btn-large.mr-5(type="submit") Place Order
             a.order-buttons.btn.btn-danger.btn-large(href="/products") Cancel
 
+    .container
+      .row
+        .col-12.text-center
+          h2 Featured Products
+      .row
+        .new-arrival
+          .titlebar
+            .next-back
+              span
+                a.left.carousel-control(data-slide="prev" href="#Carousel")
+                  <i class="fas fa-chevron-left"></i>
+              span
+                a.right.carousel-control(data-slide="next" href="#Carousel")
+                  <i class="fas fa-chevron-right"></i>
+          .arrival-product
+            #Carousel.carousel.slide(data-ride="carousel")
+              // Carousel items
+              .carousel-inner
+                .carousel-item.active
+                  .arrival-item
+                    ul
+                      li
+                        a(href="#")
+                          img(src="/image/snowboards/burton-amplifier.jpg" alt="Burton Amplifier" style="max-width:100%;")
+                        h4.text-center Burton Amplifier
+                      li
+                        a(href="#")
+                          img(src="/image/snowboards/capita-equalizer.jpg" alt="Image" style="max-width:100%;")
+                        h4.text-center Capita Equalizer
+                      li
+                        a(href="#")
+                          img(src="/image/snowboards/gnu-antigravity.jpg" alt="Image" style="max-width:100%;")
+                        h4.text-center Gnu Antigravity
+                      li
+                        a(href="#")
+                          img(src="/image/snowboards/jones-flagship.jpg" alt="Image" style="max-width:100%;")
+                        h4.text-center Jones Flagship
+                .carousel-item
+                  .arrival-item
+                    ul
+                      li
+                        a(href="#")
+                          img(src="/image/snowboards/k2-manifest.jpg" alt="Image" style="max-width:100%;")
+                        h4.text-center K2 Manifest
+                      li
+                        a(href="#")
+                          img(src="/image/snowboards/lib-tech-double-dip.jpg" alt="Image" style="max-width:100%;")
+                        h4.text-center Lib Tech Double Dip
+                      li
+                        a(href="#")
+                          img(src="/image/snowboards/nidecker-micron.jpg" alt="Image" style="max-width:100%;")
+                        h4.text-center Nidecker Micron
+                      li
+                        a(href="#")
+                          img(src="/image/snowboards/nitro-suprateam.jpg" alt="Image" style="max-width:100%;")
+                        h4.text-center Nitro Suprateam
+                .carousel-item
+                  .arrival-item
+                    ul
+                      li
+                        a(href="#")
+                          img(src="/image/snowboards/ride-berzerker.jpg" alt="Image" style="max-width:100%;")
+                        h4.text-center Ride Berzerker
+                      li
+                        a(href="#")
+                          img(src="/image/snowboards/rome-heist.jpg" alt="Image" style="max-width:100%;")
+                        h4.text-center Rome Heist
+                      li
+                        a(href="#")
+                          img(src="/image/snowboards/salomon-oh-yeah.jpg" alt="Image" style="max-width:100%;")
+                        h4.text-center Salomon Oh Yeah
+                      li
+                        a(href="#")
+                          img(src="/image/snowboards/ride-helix.jpg" alt="Image" style="max-width:100%;")
+                        h4.text-center Ride Helix
           

@@ -1,5 +1,5 @@
 window.onscroll = function (ev) {
-  console.log(ev.currentTarget.scrollY);
+  //console.log(ev.currentTarget.scrollY);
 
   const basketSummary = document.querySelector('.basket-summary');
   const top = ev.currentTarget.scrollY;

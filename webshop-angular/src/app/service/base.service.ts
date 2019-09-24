@@ -29,6 +29,7 @@ export class BaseService {
 
   delete(id): Observable<any> {
     let url: string = this.getUrl()
+    console.log(`${url}/${id}`)
     return this.http.delete(`${url}/${id}`)
   }
 

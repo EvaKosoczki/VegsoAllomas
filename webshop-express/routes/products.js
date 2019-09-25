@@ -1,8 +1,6 @@
 const express = require('express');
-
 const router = express.Router();
 const path = require('path');
-
 const DB = require('../modules/db');
 
 const db = new DB();
@@ -10,11 +8,11 @@ const db = new DB();
 
 router.get('/:postfix', async (req, res, next) => {
   const productDetails = await db.get({
-    select:'*',
-    from:'snowboards',
-    where:{postfix:`${req.params.postfix}`},
-    join:{join:'inner', table:'brands', 'snowboards.brand':'brands.brandId'},
-    orderby:{name:'asc', brandName:'asc'}
+    select: '*',
+    from: 'snowboards',
+    where: { postfix: `${req.params.postfix}` },
+    join: { join: 'inner', table: 'brands', 'snowboards.brand': 'brands.brandId' },
+    orderby: { name: 'asc', brandName: 'asc' }
   })
   const oneProduct = productDetails[0];
   const img = path.join('/image', 'snowboards', oneProduct.picture);
@@ -30,8 +28,8 @@ router.get('/:postfix', async (req, res, next) => {
 /* GET all producst in JSON format */
 router.get('/', async (req, res, next) => {
   const productDetails = await db.get({
-    select:'*',
-    from:"snowboards"
+    select: '*',
+    from: "snowboards"
   })
 
   res.render('products', {

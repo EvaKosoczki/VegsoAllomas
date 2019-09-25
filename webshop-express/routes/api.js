@@ -1,7 +1,5 @@
 const express = require('express');
-
 const router = express.Router();
-
 const DB = require('../modules/db');
 
 const db = new DB();
@@ -14,11 +12,12 @@ router.get('/products', async (req, res, next) => {
 
   res.json(productDetails);
 });
+
 router.get('/products/:id', async (req, res, next) => {
   const productDetails = await db.get({
     select: '*',
     from: 'snowboards',
-    where:{ID:`${req.params.id}`}
+    where: { ID: `${req.params.id}` }
   })
 
   res.json(productDetails);
@@ -45,13 +44,13 @@ router.post('/products', async (req, res, next) => {
   res.json(productDetails);
 });
 
-router.put('/products/:id', async (req, res, next)=>{
+router.put('/products/:id', async (req, res, next) => {
   delete req.body.id;
   const productDetails = await db.update({
-    table:"snowboards",
-    set:req.body,
-    where:{ID:`${req.params.id}`}
-  }) 
+    table: "snowboards",
+    set: req.body,
+    where: { ID: `${req.params.id}` }
+  })
   res.json(productDetails);
 })
 

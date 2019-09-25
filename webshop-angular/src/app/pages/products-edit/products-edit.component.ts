@@ -37,14 +37,15 @@ export class ProductsEditComponent implements OnInit {
     this.productsService.update(this.oneProduct)
       .subscribe(
         response => {
+          this.router.navigateByUrl("/products");
           console.log("sikeres")
         },
         err => {
-          this.router.navigateByUrl("/products")
+          this.router.navigateByUrl("/products");
           console.error(err)
         })
   }
   onCancel() {
-    this.router.navigateByUrl("/products")
+    this.router.navigateByUrl("/products");
   }
 }

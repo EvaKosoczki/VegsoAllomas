@@ -42,8 +42,10 @@ export class ProductsNewComponent implements OnInit {
   }
 
   regexReplacer(param) {
-    console.log(param)
-    return this.addedProduct.postfix = param;
+    this.addedProduct.postfix = param;
+  }
+  onBlurMethod(data) {
+    this.addedProduct.postfix = data.target.value
   }
 
   sizeValidator(control: AbstractControl){

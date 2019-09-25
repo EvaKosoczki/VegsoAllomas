@@ -6,7 +6,7 @@
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" name="name"
-            placeholder="Name" #name="ngModel" required [(ngModel)]="addedProduct.name">
+            placeholder="Name" (blur)="onBlurMethod($event)" #name="ngModel" required [(ngModel)]="addedProduct.name">
             <span>
                 <fa-icon [icon]="faTimesCircle" style="color:  firebrick" *ngIf="name.errors?.required && name.touched"></fa-icon>
                 <span *ngIf="name.errors?.required && name.touched">Name is required. Please fill it out.</span>
@@ -15,9 +15,8 @@
         <div class="form-group">
           <label for="postfix">Postfix</label>
           <input type="text" class="form-control" id="postfix" name="postfix"
-            placeholder="postfix"
-            [ngModel]="addedProduct.postfix | postfix: addedProduct.name"
-            (ngModelChange)="regexReplacer($event)">
+            placeholder="postfix" [ngModel]="addedProduct.postfix | postfix"
+            (blur)="onBlurMethod($event)">
         </div>
         <div class="form-group">
           <label for="brand">Brand</label>

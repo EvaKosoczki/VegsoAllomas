@@ -44,6 +44,14 @@ router.post('/products', async (req, res, next) => {
 
   res.json(productDetails);
 });
+  router.get('/brands', async (req,res, next) =>{
+    const result = await db.get({
+      select:'*',
+      from:'brands'
+    });
+    console.log(result);
+    res.json(result);
+  });
 
 router.put('/products/:id', async (req, res, next)=>{
   delete req.body.id;

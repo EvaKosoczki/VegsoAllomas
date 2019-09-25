@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from '../model/product';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Brand } from '../model/brand';
 
 @Injectable({
   providedIn: 'root'
@@ -42,4 +43,6 @@ export class BaseService {
     let url: string = this.getUrl()
     return this.http.put<any>(`${url}/${product.ID}`, product)
   }
+  
+ 
 }

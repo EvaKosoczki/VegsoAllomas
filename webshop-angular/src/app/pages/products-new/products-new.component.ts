@@ -5,6 +5,8 @@ import { Product } from 'src/app/model/product';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { BrandsService } from 'src/app/service/brands.service';
+import { Brand } from 'src/app/model/brand';
 
 
 @Component({
@@ -18,19 +20,26 @@ export class ProductsNewComponent implements OnInit {
   addedProduct: Product;
   originalName: string = '';
   replacedName: string = '';
+  brands: Brand[];
+  selectedBrand:number;
 
 
   constructor(private productService: ProductsService,
-    private router: Router) {
+    private router: Router, private brandService: BrandsService) {
       
      }
 
   ngOnInit() {
     this.addedProduct = new Product();
+    this.brandService.getBrands().forEach(brands =>{
+      this.brands =brands;
+    })
   }
   onSubmit(ev: Event): void {
     ev.preventDefault();
-
+    console.log(this.addedProduct);
+    console.log(this.selectedBrand);
+    this.addedProduct.brand=this.selectedBrand;
     this.productService.create(this.addedProduct).subscribe(
       response => {
         console.log('sikeres');

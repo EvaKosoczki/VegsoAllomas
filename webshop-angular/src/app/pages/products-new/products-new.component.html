@@ -20,8 +20,9 @@
         </div>
         <div class="form-group">
           <label for="brand">Brand</label>
-          <input type="text" class="form-control" id="brand" name="brand"
-            placeholder="Brand" #brand="ngModel" required [(ngModel)]="addedProduct.brand">
+          <select name="brand" id="brand" class="form-control" #brand="ngModel" [(ngModel)]="selectedBrand">
+            <option *ngFor="let brand of brands" value="{{brand.brandId}}">{{brand.brandName}}</option>
+          </select>
             <span>
                 <fa-icon [icon]="faTimesCircle" style="color:  firebrick" *ngIf="brand.errors?.required && brand.touched"></fa-icon>
                 <span *ngIf="brand.errors?.required && brand.touched">Select a brand.</span>
@@ -91,6 +92,8 @@
             </span>
         </div>
         <button type="submit" [disabled]=newProductForm.form.invalid class="btn btn-primary">Send</button>
+        <button type="button" routerLink="/products" class="btn btn-warning">Cancel</button>
+
       </form>
     </div>
   </div>

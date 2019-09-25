@@ -39,7 +39,6 @@ router.post('/', async (req, res, next) => {
   })
   if (result.length === 1) {
     const token = getToken();
-    console.log(token);
     res.cookie('uuid', token);
     await setUserToken(result[0].userId, token);
     return res.redirect('/products');

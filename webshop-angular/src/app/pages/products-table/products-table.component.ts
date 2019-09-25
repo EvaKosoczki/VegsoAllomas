@@ -22,7 +22,7 @@ export class ProductsTableComponent implements OnInit {
   ngOnInit() {
   }
   onDelete(picked: Product) {
-    this.productService.delete(picked.id).subscribe(
+    this.productService.delete(picked.ID).subscribe(
       response => {
         let index = this.allData.indexOf(picked);
         this.allData.splice(index, 1);

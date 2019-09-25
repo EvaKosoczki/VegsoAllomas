@@ -22,6 +22,7 @@ router.get('/:postfix', async (req, res, next) => {
     product: oneProduct,
     imgRoot: img,
     iconRoot: icon,
+    user: req.user
   });
 });
 
@@ -35,6 +36,7 @@ router.get('/', async (req, res, next) => {
   res.render('products', {
     title: 'Snowboards',
     products: productDetails,
+    user: req.user
   });
 });
 

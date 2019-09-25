@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 router.get('/', async (req, res, next) => {
-  res.render('basket', { title: 'My basket', basket: 'Basket Summary' });
+  res.render('basket', { title: 'My basket', basket: 'Basket Summary', user: req.user });
 });
 
 module.exports = router;

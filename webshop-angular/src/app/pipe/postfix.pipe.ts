@@ -5,9 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PostfixPipe implements PipeTransform {
 
-  transform(newProduct: any, ProductName: string): any {
-    newProduct = ProductName
-    let postfixedName = newProduct.replace(/[ ]/g, "_");
+  transform(newProduct: any): any {
+    let postfixedName = newProduct.replace(/[ ]/g, "-");
     return postfixedName;
   }
 

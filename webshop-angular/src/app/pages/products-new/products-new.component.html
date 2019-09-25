@@ -9,6 +9,13 @@
             placeholder="Name" [(ngModel)]="addedProduct.name">
         </div>
         <div class="form-group">
+          <label for="postfix">Postfix</label>
+          <input type="text" class="form-control" id="postfix" name="postfix"
+            placeholder="postfix"
+            [ngModel]="addedProduct.postfix | postfix: addedProduct.name"
+            (ngModelChange)="regexReplacer($event)">
+        </div>
+        <div class="form-group">
           <label for="brand">Brand</label>
           <input type="text" class="form-control" id="brand" name="brand"
             placeholder="Brand" [(ngModel)]="addedProduct.brand">
@@ -41,7 +48,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Send</button>
       </form>
-
     </div>
   </div>
 </div>

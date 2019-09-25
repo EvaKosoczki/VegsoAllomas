@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
           <label for="brand">Brand</label>
-          <select name="brand" id="brand" class="form-control" #brand="ngModel" [(ngModel)]="selectedBrand">
+          <select name="brand" id="brand" class="form-control" required #brand="ngModel" [(ngModel)]="selectedBrand">
             <option *ngFor="let brand of brands" value="{{brand.brandId}}">{{brand.brandName}}</option>
           </select>
             <span>

@@ -44,9 +44,9 @@ window.onscroll = function (ev) {
   const top = ev.currentTarget.scrollY;
   console.log(top);
 
-  if (top >= 450 && top <=1000) {
+  if (top >= 450 && top <=700) {
     basketSummary.classList.add('fixed-position');
-  } else if (top > 1000) {
+  } else if (top > 700) {
     basketSummary.classList.remove('fixed-position');
     basketSummary.classList.add('absolute-position')
   }
@@ -56,10 +56,15 @@ window.onscroll = function (ev) {
     basketSummary.classList.remove('absolute-position');
   }
 
-
+var offset = basketSummary.offsetTop + basketSummary.offsetHeight;
+console.log("offset:" + offset);
 
   
 };
+
+
+
+
 
 
 

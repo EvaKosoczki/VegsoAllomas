@@ -235,7 +235,7 @@ footer {
 
 .absolute-position{
   position: relative;
-  bottom: -800px;
+  top: 100px;
 }
 
 
@@ -248,9 +248,16 @@ footer {
   ;
 }
 
+.basket-small-res{
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .basket-summary {
     display: none;
+  }
+  .basket-small-res{
+    display: block;
   }
 }
 

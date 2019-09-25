@@ -6,7 +6,14 @@
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" name="name"
-            placeholder="Name" [(ngModel)]="addedProduct.name">
+            placeholder="Name" [(ngModel)]="addedProduct.name"
+            (blur)="onBlurMethod($event)">
+        </div>
+        <div class="form-group">
+          <label for="postfix">Postfix</label>
+          <input type="text" class="form-control" id="postfix" name="postfix"
+            placeholder="postfix" [ngModel]="addedProduct.postfix | postfix"
+            (blur)="onBlurMethod($event)">
         </div>
         <div class="form-group">
           <label for="brand">Brand</label>
@@ -41,7 +48,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Send</button>
       </form>
-
     </div>
   </div>
 </div>

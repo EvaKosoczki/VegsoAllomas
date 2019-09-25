@@ -10,6 +10,9 @@ import { Product } from 'src/app/model/product';
 })
 export class ProductsNewComponent implements OnInit {
   addedProduct: Product = new Product();
+  originalName: string = '';
+  replacedName: string = '';
+
   constructor(private productService: ProductsService,
     private router: Router) { }
 
@@ -26,5 +29,12 @@ export class ProductsNewComponent implements OnInit {
       err =>
         console.error(err),
     )
+  }
+
+  regexReplacer(param) {
+    this.addedProduct.postfix = param;
+  }
+  onBlurMethod(data) {
+    this.addedProduct.postfix = data.target.value
   }
 }

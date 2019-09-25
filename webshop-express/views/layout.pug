@@ -27,11 +27,13 @@ html
           if user
             if user.userId
               li
-                span #{ user.firstName }
-                a.btn.btn-defult(href="/logout") logout
-            else
-              li
-                a.btn.btn-success(href="/login") login
+                span.user-name #{ user.firstName }
+                a(href="/basket")
+                  img.basket(src="./image/icons/basket1.png")
+                a.btn.btn-info(href="/logout") logout
+          else
+            li
+              a.btn.btn-success(href="/login") login
 
     block content
 

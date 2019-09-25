@@ -233,6 +233,14 @@ footer {
 }
 
 
+.absolute-position{
+  position: relative;
+  top: 100px;
+}
+
+
+
+
 .basket-summary {
   background-color: #fff;
   height: auto;
@@ -240,9 +248,16 @@ footer {
   ;
 }
 
+.basket-small-res{
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .basket-summary {
     display: none;
+  }
+  .basket-small-res{
+    display: block;
   }
 }
 

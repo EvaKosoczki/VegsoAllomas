@@ -5,7 +5,6 @@
 font-family: 'Roboto Condensed', sans-serif;
 font-family: 'Josefin Sans', sans-serif; */
 
-
 .primary {
   color: #3d95c1;
 }
@@ -119,6 +118,10 @@ nav a {
     top: 85%;
     width: 110px;
   }
+}
+
+.hero-banner{
+  width: 100%;
 }
 
 footer {

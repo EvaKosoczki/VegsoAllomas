@@ -27,6 +27,8 @@ router.get('/:postfix', async (req, res, next) => {
 
 /* GET all producst in JSON format */
 router.get('/', async (req, res, next) => {
+
+
   const productDetails = await db.get({
     select: '*',
     from: "snowboards"

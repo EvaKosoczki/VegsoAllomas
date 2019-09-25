@@ -17,15 +17,18 @@ block content
         .col-12 Rating
         .col-12
             p.text-success Delivery time
-        .row
-          .col-3
-            .btn-toolbar(role='toolbar' aria-label='Toolbar with button groups')
-              .btn-group.mr-2(role='group' aria-label='First group')
-                button.btn.btn-secondary(type='button') ⯆
-                input.prodNumber.text-center(type='text', value='1')
-                button.btn.btn-secondary(type='button') ⯅
-          .col-5
-            button.btn.btn-dark.btn-block.basketButton Add to Basket
+        form(method="post" action="/basket")
+          .row(style="display:none")
+            input(type="number" value=product.ID)
+          .row
+            .col-3
+              .btn-toolbar(role='toolbar' aria-label='Toolbar with button groups')
+                .btn-group.mr-2(role='group' aria-label='First group')
+                  button.btn.btn-secondary(type='button') ⯆
+                  input.prodNumber.text-center(type='text', value='1')
+                  button.btn.btn-secondary(type='button') ⯅
+            .col-5
+              button.btn.btn-dark.btn-block.basketButton Add to Basket
   .container-fluid.toggleDiv
     .row
       .col-2.offset-5

@@ -1,0 +1,48 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+		meta(name="description" content="")
+		meta(name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors")
+		meta(name="generator" content="Jekyll v3.8.5")
+		title Register Template · Bootstrap
+		// Bootstrap core CSS
+		link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
+		link(href="/stylesheets/register.css" rel="stylesheet")
+	body.text-center.login-background
+		.container
+			.row
+				.panel.panel-primary
+					.panel-body
+						form(method='POST' action='#' role='form')
+							.form-group
+								h2 Create account
+							.form-group
+								label.control-label(for='signupName') Your name
+								input#signupName.form-control(type='text' maxlength='50')
+							.form-group
+								label.control-label(for='signupEmail') Email
+								input#signupEmail.form-control(type='email' maxlength='50')
+							.form-group
+								label.control-label(for='signupEmailagain') Email again
+								input#signupEmailagain.form-control(type='email' maxlength='50')
+							.form-group
+								label.control-label(for='signupPassword') Password
+								input#signupPassword.form-control(type='password' maxlength='25' placeholder='at least 6 characters' length='40')
+							.form-group
+								label.control-label(for='signupPasswordagain') Password again
+								input#signupPasswordagain.form-control(type='password' maxlength='25')
+							.form-group
+								button#signupSubmit.btn.btn-info.btn-block(type='submit') Create your account
+							p.form-group
+								| By creating an account, you agree to our 
+								a(href='#') Terms of Use
+								|  and our 
+								a(href='#') Privacy Policy
+								| .
+							hr
+							p
+							| Already have an account? 
+							a(href='#') Sign in
+							p

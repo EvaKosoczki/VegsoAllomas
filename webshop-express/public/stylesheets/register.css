@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC:700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Big+Shoulders+Display|Josefin+Sans|Roboto+Condensed&display=swap');
+
+
+form {
+  margin: 0px 10px;
+}
+
+h2 {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.container {
+  max-width: 360px;
+}
+
+.divider {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.divider hr {
+  margin: 7px 0px;
+  width: 35%;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+body {
+  background-image: url("./../image/photos/photo-1529669851596-ba9a5549af95.jpg");
+  background-size: cover;
+  font-family: 'Big Shoulders Display', cursive;
+  font-size: 3vh;
+}

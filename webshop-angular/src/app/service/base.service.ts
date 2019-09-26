@@ -38,8 +38,8 @@ export class BaseService {
     return this.http.post<any>(url, data)
   }
 
-  update(product: Product): Observable<any> {
+  update(data): Observable<any> {
     let url: string = this.getUrl()
-    return this.http.put<any>(`${url}/${product.ID}`, product)
+    return this.http.put<any>(url, data)
   }
 }

@@ -9,6 +9,12 @@ import { ProductsTableComponent } from './pages/products-table/products-table.co
 import { ProductsEditComponent } from './pages/products-edit/products-edit.component';
 import { ProductsNewComponent } from './pages/products-new/products-new.component';
 import { PostfixPipe } from './pipe/postfix.pipe';
+import { OrdersTableComponent } from './pages/orders-table/orders-table.component';
+import { UsersTableComponent } from './pages/users-table/users-table.component';
+import { OrdersNewComponent } from './pages/orders-new/orders-new.component';
+import { OrdersEditComponent } from './pages/orders-edit/orders-edit.component';
+import { UsersEditComponent } from './pages/users-edit/users-edit.component';
+import { UsersNewComponent } from './pages/users-new/users-new.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +22,13 @@ import { PostfixPipe } from './pipe/postfix.pipe';
     ProductsTableComponent,
     ProductsEditComponent,
     ProductsNewComponent,
-    PostfixPipe
+    PostfixPipe,
+    OrdersTableComponent,
+    UsersTableComponent,
+    OrdersNewComponent,
+    OrdersEditComponent,
+    UsersEditComponent,
+    UsersNewComponent
   ],
   imports: [
     BrowserModule,

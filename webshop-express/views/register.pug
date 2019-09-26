@@ -1,0 +1,59 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+		meta(name="description" content="")
+		meta(name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors")
+		meta(name="generator" content="Jekyll v3.8.5")
+		title Register Template · Bootstrap
+		// Bootstrap core CSS
+		link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
+		link(href="/stylesheets/register.css" rel="stylesheet")
+	body.text-center.login-background
+		.container
+			.row
+				.panel.panel-primary
+					.panel-body
+						form(method='POST' action='/register' role='form')
+							.form-group
+								h2 Create account
+							.form-group
+								label.control-label(for='signupFName') First Name
+								input#signupFName.form-control(type='text' maxlength='50' name="firstName" required)
+							.form-group
+								label.control-label(for='signupLName') Last name
+								input#signupLName.form-control(type='text' maxlength='50' name="lastName" required)
+							.form-group
+								label.control-label(for='signupEmailagain') Email 
+								input#signupEmail.form-control(type='email' maxlength='50' name="email" required)
+								.form-group
+								label.control-label(for='signupAddress') Address
+								input#signupAddress.form-control(type='text' maxlength='50' name="address")
+								.form-group
+								label.control-label(for='City') City
+								input#signupCity.form-control(type='text' maxlength='50' name="city")
+								.form-group
+								label.control-label(for='Zip') Zip
+								input#Zip.form-control(type='number' maxlength='50' name="zip")
+							.form-group
+								label.control-label(for='signupPassword') Password
+								input#signupPassword.form-control(type='password' maxlength='25' placeholder='at least 8 characters' length='40' 
+								name="password" pattern=regexPattern required)
+							.form-group
+								label.control-label(for='signupPasswordagain') Password again
+								input#signupPasswordagain.form-control(type='password' maxlength='25' 
+								pattern=regexPattern required)
+							.form-group
+								button#signupSubmit.btn.btn-info.btn-block(type='submit') Create your account
+							p.form-group
+								| By creating an account, you agree to our 
+								a(href='#') Terms of Use
+								|  and our 
+								a(href='#') Privacy Policy
+								| .
+							hr
+							p
+							| Already have an account? 
+							a(href='/login') Sign in
+							p

@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-  console.log("REQ: " + req.body);
+  console.log("REQ: " , req.body);
   //console.log('REQ BODY:' + Object.keys(req.body[0]));
   // const productDetails = await db.create({
   //   table: 'basket-details',

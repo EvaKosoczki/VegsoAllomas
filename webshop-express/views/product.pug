@@ -14,39 +14,21 @@ block content
           h4 #{product.size}
           h4 #{product.purpose}
           h2 #{product.price} $
-        .col-12 Rating
+        //- .col-12 Rating
         .col-12
-          p.text-success Delivery time
+          p.text-success ✔ Delivery time 3-5 business days
         .row
-          .col-3
+          .col-3.col-sm-3.mb-2
             .btn-toolbar(role='toolbar' aria-label='Toolbar with button groups')
               .btn-group.mr-2(role='group' aria-label='First group')
-                script.
-                  var incValue = function(){
-                    value = parseInt(document.querySelector('.prodNumber').value) +1;
-                    console.log(value);
-                  }
-                  var descValue = function(){
-                    value = parseInt(document.querySelector('.prodNumber').value) -1;
-                    console.log(value);
-                  }
                 button.btn.btn-secondary.plus(type='button' onclick='descValue()') ⯆
                 input.prodNumber.text-center(type='text' value='1')
                 button.btn.btn-secondary.minus(type='button' onclick='incValue()') ⯅
-          .col-5
+          .col-5.col-sm-5
             button.btn.btn-dark.btn-block.basketButton(onclick=`addToBasket(${product.ID})`) Add to Basket
   .container-fluid.toggleDiv
     .row
       .col-2.offset-5
-        script.
-          var showDesc = function () {
-            document.querySelector('.descriptionDiv').classList.remove('hide');
-            document.querySelector('.reviewsDiv').classList.remove('show');
-          }
-          var showRev = function () {
-            document.querySelector('.reviewsDiv').classList.add('show');
-            document.querySelector('.descriptionDiv').classList.add('hide');
-          }
         button.btn.toggleButtons(href='#' type='button' onclick='showDesc()') Description
         button.btn.toggleButtons(href='#' type='button' onclick='showRev()') Reviews
     .descriptionDiv

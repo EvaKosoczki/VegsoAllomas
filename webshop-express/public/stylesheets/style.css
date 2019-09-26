@@ -5,7 +5,6 @@
 font-family: 'Roboto Condensed', sans-serif;
 font-family: 'Josefin Sans', sans-serif; */
 
-
 .primary {
   color: #3d95c1;
 }
@@ -121,6 +120,10 @@ nav a {
   }
 }
 
+.hero-banner{
+  width: 100%;
+}
+
 footer {
   position: relative;
   left: 0;
@@ -233,16 +236,33 @@ footer {
 }
 
 
+.absolute-position {
+  position: relative;
+  top: 100px;
+}
+
+
+
+
 .basket-summary {
   background-color: #fff;
   height: auto;
+  transition: all 0.2s;
   width: 400px;
   ;
+}
+
+.basket-small-res {
+  display: none;
 }
 
 @media screen and (max-width: 768px) {
   .basket-summary {
     display: none;
+  }
+
+  .basket-small-res {
+    display: block;
   }
 }
 
@@ -261,26 +281,31 @@ footer {
 .titlebar {
   overflow: hidden;
 }
+
 .titlebar .next-back {
   float: right;
   margin: 12px 0;
 }
+
 .titlebar .next-back span a {
   font-size: 12px;
   text-transform: uppercase;
   font-family: Poppins;
   color: #222222;
 }
+
 .titlebar .next-back span a:hover {
   text-decoration: none;
   color: #888888;
 }
+
 .titlebar .next-back span {
   border-right: 1px solid #000;
   padding: 0 8px 0 5px;
   display: inline-block;
   line-height: 10px;
 }
+
 .titlebar .next-back span:last-child {
   border-right: none;
   padding-right: 0;
@@ -301,6 +326,7 @@ footer {
   margin: 0;
   padding: 0;
 }
+
 .arrival-product .arrival-item ul li {
   float: left;
   list-style: none;
@@ -308,6 +334,49 @@ footer {
   overflow: hidden;
   margin-right: 2.6%;
 }
+
 .arrival-product .arrival-item ul li:last-child {
   margin-right: 0;
+}
+
+.user-name {
+  color: #f00;
+}
+
+.basket {
+  height: 38px;
+  margin: 0px 10px 0px 10px;
+  position: relative;
+  width: 38px;
+}
+
+.basket-link{
+  position: relative;
+}
+
+.basket-link span{
+  background-color: #F21E00;
+  border-radius: 999px;
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: -15px; 
+  right: 2px;
+  text-align: center;
+  color: #dae2e7;
+}
+
+.explode {
+  animation: explosionEffect 1s;
+}
+
+@keyframes explosionEffect{
+  0% {
+    transition: 0.5s;
+  transform: scale(2)
+  }
+  100% {
+    transition: 0.5s;
+  transform: scale(1)
+  }
 }

@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h4>Add new customer</h4>
+      <button class="btn btn-info" routerLink="new">New user</button>
+    </div>
+    <div class="col-12">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of allData">
+            <td>{{item.firstName}}</td>
+            <td>{{item.lastName}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.address}}</td>
+            <td class="btn-group">
+              <button type="button" class="btn btn-success" routerLink="/users/edit/{{item.userId}}">Edit</button>
+              <button class="btn btn-danger" type="button" (click)="onDelete(item)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

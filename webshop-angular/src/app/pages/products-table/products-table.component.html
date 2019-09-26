@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="offset-10 col-12">
+    <div class="col-12">
       <button class="btn btn-primary" routerLink="new">New</button>
     </div>
     <div class="col-12">
@@ -15,10 +15,8 @@
         <tbody>
           <tr *ngFor="let item of allData">
             <td *ngFor="let data of item | keyvalue">{{data.value}}</td>
-            <td><button type="button" class="btn btn-success"
-                routerLink="/products/edit/{{item.ID}}">Edit</button></td>
-            <td><button class="btn btn-danger"
-                click="onDelete(item)">Delete</button></td>
+            <td><button type="button" class="btn btn-success" routerLink="/products/edit/{{item.ID}}">Edit</button></td>
+            <td><button class="btn btn-danger" type="button" (click)="onDelete(item)">Delete</button></td>
           </tr>
         </tbody>
       </table>

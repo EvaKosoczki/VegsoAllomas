@@ -1,0 +1,41 @@
+<div id="formsBack">
+    <div class="row">
+      <div class="col-2 sideBar">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9">
+        <div id="logreg-forms">
+          <form class="form-signin" (submit)="onSubmit($event)">
+            <h1 class="h3 mb-3 font-weight-normal text-light" style="text-align: center"> Edit order</h1>
+            <div class="input-group">
+              <input name="orderId" [(ngModel)]="order.userId" type="number" id="orderId" class="form-control" placeholder="Firstname" required=""
+                autofocus="">
+            </div>
+            <div class="input-group">
+              <input name="userId" [(ngModel)]="order.userId" type="number" id="userId" class="form-control" placeholder="Lastname" required=""
+                autofocus="">
+            </div>
+            <div class="input-group">
+            <input name="snowboardId" [(ngModel)]="order.snowboardId" type="number" id="snowboardId" class="form-control" placeholder="Email address" required=""
+              autofocus="">
+            </div>
+            <div class="input-group">
+              <input name="quantity" [(ngModel)]="order.quantity" type="number" id="quantity" class="form-control" placeholder="Address" required=""
+                autofocus="">
+            </div>
+  
+            <div class="input-group">
+              <button class="btn btn-md btn-rounded btn-block form-control submit mb-3" type="submit">Save changes<i
+                class="fas fa-sign-in-alt"></i> </button>
+            </div>
+            <div class="input-group">
+              <button class="btn btn-md btn-rounded btn-block form-control cancel" type="button" (click)="onCancel()">Cancel<i
+                class="fas fa-sign-in-alt"></i> </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

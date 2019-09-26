@@ -28,8 +28,10 @@ html
             if user.userId
               li
                 span.user-name #{ user.firstName }
-                a(href="/basket")
+                a.basket-link(href="/basket")
                   img.basket(src="/image/icons/basket1.png")
+                  span 5 
+
                 a.btn.btn-info(href="/logout") logout
           else
             li

@@ -49,7 +49,7 @@ app.use(async (req, res, next) => {
 
 app.use('/logout', (req, res, next) => {
   res.clearCookie('uuid');
-  res.redirect('/login');
+  res.redirect('/products');
 });
 
 app.use('/', indexRouter);

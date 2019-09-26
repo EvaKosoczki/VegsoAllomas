@@ -6,7 +6,7 @@ const DB = require('../modules/db');
 
 const db = new DB();
 
-const regexPattern = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}$/
+const regexPattern = "^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}$"
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.render('register', {

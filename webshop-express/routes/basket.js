@@ -13,14 +13,6 @@ router.get('/', async (req, res, next) => {
   });
 });
 
-<<<<<<< HEAD
-router.post('/'), async (req,res,next) =>{
-  const parsedBody = JSON.parse(req.body);
-  console.log(parsedBody);
-}
-
-module.exports = router;
-=======
 router.post('/', async (req, res, next) => {
   console.log("REQ: " + req.body);
   //console.log('REQ BODY:' + Object.keys(req.body[0]));
@@ -32,4 +24,3 @@ router.post('/', async (req, res, next) => {
 })
 
 module.exports = router;
->>>>>>> cc47cebedecb38601834556adbb19789e87549d9

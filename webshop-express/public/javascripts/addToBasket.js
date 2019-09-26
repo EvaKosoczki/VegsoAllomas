@@ -2,7 +2,7 @@
 //   event.preventDefault();
 // })
 
-const addToBasket = function (productId) {
+const addToBasket = function (productId, userId) {
   // event.preventDefault();
 
   const quantity = parseInt(document.querySelector('.prodNumber').value);
@@ -23,6 +23,7 @@ const addToBasket = function (productId) {
   }
 
   const dataArray = {
+    user: userId,
     snowboardId: productId,
     quantity: quantity,
   }

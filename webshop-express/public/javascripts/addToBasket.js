@@ -3,6 +3,7 @@ const addToBasket = function (productId, userId) {
   // Value read from document
   const quantity = parseInt(document.querySelector('.prodNumber').value);
 
+
   // Data creating
   var url = 'http://localhost:3000/basket';
   var data = {
@@ -20,6 +21,5 @@ const addToBasket = function (productId, userId) {
       }
     }).then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', response));
-
+    .then(response => document.querySelector('span.counter').innerHTML = response);
 }

@@ -28,7 +28,7 @@ router.post('/', async (req, res, next) => {
       'userId': 'user'
     },
     where: {
-      'user': req.body.user
+      'user': req.user.userId
     }
   })
 

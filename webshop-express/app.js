@@ -38,7 +38,6 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json());
 
 app.use(async (req, res, next) => {
   const user = await userDb.checkLogin(req);

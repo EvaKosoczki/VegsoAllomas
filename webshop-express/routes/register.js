@@ -6,7 +6,7 @@ const DB = require('../modules/db');
 
 const db = new DB();
 
-const regexPattern = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{7,}$/
+const regexPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,12}$"
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.render('register', {
@@ -16,7 +16,7 @@ router.get('/', (req, res, next) => {
 
 
 router.post('/', async (req, res, next) => {
-  req.body.password= `SHA1('${req.body.password}')`;
+  req.body.password = `SHA1('${req.body.password}')`;
   const newUser = await db.create({
     table: 'users',
     values: req.body,

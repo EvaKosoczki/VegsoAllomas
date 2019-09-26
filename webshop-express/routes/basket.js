@@ -11,13 +11,24 @@ router.get('/', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-  console.log("REQ: " , req.body);
-  //console.log('REQ BODY:' + Object.keys(req.body[0]));
-  // const productDetails = await db.create({
-  //   table: 'basket-details',
-  //   values: req.body,
-  // })
-  res.send('Hali');
+  
+  const basket = await db.get({
+    select: {'basketId': 'basket'},
+    from: 'users',
+    join: {
+      join: 'inner',
+      table: 'baskets',
+      'userId': 'user'
+    },
+    where: {'user' : req.body.user}
+  })
+  delete req.body.user;
+  console.log(basket);
+  req.body.basket = basket[0].basket;
+  const productDetails = await db.create({
+    table: '`basket-details`',
+    values: req.body,
+  })
 })
 
 module.exports = router;

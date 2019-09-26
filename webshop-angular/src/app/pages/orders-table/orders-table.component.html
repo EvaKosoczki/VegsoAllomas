@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h4>Add new order</h4>
+      <button class="btn btn-info" routerLink="new">New order</button>
+    </div>
+    <div class="col-12">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Order Date</th>
+            <th>Quantity of prducts</th>
+            <th>Total price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of allData">
+            <td>{{item.orderId}}</td>
+            <td>{{item.firstName}} {{item.lastName}}</td>
+            <td>{{item.orderDate}}</td>
+            <td></td>
+            <td></td>
+            <td class="btn-group">
+              <button type="button" class="btn btn-success" routerLink="/orders/edit/{{item.orderId}}">Edit</button>
+              <button class="btn btn-danger" type="button" (click)="onDelete(item)">Delete</button>
+              <button class="btn btn-info" (click)="toggleView(item.orderId)">Details</button>
+            </td>
+            <div class="row expandRow" id="expandRow{{item.orderId}}">
+          <tr>
+            <th>Product</th>
+            <th>Unit price</th>
+            <th>Quantity</th>
+          </tr>
+          <tr>
+            <td>{{item.snowboardId}}</td>
+            <td>{{item.unitPrice}}</td>
+            <td>{{item.quantity}}</td>
+          </tr>
+    </div>
+    </tr>
+    </tbody>
+    </table>
+  </div>
+</div>
+</div>

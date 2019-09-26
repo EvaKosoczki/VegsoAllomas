@@ -17,15 +17,19 @@ block content
         //- .col-12 Rating
         .col-12
           p.text-success ✔ Delivery time 3-5 business days
-        .row
-          .col-3.col-sm-3.mb-2
-            .btn-toolbar(role='toolbar' aria-label='Toolbar with button groups')
-              .btn-group.mr-2(role='group' aria-label='First group')
-                button.btn.btn-secondary.plus(type='button' onclick='descValue()') ⯆
-                input.prodNumber.text-center(type='text' value='1')
-                button.btn.btn-secondary.minus(type='button' onclick='incValue()') ⯅
-          .col-5.col-sm-5
-            button.btn.btn-dark.btn-block.basketButton(onclick=`addToBasket(${product.ID})`) Add to Basket
+
+        if user
+          if user.userId
+            .row
+              .col-3.col-sm-3.mb-2
+                .btn-toolbar(role='toolbar' aria-label='Toolbar with button groups')
+                  .btn-group.mr-2(role='group' aria-label='First group')
+                    button.btn.btn-secondary.plus(type='button' onclick='descValue()') ⯆
+                    input.prodNumber.text-center(type='text' value='1')
+                    button.btn.btn-secondary.minus(type='button' onclick='incValue()') ⯅
+              .col-5.col-sm-5
+                button.btn.btn-dark.btn-block.basketButton(onclick=`addToBasket(${product.ID})`) Add to Basket
+        
   .container-fluid.toggleDiv
     .row
       .col-2.offset-5

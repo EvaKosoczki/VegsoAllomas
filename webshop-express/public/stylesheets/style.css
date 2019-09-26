@@ -380,3 +380,8 @@ footer {
   transform: scale(1)
   }
 }
+
+@media screen and (max-width: 768px) {
+  .order-buttons {
+    margin: 0px!important
+  }

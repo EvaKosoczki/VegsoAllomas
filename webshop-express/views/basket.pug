@@ -19,17 +19,17 @@ block content
             tbody
               tr
                 td
-                  img(src="#", alt="mock" class="basket-pic")
-                td MockName
+                  img(src="/image/snowboards/burton-name-dropper.jpg", alt="mock" class="basket-pic")
+                td Burton Name Dropper Snowboard 2020
                 td 1
-                td 200
+                td 469
         
             
       .row
         .col-12.text-left
           h2 Shipping & billing info
       .row
-        .col-10.col-md-5
+        .col-10.col-md-6
           form.form(action="", method="post")
             .form-group
               label Name
@@ -61,37 +61,28 @@ block content
         .col-4.offset-2.basket-content
           .basket-summary.border.border-dark
             .row
-              .col-md-8.text-left
+              .col-md-6.text-left.ml-2
                 h2 #{basket}
-                p #items
-              .col-4.text-right
-                h2 ###$
+                p 1 item
+              .col-5.text-right
+                h2 469 $
             hr
             
             .row
-              .col-md-6.text-left
-                h4 ##Order Name
-                p ###Size
-                p ###Price
-              .col-md-6.text-right
-                h4 SubPrice
-            hr
-            .row
-              .col-md-6.text-left
-                h4 ##Order Name
-                p ###Size
-                p ###Price
-              .col-md-6.text-right
-                h4 SubPrice
+              .col-12.mr-3.text-right
+                h4 Burton Name Dropper Snowboard 2020
+                h5 size: 158
+                h5 price: 469
+              
             hr            
             .row
-              .col-12.col-md-6.text-left
+              .col-12.col-md-6.text-left.ml-2
                 h3 Order Total
-              .col-12.col--md-6.text-right
-                h3 ###TotalPrice
+              .col-12.text-right.mr-3
+                h3 469 $
       
       .row.mb-3
-        .col-7.text-right
+        .col-6.text-right
             button.order-buttons.btn.btn-success.btn-large.mr-5(type="submit") Place Order
             a.order-buttons.btn.btn-danger.btn-large(href="/products") Cancel
 

@@ -7,10 +7,7 @@ const db = new DB();
 
 
 router.get('/', async (req, res, next) => {
-  res.render('basket', {
-    title: 'My basket',
-    basket: 'Basket Summary'
-  });
+  res.render('basket', { title: 'My basket', basket: 'Basket Summary', user: req.user });
 });
 
 router.post('/', async (req, res, next) => {

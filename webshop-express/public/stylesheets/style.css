@@ -247,6 +247,7 @@ footer {
 .basket-summary {
   background-color: #fff;
   height: auto;
+  transition: all 0.2s;
   width: 400px;
   ;
 }

@@ -34,6 +34,7 @@ router.post('/', async (req, res, next) => {
 
   req.body.basket = basket[0].basket;
   delete req.body.user;
+  delete req.body.counter;
   console.log(basket);
   const productDetails = await db.create({
     table: '`basket-details`',

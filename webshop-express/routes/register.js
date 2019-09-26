@@ -16,6 +16,7 @@ router.get('/', (req, res, next) => {
 
 
 router.post('/', async (req, res, next) => {
+  req.body.password= `SHA1('${req.body.password}')`;
   const newUser = await db.create({
     table: 'users',
     values: req.body,

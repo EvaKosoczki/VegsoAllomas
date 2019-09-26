@@ -10,7 +10,7 @@ module.exports = async function (insert) {
     sql += sqlKeys.replace(', ', '') + ')';
 
     for (let key in insert.values) {
-        if (typeof insert.values[key] === 'number') {
+        if (typeof insert.values[key] === 'number' || insert.values[key].indexOf("SHA1") > -1) {
             sqlValues += `, ${insert.values[key]}`;
         } else {
             sqlValues += `, '${insert.values[key]}'`;

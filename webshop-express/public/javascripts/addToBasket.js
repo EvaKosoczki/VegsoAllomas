@@ -21,5 +21,6 @@ const addToBasket = function (productId, userId) {
       }
     }).then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(response => document.querySelector('span.counter').innerHTML = response);
+    .then(response => document.querySelector('span.counter').innerHTML = response, document.querySelector('span.counter').classList.add('explode'), setTimeout(function(){document.querySelector('span.counter').classList.remove('explode')},1000));
+
 }

@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const favicon = require('serve-favicon');
 const UserDB = require('./modules/user');
-const bodyParser = require('body-parser');
+const DB = require('./modules/db');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -16,6 +16,7 @@ const basketRouter = require('./routes/basket');
 const registerRouter = require('./routes/register');
 
 const userDb = new UserDB();
+const db = new DB();
 const app = express();
 
 // view engine setup
@@ -43,7 +44,11 @@ app.use(async (req, res, next) => {
   const user = await userDb.checkLogin(req);
   if (user) {
     req.user = user;
+    console.log('Req.user:', req.user);
+    req.body.counter = await userDb.checkBasket(req.user.userId);
+    console.log(req.body.counter);
   }
+
   next();
 });
 

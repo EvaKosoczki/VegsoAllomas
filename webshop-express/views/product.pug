@@ -16,16 +16,25 @@ block content
           h2 #{product.price} $
         .col-12 Rating
         .col-12
-            p.text-success Delivery time
+          p.text-success Delivery time
         .row
           .col-3
             .btn-toolbar(role='toolbar' aria-label='Toolbar with button groups')
               .btn-group.mr-2(role='group' aria-label='First group')
-                button.btn.btn-secondary(type='button') ⯆
-                input.prodNumber.text-center(type='text', value='1')
-                button.btn.btn-secondary(type='button') ⯅
+                script.
+                  var incValue = function(){
+                    value = parseInt(document.querySelector('.prodNumber').value) +1;
+                    console.log(value);
+                  }
+                  var descValue = function(){
+                    value = parseInt(document.querySelector('.prodNumber').value) -1;
+                    console.log(value);
+                  }
+                button.btn.btn-secondary.plus(type='button' onclick='descValue()') ⯆
+                input.prodNumber.text-center(type='text' value='1')
+                button.btn.btn-secondary.minus(type='button' onclick='incValue()') ⯅
           .col-5
-            button.btn.btn-dark.btn-block.basketButton Add to Basket
+            button.btn.btn-dark.btn-block.basketButton(onclick=`addToBasket(${product.ID})`) Add to Basket
   .container-fluid.toggleDiv
     .row
       .col-2.offset-5

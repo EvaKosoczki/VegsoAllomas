@@ -17,13 +17,9 @@ router.get('/products/:id', async (req, res, next) => {
   const productDetails = await db.get({
     select: '*',
     from: 'snowboards',
-<<<<<<< HEAD
-    where: { ID: `${req.params.id}` }
-=======
     where: {
       ID: `${req.params.id}`
     }
->>>>>>> 05-story
   })
 
   res.json(productDetails);

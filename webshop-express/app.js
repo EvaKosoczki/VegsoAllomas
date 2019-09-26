@@ -41,11 +41,8 @@ app.use(bodyParser.json());
 
 app.use(async (req, res, next) => {
   const user = await userDb.checkLogin(req);
-  console.log('User: ', user);
   if (user) {
-    console.log('teszt');
     req.user = user;
-    console.log('Req.user:', req.user);
   }
   next();
 });

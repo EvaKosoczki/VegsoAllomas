@@ -365,3 +365,18 @@ footer {
   text-align: center;
   color: #dae2e7;
 }
+
+.explode {
+  animation: explosionEffect 1s;
+}
+
+@keyframes explosionEffect{
+  0% {
+    transition: 0.5s;
+  transform: scale(2)
+  }
+  100% {
+    transition: 0.5s;
+  transform: scale(1)
+  }
+}

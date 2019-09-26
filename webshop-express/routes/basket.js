@@ -10,7 +10,8 @@ router.get('/', async (req, res, next) => {
   res.render('basket', {
     title: 'My basket',
     basket: 'Basket Summary',
-    user: req.user
+    user: req.user,
+    counter:req.body.counter
   });
 });
 

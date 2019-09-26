@@ -25,7 +25,7 @@ block content
                 input.prodNumber.text-center(type='text' value='1')
                 button.btn.btn-secondary.minus(type='button' onclick='incValue()') ⯅
           .col-5.col-sm-5
-            button.btn.btn-dark.btn-block.basketButton(onclick=`addToBasket(${product.ID})`) Add to Basket
+            button.btn.btn-dark.btn-block.basketButton(onclick=`addToBasket(${product.ID}, ${user.userId})`) Add to Basket
   .container-fluid.toggleDiv
     .row
       .col-2.offset-5

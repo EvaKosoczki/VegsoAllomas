@@ -3,16 +3,20 @@ extends layout
 block content
   h1.page-title= title
 
-  .container
+  .container-fluid
     .row
-      each product in products
-        .col-xs-12.col-sm-6.col-md-4.col-lg-3
-          .card
-            img.card-img-top(src=`./image/snowboards/${product.picture}` alt='...')
-            .card-body
-              h5.card-title #{product.name}
-              p.card-text $ #{product.price}
-              a.btn.btn-primary(href=`/products/${product.postfix}`) Show
+      .col-3
+        p Hello
+      .col-9
+        .row
+          each product in products
+            .col-3
+              .card
+                img.card-img-top(src=`./image/snowboards/${product.picture}` alt='...')
+                .card-body
+                  h5.card-title #{product.name}
+                  p.card-text $ #{product.price}
+                  a.btn.btn-primary(href=`/products/${product.postfix}`) Show
 
     .row
       .col-lg-2.offset-5

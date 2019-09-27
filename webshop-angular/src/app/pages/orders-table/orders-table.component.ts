@@ -12,15 +12,22 @@ import { OrderService } from 'src/app/service/orders.service';
 })
 export class OrdersTableComponent implements OnInit {
 
-  allData: Order[] = [];
+  allData: any[] = [];
   changeCounter: number = 0;
-  productsQuantity: number = 0;
-  totalPrice: number = 0;
+  productsQuantityArr: [] = [];
+  totalPriceArr: [] = [];
+  orderDetails: [] = [];
 
   constructor(
     private orderService: OrderService
   ) {
-    this.orderService.getAll().subscribe(orders => this.allData = orders);
+    this.orderService.getAll().subscribe(orders => {
+      this.allData = orders[0];
+      this.orderDetails = orders[1];
+      this.totalPriceArr = orders[2];
+      this.productsQuantityArr = orders[3];
+    }
+      );
   }
 
   ngOnInit() {

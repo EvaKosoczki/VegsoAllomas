@@ -62,23 +62,51 @@ router.put('/products/:id', async (req, res, next) => {
 // orders
 
 router.get('/orders', async (req, res, next) => {
-  const orderDetails = await db.get({
+  const orders = [];
+  const ordersByCust = await db.get({
     select: '*',
-    from: 'users',
+    from: 'orders',
     join: {
       join: 'inner',
-      table: 'orders',
-      'users.userId': 'orders.userId',
+      table: 'users',
+      'orders.userId': 'users.userId'
+    }
+  });
+
+  const orderDetails = await db.get({
+    select: '*',
+    from: 'orders',
+    join: {
       join1: 'inner',
       table1: '`order-details`',
       'orders.orderId': '`order-details`.order',
       join2: 'inner',
       table2: 'snowboards',
-      '`order-details`.snowboardId': 'snowboards.ID',
+      '`order-details`.snowboardId': 'snowboards.ID'
     }
   })
 
-  res.json(orderDetails);
+  const totalPrice = await db.get({
+    select: {'sum(unitPrice*quantity)':'totalPrice', '`order`':'order'},
+    from: '`order-details`',
+    groupby: '`order`'
+  })
+
+  const productQuantity= await db.get({
+    select: {'sum(quantity)': 'productQuantity'},
+    from: '`order-details`',
+    groupby: '`order-details`.order'
+  })
+
+  orders.push(ordersByCust);
+  orders.push(orderDetails);
+  orders.push(totalPrice);
+  orders.push(productQuantity);
+  //console.log(orders);
+  //console.log(totalPrice);
+  //console.log(productQuantity);
+  console.log(orders);
+  res.json(orders);
 });
 
 router.get('/orders/:id', async (req, res, next) => {

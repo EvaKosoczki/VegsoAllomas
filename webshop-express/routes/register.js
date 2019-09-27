@@ -25,8 +25,23 @@ router.post('/', userValidationRules(), validate, async (req, res, next) => {
   const newUser = await db.create({
     table: 'users',
     values: req.body,
+  });
+  const newUserRead = await db.get({
+    select: {
+      'userId': 'userId'
+    },
+    from: 'users',
+    where: {
+      'email': req.body.email
+    }
+  });
+  const newBasket = await db.create({
+    table: 'baskets',
+    values: {
+      user: newUserRead[0].userId
+    },
   })
-  res.redirect('/login')
+  res.redirect('/login');
   res.json(newUser);
 });
 

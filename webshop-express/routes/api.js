@@ -8,7 +8,6 @@ router.get('/products', async (req, res, next) => {
   const productDetails = await db.get({
     select: '*',
     from: 'snowboards',
-    limit: {0: 8}
   })
 
   res.json(productDetails);

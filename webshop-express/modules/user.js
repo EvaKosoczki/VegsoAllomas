@@ -48,5 +48,17 @@ module.exports = class UserDB {
         console.log('Checklogin2: ', result);
         return result[0];
     };
+    async checkBasket(user){
+        let sql= await sqlParser({
+            select:{'count(basket)':'orderItems'},
+            from :'users',
+            join:{join:"inner", table:'baskets', userId:"user", join2:"inner", table2:'`basket-details`', basketId:'basket'},
+            where:{user:user}
+        
+        });
+        console.log('proba',sql);
+        const result = await this.conn.query(sql[0], sql[1]);
+        return result[0].orderItems;
+    }
 
 }

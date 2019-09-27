@@ -22,7 +22,8 @@ router.get('/:postfix', async (req, res, next) => {
     product: oneProduct,
     imgRoot: img,
     iconRoot: icon,
-    user: req.user
+    user: req.user,
+    counter:req.body.counter
   });
 });
 
@@ -39,7 +40,8 @@ router.get('/', async (req, res, next) => {
   res.render('products', {
     title: 'Snowboards',
     products: productDetails,
-    user: req.user
+    user: req.user,
+    counter:req.body.counter
   });
 });
 
@@ -47,6 +49,7 @@ router.get('/', async (req, res, next) => {
 router.get('/*', (req, res, next) => {
   res.render('no-product', {
     title: 'No product found!',
+    counter:req.body.counter
   });
 });
 

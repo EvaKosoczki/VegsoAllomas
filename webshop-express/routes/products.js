@@ -5,7 +5,7 @@ const DB = require('../modules/db');
 
 const db = new DB();
 
-
+//Get one product:
 router.get('/:postfix', async (req, res, next) => {
   const productDetails = await db.get({
     select: '*',
@@ -46,6 +46,7 @@ router.get('/', async (req, res, next) => {
 });
 
 
+//No product found:
 router.get('/*', (req, res, next) => {
   res.render('no-product', {
     title: 'No product found!',

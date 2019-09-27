@@ -7,7 +7,8 @@ const db = new DB();
 router.get('/products', async (req, res, next) => {
   const productDetails = await db.get({
     select: '*',
-    from: 'snowboards'
+    from: 'snowboards',
+    limit: {0: 8}
   })
 
   res.json(productDetails);
@@ -21,7 +22,6 @@ router.get('/products/:id', async (req, res, next) => {
       ID: `${req.params.id}`
     }
   })
-
   res.json(productDetails);
 });
 

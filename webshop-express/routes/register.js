@@ -1,10 +1,9 @@
 const express = require('express');
-
 const router = express.Router();
-
 const DB = require('../modules/db');
-
 const db = new DB();
+let isHidden = true;
+
 const {
   userValidationRules,
   validate
@@ -14,7 +13,8 @@ const regexPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,12}$"
 /* GET home page. */
 router.get('/', (req, res, next) => {
   res.render('register', {
-    regexPattern: regexPattern
+    regexPattern: regexPattern,
+    isHidden: isHidden
   });
 });
 

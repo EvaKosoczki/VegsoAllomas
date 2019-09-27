@@ -12,6 +12,10 @@ html(lang="en")
 		link(href="/stylesheets/register.css" rel="stylesheet")
 	body.text-center.login-background
 		.container
+			if (isHidden)
+				.alert.alert-danger(role='alert' class="alert_hidden") Semmi
+			else
+				.alert.alert-danger(role='alert' class="alert_show") #{errorMsg}
 			.row
 					.panel.panel-primary
 						.panel-body
@@ -19,31 +23,25 @@ html(lang="en")
 								.form-group
 									h2 Create account
 								.form-group
-									label.control-label(for='signupFName') First Name
-									input#signupFName.form-control(type='text' maxlength='50' name="firstName" required)
+									input#signupFName.form-control(type='text' maxlength='50' name="firstName" required placeholder="Firstname")
 								.form-group
-									label.control-label(for='signupLName') Last name
-									input#signupLName.form-control(type='text' maxlength='50' name="lastName" required)
+									input#signupLName.form-control(type='text' maxlength='50' name="lastName" required placeholder="Lastname")
 								.form-group
-									label.control-label(for='signupEmailagain') Email 
-									input#signupEmail.form-control(type='email' maxlength='50' name="email" required)
+									input#signupEmail.form-control(type='email' maxlength='50' name="email" required placeholder="Email")
 									.form-group
-									label.control-label(for='signupAddress') Address
-									input#signupAddress.form-control(type='text' maxlength='50' name="address")
+									input#signupAddress.form-control(type='text' maxlength='50' name="address" placeholder="Address")
 									.form-group
-									label.control-label(for='City') City
-									input#signupCity.form-control(type='text' maxlength='50' name="city")
+									input#signupCity.form-control(type='text' maxlength='50' name="city" placeholder="City")
 									.form-group
-									label.control-label(for='Zip') Zip
-									input#Zip.form-control(type='number' maxlength='50' name="zip")
+									input#Zip.form-control(type='number' maxlength='50' name="zip" placeholder="Zip")
 								.form-group
-									label.control-label(for='signupPassword') Password
-									input#signupPassword.form-control(type='password' maxlength='25' placeholder='at least 8 characters' length='40' 
-									name="password" required pattern=regexPattern)
+									input#signupPassword.form-control(type='password' maxlength='25' placeholder='Password' length='40' 
+									name="password" required pattern=regexPattern aria-describedby="passwordHelp")
+									<small id="passwordHelp" class="form-text text-dark">Password must be 8 charachter long, with lowercase and uppercase letter and a number</small>
 								.form-group
-									label.control-label(for='signupPasswordagain') Password again
 									input#signupPasswordagain.form-control(type='password' maxlength='25' 
-								required pattern=regexPattern name="passwordagain")
+								required pattern=regexPattern name="passwordagain" placeholder="Password again" aria-describedby="passwordHelp" )
+									<small id="passwordHelp" class="form-text text-dark" >Password must be 8 charachter long, with lowercase and uppercase letter and a number</small>
 								.form-group
 									button#signupSubmit.btn.btn-info.btn-block(type='submit') Create your account
 								p.form-group

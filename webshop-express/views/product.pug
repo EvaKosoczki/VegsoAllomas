@@ -18,7 +18,7 @@ block content
           p.text-success ✔ Delivery time 3-5 business days
 
         if user
-          if user.userId
+          if user.userId && user.role == 'customer'
             .row
               .col-3.col-sm-3.mb-2
                 .btn-toolbar(role='toolbar' aria-label='Toolbar with button groups')

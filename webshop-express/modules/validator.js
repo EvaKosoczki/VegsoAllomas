@@ -18,7 +18,7 @@ const userValidationRules = () => {
     body('passwordagain').custom((value, {
       req
     }) => {
-      if (value !== req.body.passwordagain) {
+      if (value !== req.body.password) {
         throw new Error("Passwords don't match");
       } else {
         return value;

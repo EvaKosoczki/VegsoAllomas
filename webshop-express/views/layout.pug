@@ -37,9 +37,10 @@ html
                 span.user-name #{ user.firstName }
                 strong
                   a.btn.btn-link(href="http://localhost:4200/products") Admin page
-            else
-              li
-                a.btn.btn-success(href="/login") login
+                a.btn.btn-info(href="/logout") logout
+          else
+            li
+              a.btn.btn-success(href="/login") login
 
     block content
 

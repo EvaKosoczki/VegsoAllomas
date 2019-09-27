@@ -65,14 +65,17 @@ router.put('/products/:id', async (req, res, next) => {
 router.get('/orders', async (req, res, next) => {
   const orderDetails = await db.get({
     select: '*',
-    from: 'orders',
+    from: 'users',
     join: {
       join: 'inner',
-      table: '`order-details`',
-      'orders.orderId': '`order-details`.order',
+      table: 'orders',
+      'users.userId': 'orders.userId',
       join1: 'inner',
-      table1: '`users`',
-      'orders.userId': 'users.userId'
+      table1: '`order-details`',
+      'orders.orderId': '`order-details`.order',
+      join2: 'inner',
+      table2: 'snowboards',
+      '`order-details`.snowboardId': 'snowboards.ID',
     }
   })
 
@@ -82,14 +85,20 @@ router.get('/orders', async (req, res, next) => {
 router.get('/orders/:id', async (req, res, next) => {
   const orderDetails = await db.get({
     select: '*',
-    from: 'orders',
-    where: {
-      ID: `${req.params.id}`
-    },
+    from: 'users',
     join: {
       join: 'inner',
-      table: 'order-details',
-      'orders.orderId': 'order-details.orderId'
+      table: 'orders',
+      'users.userId': 'orders.userId',
+      join1: 'inner',
+      table1: '`order-details`',
+      'orders.orderId': '`order-details`.order',
+      join2: 'inner',
+      table2: 'snowboards',
+      '`order-details`.snowboardId': 'snowboards.ID',
+    },
+    where: {
+      orderId: `${req.params.id}`
     }
   })
 
@@ -97,16 +106,15 @@ router.get('/orders/:id', async (req, res, next) => {
 });
 
 router.delete('/orders/:id', async (req, res, next) => {
-  console.log(req.body)
   const orderDetails = await db.del({
     table: 'orders',
     where: {
-      ID: `${req.params.id}`
+      orderId: `${req.params.id}`
     },
     join: {
       join: 'inner',
-      table: 'order-details',
-      'orders.orderId': 'order-details.orderId'
+      table: '`order-details`',
+      'orders.orderId': '`order-details`.order'
     }
   })
   res.json(orderDetails);
@@ -120,7 +128,7 @@ router.post('/orders', async (req, res, next) => {
     join: {
       join: 'inner',
       table: 'order-details',
-      'orders.orderId': 'order-details.orderId'
+      'orders.orderId': '`order-details`.order'
     }
   })
 
@@ -133,7 +141,7 @@ router.put('/orders/:id', async (req, res, next) => {
     table: "orders",
     set: req.body,
     where: {
-      ID: `${req.params.id}`
+      orderId: `${req.params.id}`
     },
     join: {
       join: 'inner',
@@ -161,7 +169,7 @@ router.get('/users/:id', async (req, res, next) => {
     select: '*',
     from: 'users',
     where: {
-      ID: `${req.params.id}`
+      userId: `${req.params.id}`
     },
   })
 
@@ -173,7 +181,7 @@ router.delete('/users/:id', async (req, res, next) => {
   const userDetails = await db.del({
     table: 'users',
     where: {
-      ID: `${req.params.id}`
+      userId: `${req.params.id}`
     }
   })
   res.json(userDetails);
@@ -195,7 +203,7 @@ router.put('/users/:id', async (req, res, next) => {
     table: "users",
     set: req.body,
     where: {
-      ID: `${req.params.id}`
+      userId: `${req.params.id}`
     }
   })
   res.json(userDetails);

@@ -8,19 +8,21 @@
   display: block;
 }
 
-#formsBack {
-  width: 100%;
-  height: 100vh;
-  background: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
+.adminPage {
   font-family: "Robato", sans-serif;
   font-size: 17px;
+  width: 100%;
+  height: 100vh;
 }
+
+.adminBackBlue {
+  background: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
+}
+
 
 #logreg-forms {
   width: 50vw;
-  position: absolute;
-  top: -90vh;
-  right: -10vw;
+  margin: 10vh auto;
   background-color: #ffffff4d;
   box-shadow: 0 7px 7px rgba(0, 0, 0, 0.12), 0 12px 40px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
@@ -141,13 +143,32 @@
   border-radius: 25px;
 }
 
-.sideBar {
-  height: 100vh;
-  position: sticky;
-  background-color: #dae2e7;
-}
-
 .icon {
   width: 70px;
-  margin: 30px 50px;
+  margin: 30px 40px;
+}
+
+/* The sidebar menu */
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 160px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #dae2e7; 
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Style page content */
+.main {
+  margin-left: 160px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
 }

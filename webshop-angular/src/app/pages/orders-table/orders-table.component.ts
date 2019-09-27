@@ -14,6 +14,8 @@ export class OrdersTableComponent implements OnInit {
 
   allData: Order[] = [];
   changeCounter: number = 0;
+  productsQuantity: number = 0;
+  totalPrice: number = 0;
 
   constructor(
     private orderService: OrderService
@@ -39,5 +41,14 @@ export class OrdersTableComponent implements OnInit {
   toggleView(id) {
     document.getElementById(`expandRow${id}`).classList.toggle("show");
   }
+
+  countQuantity(allData) {
+  
+  }
+
+  countTotalPrice(allData) {
+
+  }
+
 
 }

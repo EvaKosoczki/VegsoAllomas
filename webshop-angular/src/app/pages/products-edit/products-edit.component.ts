@@ -12,8 +12,10 @@ export class ProductsEditComponent implements OnInit {
   oneProduct: Product;
   selectedProductId: number = 0;
 
-  constructor(private productsService: ProductsService,
-    private ar: ActivatedRoute, private router: Router) {
+  constructor(
+    private productsService: ProductsService,
+    private ar: ActivatedRoute, private router: Router
+    ) {
     this.ar.params.forEach(
       params => {
         this.selectedProductId = params.id

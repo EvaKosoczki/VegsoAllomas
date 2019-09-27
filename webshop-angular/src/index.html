@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>WebshopAngular</title>
@@ -8,7 +9,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body>
-  <app-root></app-root>
+
+<body class="adminPage adminBackBlue">
+
+  <!-- Side navigation -->
+  <div class="sidenav">
+    <a href="/dashboards"><img class="icon" src="./../assets/images/dashboards.png" alt="dashboards"></a>
+    <a href="/users"><img class="icon" src="./../assets/images/users.png" alt="users"></a>
+    <a href="/orders"><img class="icon" src="./../assets/images/order (2).png" alt="orders"></a>
+    <a href="/products"><img class="icon" src="./../assets/images/snowboards.png" alt="snowboards"></a>
+  </div>
+
+  <!-- Page content -->
+  <div class="main">
+    <app-root></app-root>
+  </div>
+
 </body>
+
 </html>

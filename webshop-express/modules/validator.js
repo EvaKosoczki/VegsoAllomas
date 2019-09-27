@@ -14,10 +14,16 @@ const userValidationRules = () => {
     .withMessage('It must be at least 8 charachters'),
     body('firstName').isLength({
       min: 3
-    }).withMessage('First name at least 3 charachters')
-    /*body('passwordagain').custom((value, {
+    }).withMessage('First name at least 3 charachters'),
+    body('passwordagain').custom((value, {
       req
-    }) => (value === body(req.body.password))).withMessage('Not the same')*/
+    }) => {
+      if (value !== req.body.passwordagain) {
+        throw new Error("Passwords don't match");
+      } else {
+        return value;
+      }
+    })
   ]
 }
 

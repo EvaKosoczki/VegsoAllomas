@@ -1,36 +1,75 @@
 extends layout
 
 block content
-  h1.page-title= title
+	h1.page-title= title
 
-  .container-fluid
-    .row
-      .col-3
-        p Hello
-      .col-9
-        .row
-          each product in products
-            .col-3
-              .card
-                img.card-img-top(src=`./image/snowboards/${product.picture}` alt='...')
-                .card-body
-                  h5.card-title #{product.name}
-                  p.card-text $ #{product.price}
-                  a.btn.btn-primary(href=`/products/${product.postfix}`) Show
+	.container-fluid
+		.row
+			.col-xs-12.col-sm-2.col-md-3.col-lg-3
+				.col-12.sticky-top.sidenav
+					form(method='POST' action='/products' role='form')
+						.form-group.form-check
+							p Brands
+							input#Burton.form-check-input(type='checkbox' name="Burton")
+							label.form-check-label.pr-5(for='Burton') Burton 
+							input#CAPiTA.form-check-input(type='checkbox' name="CAPiTA")
+							label.form-check-label(for='CAPiTA') CAPiTA 
+							br
+							input#LibTech.form-check-input(type='checkbox' name="LibTech")
+							label.form-check-label.pr-5(for='LibTech') LibTech 
+							input#Nitro.form-check-input(type='checkbox' name="Nitro")
+							label.form-check-label(for='Nitro') Nitro
+							br
+							input#K2.form-check-input(type='checkbox' name="K2")
+							label.form-check-label.pr-5(for='K2') K2
+							input#GNU.form-check-input(type='checkbox' name="GNU")
+							label.form-check-label(for='GNU') GNU
+							br
+							input#Jones.form-check-input(type='checkbox' name="Jones")
+							label.form-check-label.pr-5(for='Jones') Jones 
+							input#Ride.form-check-input(type='checkbox' name="Ride")
+							label.form-check-label(for='Ride') Ride 
+							br
+							input#Salomon.form-check-input(type='checkbox' name="Salomon")
+							label.form-check-label.pr-5(for='Salomon') Salomon
+							input#Rome.form-check-input(type='checkbox' name="Rome")
+							label.form-check-label(for='Rome') Rome
+							br
+							input#Nidecker.form-check-input(type='checkbox' name="Nidecker")
+							label.form-check-label.pr-5(for='Nidecker') Nidecker 
+							.form-group.form-check
+							p Shape
+							input#Directional.form-check-input(type='checkbox' name="Directional")
+							label.form-check-label.pr-5(for='Directional') Directional 
+							input#Freestyle.form-check-input(type='checkbox' name="Freestyle")
+							label.form-check-label(for='Freestyle') Freestyle 
+							br
+						button.btn.btn-primary(type='submit') Submit
 
-    .row
-      .col-lg-2.offset-5
-        nav(aria-label='Page navigation example')
-          ul.pagination
-            li.page-item
-              a.page-link(href='#' aria-label='Previous')
-                span(aria-hidden='true') &laquo;
-            li.page-item
-              a.page-link(href='#') 1
-            li.page-item
-              a.page-link(href='#') 2
-            li.page-item
-              a.page-link(href='#') 3
-            li.page-item
-              a.page-link(href='#' aria-label='Next')
-                span(aria-hidden='true') &raquo;
+			.col-xs-12.col-sm-10.col-md-9.col-lg-9
+				.row
+					each product in products
+						.col-xs-12.col-sm-6.col-md-4.col-lg-3
+							.card
+								img.card-img-top(src=`./image/snowboards/${product.picture}` alt='...')
+								.card-body
+									h5.card-title #{product.name}
+									p.card-text $ #{product.price}
+									a.btn.btn-primary(href=`/products/${product.postfix}`) Show
+
+		.row
+			.col-lg-2.offset-5
+				nav(aria-label='Page navigation example')
+					ul.pagination
+						li.page-item
+							a.page-link(href='#' aria-label='Previous')
+								span(aria-hidden='true') &laquo;
+						li.page-item
+							a.page-link(href='#') 1
+						li.page-item
+							a.page-link(href='#') 2
+						li.page-item
+							a.page-link(href='#') 3
+						li.page-item
+							a.page-link(href='#' aria-label='Next')
+								span(aria-hidden='true') &raquo;

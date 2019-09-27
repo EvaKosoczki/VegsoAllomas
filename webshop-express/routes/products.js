@@ -5,14 +5,22 @@ const DB = require('../modules/db');
 
 const db = new DB();
 
-
 router.get('/:postfix', async (req, res, next) => {
   const productDetails = await db.get({
     select: '*',
     from: 'snowboards',
-    where: { postfix: `${req.params.postfix}` },
-    join: { join: 'inner', table: 'brands', 'snowboards.brand': 'brands.brandId' },
-    orderby: { name: 'asc', brandName: 'asc' }
+    where: {
+      postfix: `${req.params.postfix}`
+    },
+    join: {
+      join: 'inner',
+      table: 'brands',
+      'snowboards.brand': 'brands.brandId'
+    },
+    orderby: {
+      name: 'asc',
+      brandName: 'asc'
+    }
   })
   const oneProduct = productDetails[0];
   const img = path.join('/image', 'snowboards', oneProduct.picture);
@@ -45,6 +53,20 @@ router.get('/', async (req, res, next) => {
   });
 });
 
+router.post('/products', async (req, res, next) => {
+  console.log(req.body);
+  /*const filteredProducts = await db.get({
+    select: '*',
+    from: 'snowboards',
+    where: req.body,
+  })*/
+  res.render('products', {
+    title: 'Snowboards',
+    products: productDetails,
+    user: req.user,
+    counter: req.body.counter
+  });
+})
 
 router.get('/*', (req, res, next) => {
   res.render('no-product', {

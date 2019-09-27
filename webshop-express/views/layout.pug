@@ -25,17 +25,21 @@ html
             a.nav-link(href="#") How to choose
         ul.navbar-nav
           if user
-            if user.userId
+            if user.userId && user.role == 'customer'
               li
                 span.user-name #{ user.firstName }
                 a.basket-link(href="/basket")
                   img.basket(src="/image/icons/basket1.png")
                   span.counter #{counter}
-
                 a.btn.btn-info(href="/logout") logout
-          else
-            li
-              a.btn.btn-success(href="/login") login
+            if user.userId && user.role == 'administrator'
+              li
+                span.user-name #{ user.firstName }
+                strong
+                  a.btn.btn-link(href="http://localhost:4200/products") Admin page
+            else
+              li
+                a.btn.btn-success(href="/login") login
 
     block content
 

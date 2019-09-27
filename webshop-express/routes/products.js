@@ -23,12 +23,12 @@ router.get('/:postfix', async (req, res, next) => {
     imgRoot: img,
     iconRoot: icon,
     user: req.user,
-    counter:req.body.counter
+    counter: req.body.counter
   });
 });
 
 
-/* GET all producst in JSON format */
+/* GET all products in JSON format */
 router.get('/', async (req, res, next) => {
 
 
@@ -41,7 +41,7 @@ router.get('/', async (req, res, next) => {
     title: 'Snowboards',
     products: productDetails,
     user: req.user,
-    counter:req.body.counter
+    counter: req.body.counter
   });
 });
 
@@ -49,7 +49,7 @@ router.get('/', async (req, res, next) => {
 router.get('/*', (req, res, next) => {
   res.render('no-product', {
     title: 'No product found!',
-    counter:req.body.counter
+    counter: req.body.counter
   });
 });
 

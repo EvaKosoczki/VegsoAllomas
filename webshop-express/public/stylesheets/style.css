@@ -120,7 +120,7 @@ nav a {
   }
 }
 
-.hero-banner{
+.hero-banner {
   width: 100%;
 }
 
@@ -341,26 +341,26 @@ footer {
 
 .user-name {
   color: #f00;
+  margin: 0px 10px 0px 10px;
 }
 
 .basket {
   height: 38px;
-  margin: 0px 10px 0px 10px;
   position: relative;
   width: 38px;
 }
 
-.basket-link{
+.basket-link {
   position: relative;
 }
 
-.basket-link span{
+.basket-link span {
   background-color: #F21E00;
   border-radius: 999px;
   height: 25px;
   width: 25px;
   position: absolute;
-  top: -15px; 
+  top: -15px;
   right: 2px;
   text-align: center;
   color: #dae2e7;
@@ -370,18 +370,19 @@ footer {
   animation: explosionEffect 1s;
 }
 
-@keyframes explosionEffect{
+@keyframes explosionEffect {
   0% {
     transition: 0.5s;
-  transform: scale(2)
+    transform: scale(2)
   }
+
   100% {
     transition: 0.5s;
-  transform: scale(1)
+    transform: scale(1)
   }
 }
 
 @media screen and (max-width: 768px) {
   .order-buttons {
-    margin: 0px!important
+    margin: 0px !important
   }

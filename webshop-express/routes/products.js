@@ -53,20 +53,19 @@ router.get('/', async (req, res, next) => {
   });
 });
 
-router.post('/products', async (req, res, next) => {
-  console.log(req.body);
-  /*const filteredProducts = await db.get({
+router.post('/', async (req, res, next) => {
+  const filteredProducts = await db.get({
     select: '*',
     from: 'snowboards',
     where: req.body,
-  })*/
+  })
   res.render('products', {
     title: 'Snowboards',
-    products: productDetails,
-    user: req.user,
-    counter: req.body.counter
+    products: filteredProducts,
   });
 })
+
+
 
 router.get('/*', (req, res, next) => {
   res.render('no-product', {

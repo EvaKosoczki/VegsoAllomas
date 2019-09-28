@@ -9,42 +9,51 @@ block content
 				.col-12.sticky-top.sidenav
 					form(method='POST' action='/products' role='form')
 						.form-group.form-check
-							p Brands
-							input#Burton.form-check-input(type='checkbox' name="Burton")
+							p.font-weight-bold Brands
+							input#Burton.form-check-input(type='checkbox' name="brand" value=1)
 							label.form-check-label.pr-5(for='Burton') Burton 
-							input#CAPiTA.form-check-input(type='checkbox' name="CAPiTA")
+							input#CAPiTA.form-check-input(type='checkbox' name="brand" value=2)
 							label.form-check-label(for='CAPiTA') CAPiTA 
 							br
-							input#LibTech.form-check-input(type='checkbox' name="LibTech")
+							input#LibTech.form-check-input(type='checkbox' name="brand" value=3)
 							label.form-check-label.pr-5(for='LibTech') LibTech 
-							input#Nitro.form-check-input(type='checkbox' name="Nitro")
+							input#Nitro.form-check-input(type='checkbox' name="brand" value=4)
 							label.form-check-label(for='Nitro') Nitro
 							br
-							input#K2.form-check-input(type='checkbox' name="K2")
+							input#K2.form-check-input(type='checkbox' name="brand" value=5)
 							label.form-check-label.pr-5(for='K2') K2
-							input#GNU.form-check-input(type='checkbox' name="GNU")
+							input#GNU.form-check-input(type='checkbox' name="brand" value=6)
 							label.form-check-label(for='GNU') GNU
 							br
-							input#Jones.form-check-input(type='checkbox' name="Jones")
+							input#Jones.form-check-input(type='checkbox' name="brand" value=7)
 							label.form-check-label.pr-5(for='Jones') Jones 
-							input#Ride.form-check-input(type='checkbox' name="Ride")
+							input#Ride.form-check-input(type='checkbox' name="brand" value=8)
 							label.form-check-label(for='Ride') Ride 
 							br
-							input#Salomon.form-check-input(type='checkbox' name="Salomon")
+							input#Salomon.form-check-input(type='checkbox' name="brand" value=9)
 							label.form-check-label.pr-5(for='Salomon') Salomon
-							input#Rome.form-check-input(type='checkbox' name="Rome")
+							input#Rome.form-check-input(type='checkbox' name="brand" value=10)
 							label.form-check-label(for='Rome') Rome
 							br
-							input#Nidecker.form-check-input(type='checkbox' name="Nidecker")
+							input#Nidecker.form-check-input(type='checkbox' name="brand" value=11)
 							label.form-check-label.pr-5(for='Nidecker') Nidecker 
-							.form-group.form-check
-							p Shape
-							input#Directional.form-check-input(type='checkbox' name="Directional")
+						.form-group.form-check
+							p.font-weight-bold Shape
+							input#Directional.form-check-input(type='checkbox' name="shape" value="Directional")
 							label.form-check-label.pr-5(for='Directional') Directional 
-							input#Freestyle.form-check-input(type='checkbox' name="Freestyle")
-							label.form-check-label(for='Freestyle') Freestyle 
+							input#Twin.form-check-input(type='checkbox' name="shape" value="Twin")
+							label.form-check-label(for='Twin') Twin
+						.form-group.form-check
+							p.font-weight-bold Purpose
+							input#All-mountain.form-check-input(type='checkbox' name="purpose" value="All-mountain")
+							label.form-check-label.pr-5(for='All-mountain') All-mountain 
+							input#Freestyle.form-check-input(type='checkbox' name="purpose" value="Freestyle")
+							label.form-check-label(for='Freestyle') Freestyle
+							br 
+							input#Freeride.form-check-input(type='checkbox' name="purpose" value="Freeride")
+							label.form-check-label(for='Freeride') Freeride
 							br
-						button.btn.btn-primary(type='submit') Submit
+						button.btn.btn-primary(type='submit') Filter
 
 			.col-xs-12.col-sm-10.col-md-9.col-lg-9
 				.row

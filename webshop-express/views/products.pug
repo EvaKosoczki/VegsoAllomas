@@ -5,6 +5,17 @@ block content
 
 	.container-fluid
 		.row
+			.dropdown
+				button#dropdownMenuButton.btn.btn-info.dropdown-toggle(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+					| Products per page
+				.dropdown-menu(aria-labelledby='dropdownMenuButton')
+					a.dropdown-item(href='#') 4
+					a.dropdown-item(href='#') 8
+					a.dropdown-item(href='#') 12
+					a.dropdown-item(href='#') 20
+					a.dropdown-item(href='#') All
+				br    
+		.row
 			.col-xs-12.col-sm-2.col-md-3.col-lg-3
 				.col-12.sticky-top.sidenav
 					form(method='POST' action='/products' role='form')
@@ -54,6 +65,7 @@ block content
 							label.form-check-label(for='Freeride') Freeride
 							br
 						button.btn.btn-primary(type='submit') Filter
+		
 
 			.col-xs-12.col-sm-10.col-md-9.col-lg-9
 				.row

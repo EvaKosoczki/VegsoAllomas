@@ -67,6 +67,7 @@ router.post('/', async (req, res, next) => {
 
 
 
+//No product found:
 router.get('/*', (req, res, next) => {
   res.render('no-product', {
     title: 'No product found!',

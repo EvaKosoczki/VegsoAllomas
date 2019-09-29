@@ -4,14 +4,38 @@ const router = express.Router();
 
 const DB = require('./../modules/db');
 const db = new DB();
-
+let basketTotalPrice;
 
 router.get('/', async (req, res, next) => {
+  const basketDetails = await db.get({
+    select: '*',
+    from: 'baskets',
+    where: {
+      user: `${req.user.userId}`
+    },
+    join: {
+      join: 'inner',
+      table: '`basket-details`',
+      'baskets.basketId': '`basket-details`.basket',
+      join1: 'inner',
+      table1: '`snowboards`',
+      'snowboards.ID': '`basket-details`.snowboardId'
+    },
+
+  })
+
+  function totalPriceCounter(basketDetails) {
+    basketTotalPrice = basketDetails.map(item => item.price * item.quantity).reduce((a, b) => a + b)
+    return basketTotalPrice;
+  }
+
   res.render('basket', {
     title: 'My basket',
     basket: 'Basket Summary',
+    basketDetails: basketDetails,
+    basketTotalPrice: totalPriceCounter(basketDetails),
     user: req.user,
-    counter:req.body.counter
+    counter: req.body.counter
   });
 });
 

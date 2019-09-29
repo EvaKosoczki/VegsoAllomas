@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductsTableComponent } from './pages/products-table/products-table.component';
@@ -15,6 +16,7 @@ import { OrdersNewComponent } from './pages/orders-new/orders-new.component';
 import { OrdersEditComponent } from './pages/orders-edit/orders-edit.component';
 import { UsersEditComponent } from './pages/users-edit/users-edit.component';
 import { UsersNewComponent } from './pages/users-new/users-new.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { UsersNewComponent } from './pages/users-new/users-new.component';
     OrdersNewComponent,
     OrdersEditComponent,
     UsersEditComponent,
-    UsersNewComponent
+    UsersNewComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,10 @@
+h1.dashboard {
+  color: #fff;
+  text-align: center;
+  margin: auto;
+  padding: 5px;
+}
+
+#logreg-forms {
+  border-radius: 3px;
+}

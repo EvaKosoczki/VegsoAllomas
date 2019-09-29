@@ -70,6 +70,9 @@ router.get('/orders', async (req, res, next) => {
       join: 'inner',
       table: 'users',
       'orders.userId': 'users.userId'
+    },
+    orderby: {
+      orderDate: 'asc'
     }
   });
 
@@ -87,13 +90,18 @@ router.get('/orders', async (req, res, next) => {
   })
 
   const totalPrice = await db.get({
-    select: {'sum(unitPrice*quantity)':'totalPrice', '`order`':'order'},
+    select: {
+      'sum(unitPrice*quantity)': 'totalPrice',
+      '`order`': 'order'
+    },
     from: '`order-details`',
     groupby: '`order`'
   })
 
-  const productQuantity= await db.get({
-    select: {'sum(quantity)': 'productQuantity'},
+  const productQuantity = await db.get({
+    select: {
+      'sum(quantity)': 'productQuantity'
+    },
     from: '`order-details`',
     groupby: '`order-details`.order'
   })
@@ -134,14 +142,9 @@ router.get('/orders/:id', async (req, res, next) => {
 
 router.delete('/orders/:id', async (req, res, next) => {
   const orderDetails = await db.del({
-    table: 'orders',
+    table: '`order-details`',
     where: {
-      orderId: `${req.params.id}`
-    },
-    join: {
-      join: 'inner',
-      table: '`order-details`',
-      'orders.orderId': '`order-details`.order'
+      orderDetailsId: `${req.params.id}`
     }
   })
   res.json(orderDetails);
@@ -162,18 +165,15 @@ router.post('/orders', async (req, res, next) => {
   res.json(orderDetails);
 });
 
-router.put('/orders/:id', async (req, res, next) => {
-  delete req.body.id;
+router.put('/orders', async (req, res, next) => {
+  console.log("Req Body: ", req.body);
   const orderDetails = await db.update({
     table: "orders",
-    set: req.body,
-    where: {
-      orderId: `${req.params.id}`
+    set: {
+      'orders.status': 'deleted'
     },
-    join: {
-      join: 'inner',
-      table: 'order-details',
-      'orders.orderId': 'order-details.orderId'
+    where: {
+      orderId: req.body.orderId
     }
   })
   res.json(orderDetails);

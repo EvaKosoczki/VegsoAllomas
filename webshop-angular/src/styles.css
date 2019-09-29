@@ -15,8 +15,35 @@
   height: 100vh;
 }
 
+.text-inactive {
+  color: #a8b8c0;
+}
+
+.text-active {
+  color: #d7e4eb;
+}
+
 .adminBackBlue {
-  background: -webkit-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
+  background: -webkit-linear-gradient(0deg,  #66a6ff 0%, #89f7fe 100%);
+}
+
+.adminBackSand {
+  background: -webkit-linear-gradient(0deg, #66a6ff 0%, #FFCF71 100%);
+}
+
+
+.adminBackDark {
+  background: -webkit-linear-gradient(0deg, #66a6ff 0%,  #494f52 100%);
+}
+
+.adminBackGreen {
+  background: -webkit-linear-gradient(0deg, #66a6ff 0%, #04a877 100%);  
+}
+
+.tableBack {
+  background-color: #596164;
+  padding: 0 20px;
+  border-radius: 10px;
 }
 
 
@@ -175,4 +202,8 @@
 
 .expandedData {
   width: 80vw;
+}
+
+.expandRow {
+  background-color: #363a3b;
 }

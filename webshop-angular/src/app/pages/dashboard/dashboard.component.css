@@ -1,10 +1,22 @@
-h1.dashboard {
+h1,
+h4 {
   color: #fff;
   text-align: center;
-  margin: auto;
+  margin: 10px;
   padding: 5px;
+  font-family: "Varela Round", sans-serif;
 }
 
-#logreg-forms {
-  border-radius: 3px;
+.card {
+  margin: 40px 0px 40px 0px;
+  height: 80%;
+  width: 80%;
+}
+
+.card-body {
+  height: 80%;
+}
+
+.card-text {
+  height: 80%;
 }

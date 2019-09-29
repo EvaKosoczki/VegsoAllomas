@@ -29,10 +29,27 @@ router.get('/', async (req, res, next) => {
     return basketTotalPrice;
   }
 
+  function repeatCheck(array) {
+    let newArray = [];
+    let names = [];
+    array.map(item => {
+      if ((names.indexOf(item.name)) > -1) {
+        newArray.map(newitem => {
+          if (newitem.name == item.name) {
+            newitem.quantity += item.quantity
+          }
+        })
+      } else {
+        newArray.push(item);
+        names.push(item.name);
+      }
+    })
+    return newArray
+  }
   res.render('basket', {
     title: 'My basket',
     basket: 'Basket Summary',
-    basketDetails: basketDetails,
+    basketDetails: repeatCheck(basketDetails),
     basketTotalPrice: totalPriceCounter(basketDetails),
     user: req.user,
     counter: req.body.counter

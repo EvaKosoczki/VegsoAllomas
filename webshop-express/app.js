@@ -46,7 +46,9 @@ app.use(async (req, res, next) => {
     console.log('Req.user:', req.user);
     result = await userDb.checkBasket(req.user.userId);
     req.body.counter = result.map(item => item.orderItems * item.quantity)
-      .reduce((a, b) => a + b)
+      .reduce((a, b) => {
+        return a + b
+      }, 0)
   }
 
   next();

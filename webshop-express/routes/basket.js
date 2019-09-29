@@ -4,7 +4,8 @@ const router = express.Router();
 
 const DB = require('./../modules/db');
 const db = new DB();
-let basketTotalPrice;
+let newArray = [];
+
 
 router.get('/', async (req, res, next) => {
   const basketDetails = await db.get({
@@ -24,13 +25,17 @@ router.get('/', async (req, res, next) => {
 
   })
 
-  function totalPriceCounter(basketDetails) {
-    basketTotalPrice = basketDetails.map(item => item.price * item.quantity).reduce((a, b) => a + b)
+  function totalPriceCounter(array) {
+    let basketTotalPrice = 0;
+    basketTotalPrice = array.map(item => item.price * item.quantity)
+      .reduce((a, b) => {
+        return a + b
+      }, 0)
     return basketTotalPrice;
   }
 
   function repeatCheck(array) {
-    let newArray = [];
+    newArray = [];
     let names = [];
     array.map(item => {
       if ((names.indexOf(item.name)) > -1) {
@@ -49,8 +54,8 @@ router.get('/', async (req, res, next) => {
   res.render('basket', {
     title: 'My basket',
     basket: 'Basket Summary',
-    basketDetails: repeatCheck(basketDetails),
     basketTotalPrice: totalPriceCounter(basketDetails),
+    basketDetails: repeatCheck(basketDetails),
     user: req.user,
     counter: req.body.counter
   });
@@ -92,6 +97,62 @@ router.post('/', async (req, res, next) => {
   })
 
   res.json(count[0].orderItems);
+})
+
+
+router.post('/orders', async (req, res, next) => {
+  const newOrder = await db.create({
+    table: 'orders',
+    values: {
+      'userId': `${req.user.userId}`,
+    }
+  })
+  const orderId = await db.get({
+    select: {
+      'orderId': 'order'
+    },
+    from: 'orders',
+    where: {
+      'userId': `${req.user.userId}`,
+    }
+  })
+  let orderDetails = [];
+  newArray.map(item => {
+    orderDetails.push({
+      '`order`': orderId[0].order,
+      'snowboardId': item.snowboardId,
+      'unitPrice': item.price,
+      'quantity': item.quantity
+    })
+  })
+  for (let i = 0; i < orderDetails.length; i += 1) {
+    let newOrderDetails = await db.create({
+      table: '`order-details`',
+      values: orderDetails[i]
+    })
+  }
+  const basketNumber = await db.get({
+    select: {
+      'basket': 'basket'
+    },
+    from: 'baskets',
+    where: {
+      user: `${req.user.userId}`
+    },
+    join: {
+      join: 'inner',
+      table: '`basket-details`',
+      'baskets.basketId': '`basket-details`.basket',
+    }
+  })
+  console.log("basket: " + basketNumber[0].basket)
+  const deleteBasket = await db.del({
+    table: '`basket-details`',
+    where: {
+      basket: basketNumber[0].basket
+    }
+  })
+  res.redirect('/basket')
 })
 
 module.exports = router;

@@ -52,8 +52,9 @@ router.get('/', async (req, res, next) => {
     counter: req.body.counter
   });
 });
-
+//get filtered products
 router.post('/', async (req, res, next) => {
+  delete req.body.counter;
   const filteredProducts = await db.get({
     select: '*',
     from: 'snowboards',

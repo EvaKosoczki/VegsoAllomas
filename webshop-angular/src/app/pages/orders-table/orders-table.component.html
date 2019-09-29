@@ -5,30 +5,31 @@
   </div>
 </div> -->
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <table class="table mt-5">
+  <div class="row mt-5">
+    <div class="col-12 tableBack">
+      <table class="table text-active">
         <thead class="">
           <tr class="row">
-            <th class="col-2">Order ID</th>
             <th class="col-2">Customer</th>
             <th class="col-2">Order Date</th>
             <th class="col-2">Quantity</th>
             <th class="col-2">Total price</th>
+            <th class="col-2">Status</th>
             <th class="col-2"></th>
           </tr>
         </thead>
         <tbody>
           <tr class="row" *ngFor="let item of allData; let i = index">
-            <td class="col-2">{{item.orderId}}</td>
             <td class="col-2">{{item.firstName}} {{item.lastName}}</td>
             <td class="col-2">{{item.orderDate}}</td>
             <td class="col-2">{{productsQuantityArr[i].productQuantity}}</td>
             <td class="col-2">{{totalPriceArr[i].totalPrice}}</td>
+            <td class="col-2">{{item.status}}</td>
             <td class="col-2 btn-group">
               <!-- <button type="button" class="btn btn-success" routerLink="/orders/edit/{{item.orderId}}">Edit</button> -->
               <!-- <button class="btn btn-danger" type="button" (click)="onDelete(item)">Delete</button> -->
               <button class="btn btn-info" (click)="toggleView(item.orderId)">Details</button>
+              <button class="btn btn-warning" (click)="onStatusChange(item)">Inactivate</button>
             </td>
             <div class="expandRow" id="expandRow{{item.orderId}}">
               <tr>
@@ -41,7 +42,7 @@
                 <td class="expandedData" *ngIf="row.order==item.orderId">{{row.name}}</td>
                 <td class="expandedData" *ngIf="row.order==item.orderId">{{row.unitPrice}}</td>
                 <td class="expandedData" *ngIf="row.order==item.orderId">{{row.quantity}}</td>
-                <td class="expandedData" *ngIf="row.order==item.orderId"><button class="btn btn-danger" type="button" (click)="onDelete(item)">Delete</button></td>
+                <td class="expandedData" *ngIf="row.order==item.orderId"><button class="btn btn-danger" type="button" (click)="onDelete(row)">Delete</button></td>
               </tr>
             </div>
           </tr>

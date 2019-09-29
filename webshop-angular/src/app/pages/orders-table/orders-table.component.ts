@@ -16,7 +16,7 @@ export class OrdersTableComponent implements OnInit {
   changeCounter: number = 0;
   productsQuantityArr: [] = [];
   totalPriceArr: [] = [];
-  orderDetails: [] = [];
+  orderDetails: any[] = [];
 
   constructor(
     private orderService: OrderService
@@ -33,11 +33,11 @@ export class OrdersTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  onDelete(picked: Order) {
-    this.orderService.delete(picked.orderId).subscribe(
+  onDelete(picked: any) {
+    this.orderService.delete(picked.orderDetailsId).subscribe(
       response => {
-        let index = this.allData.indexOf(picked);
-        this.allData.splice(index, 1);
+        let index = this.orderDetails.indexOf(picked);
+        this.orderDetails.splice(index, 1);
         this.changeCounter++;
       },
       err => console.error(err)
@@ -49,13 +49,13 @@ export class OrdersTableComponent implements OnInit {
     document.getElementById(`expandRow${id}`).classList.toggle("show");
   }
 
-  countQuantity(allData) {
-  
+  onStatusChange(order: any){
+    this.orderService.update(order).subscribe(
+      response => {
+        this.changeCounter++;
+      },
+      err => console.error(err),
+    )
   }
-
-  countTotalPrice(allData) {
-
-  }
-
 
 }

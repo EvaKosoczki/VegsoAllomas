@@ -1,6 +1,5 @@
-//const queryParams = [];
 module.exports = {
-  queryParams:[],
+  queryParams: [],
   select(select) {
     let sql = 'select ';
     if (select == '*') {
@@ -12,12 +11,10 @@ module.exports = {
       sql = sql.replace(',', '');
     }
     return sql;
-    // console.log(sql);
   },
   from(table) {
     let sql = ` from ${table} `;
     return sql;
-    //console.log(sql);
   },
   join(join) {
     let sql = '';
@@ -35,9 +32,9 @@ module.exports = {
   where(where) {
     let sql = "where ";
     for (let key in where) {
-      if (typeof where[key] === "number") {
-        sql += `${key}=? `;
-       this.queryParams.push(where[key]);
+      console.log('proba login:', where[key]);
+      if (key === 'password') {
+        sql += `${key}=${where[key]}`;
       } else if (key.indexOf("relation") > -1) {
         sql += `${where[key]} `
       } else {
@@ -45,7 +42,7 @@ module.exports = {
         this.queryParams.push(where[key]);
       }
     }
-    return [sql,this.queryParams];
+    return [sql, this.queryParams];
   },
   groupby(groupby) {
     let sql = ` group by ${groupby}`;
@@ -59,14 +56,15 @@ module.exports = {
     sql = sql.replace(',', '');
     return sql;
   },
-  limit(limit){
-    let sql= ' limit ';
-    for(let key in limit){
-      sql+=`${key}, ${limit[key]}`
+  limit(limit) {
+    let sql = ' limit ';
+    for (let key in limit) {
+      sql += `, ${limit[key]} `
     }
+    sql = sql.replace(',', '');
     return sql;
   },
-  deleteQuerys(){
-    this.queryParams=[];
+  deleteQuerys() {
+    this.queryParams = [];
   }
 }

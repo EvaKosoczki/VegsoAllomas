@@ -1,0 +1,58 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+		meta(name="description" content="")
+		meta(name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors")
+		meta(name="generator" content="Jekyll v3.8.5")
+		title Register Template · Bootstrap
+		// Bootstrap core CSS
+		link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
+		link(href="/stylesheets/register.css" rel="stylesheet")
+	body.text-center.login-background
+		.container
+			if (isHidden)
+				.alert.alert-danger(role='alert' class="alert_hidden") Semmi
+			else
+				.alert.alert-danger(role='alert' class="alert_show") #{errorMsg}
+			.row
+					.panel.panel-primary
+						.panel-body
+							form(method='POST' action='/register' role='form')
+								.form-group
+									h2 Create account
+								.form-group
+									input#signupFName.form-control(type='text' maxlength='50' name="firstName" required placeholder="Firstname")
+								.form-group
+									input#signupLName.form-control(type='text' maxlength='50' name="lastName" required placeholder="Lastname")
+								.form-group
+									input#signupEmail.form-control(type='email' maxlength='50' name="email" required placeholder="Email")
+									.form-group
+									input#signupAddress.form-control(type='text' maxlength='50' name="address" placeholder="Address")
+									.form-group
+									input#signupCity.form-control(type='text' maxlength='50' name="city" placeholder="City")
+									.form-group
+									input#Zip.form-control(type='number' maxlength='50' name="zip" placeholder="Zip")
+								.form-group
+									input#signupPassword.form-control(type='password' maxlength='25' placeholder='Password' length='40' 
+									name="password" required pattern=regexPattern aria-describedby="passwordHelp")
+									<small id="passwordHelp" class="form-text text-dark">Password must be 8 charachter long, with lowercase and uppercase letter and a number</small>
+								.form-group
+									input#signupPasswordagain.form-control(type='password' maxlength='25' 
+								required pattern=regexPattern name="passwordagain" placeholder="Password again" aria-describedby="passwordHelp" )
+									<small id="passwordHelp" class="form-text text-dark" >Password must be 8 charachter long, with lowercase and uppercase letter and a number</small>
+								.form-group
+									button#signupSubmit.btn.btn-info.btn-block(type='submit') Create your account
+								p.form-group
+									| By creating an account, you agree to our 
+									a(href='#') Terms of Use
+									|  and our 
+									a(href='#') Privacy Policy
+									| .
+								hr
+								p
+								| Already have an account? 
+								a(href='/login') Sign in
+								p
+							

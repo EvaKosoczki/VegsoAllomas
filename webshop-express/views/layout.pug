@@ -10,7 +10,7 @@ html
     header
       .hero-banner
         .hero-container
-            img(src="/image/photos/banner.jpg" class="img-fluid" alt="Snowboard Hero Banner")
+            img(src="/image/photos/banner.jpg" class="img-fluid hero-banner" alt="Snowboard Hero Banner")
             a.hero-btn.btn.btn-primary.btn-lg.mr-3(href="/products" role="button") Start shopping now
     
     nav.navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top
@@ -23,15 +23,24 @@ html
             a.nav-link(href="/products") Snowboards
           li.nav-item
             a.nav-link(href="#") How to choose
-        //- ul.navbar-nav
-        //-   if user
-        //-     if user.id
-        //-       li
-        //-         span #{ user.name }
-        //-         a.btn.btn-defult(href="/logout") logout
-        //-     else
-        //-       li
-        //-         a.btn.btn-success(href="/login") login
+        ul.navbar-nav
+          if user
+            if user.userId && user.role == 'customer'
+              li
+                span.user-name #{ user.firstName }
+                a.basket-link(href="/basket")
+                  img.basket(src="/image/icons/basket1.png")
+                  span.counter #{counter}
+                a.btn.btn-info(href="/logout") logout
+            if user.userId && user.role == 'administrator'
+              li
+                span.user-name #{ user.firstName }
+                strong
+                  a.btn.btn-link(href="http://localhost:4200/admin/dashboard") Admin page
+                a.btn.btn-info(href="/logout") logout
+          else
+            li
+              a.btn.btn-success(href="/login") login
 
     block content
 
@@ -59,5 +68,8 @@ html
             width="400" height="200" frameborder="0" style="border:0;" allowfullscreen="")
 
     script(src="/javascripts/jquery.min.js")
+    script(src="/javascripts/popper.min.js")
     script(src="/bootstrap/dist/js/bootstrap.min.js")
     script(src="/javascripts/main.js")
+    script(src="/javascripts/addToBasket.js")
+    script(src="/javascripts/productFunctions.js")

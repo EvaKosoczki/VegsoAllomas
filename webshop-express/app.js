@@ -4,6 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const favicon = require('serve-favicon');
+const UserDB = require('./modules/user');
+const db = require('./modules/db');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -11,7 +13,9 @@ const productsRouter = require('./routes/products');
 const apiRouter = require('./routes/api');
 const loginRouter = require('./routes/login');
 const basketRouter = require('./routes/basket');
+const registerRouter = require('./routes/register');
 
+const userDb = new UserDB();
 const app = express();
 
 // view engine setup
@@ -29,10 +33,30 @@ app.use((req, res, next) => {
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({
-  extended: false
+  extended: true
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(async (req, res, next) => {
+  const user = await userDb.checkLogin(req);
+  if (user) {
+    req.user = user;
+    console.log('Req.user:', req.user);
+    result = await userDb.checkBasket(req.user.userId);
+    req.body.counter = result.map(item => item.orderItems * item.quantity)
+      .reduce((a, b) => {
+        return a + b
+      }, 0)
+  }
+
+  next();
+});
+
+app.use('/logout', (req, res, next) => {
+  res.clearCookie('uuid');
+  res.redirect('/products');
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -40,6 +64,7 @@ app.use('/products', productsRouter);
 app.use('/api', apiRouter);
 app.use('/login', loginRouter);
 app.use('/basket', basketRouter);
+app.use('/register', registerRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

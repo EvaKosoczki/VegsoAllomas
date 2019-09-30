@@ -16,8 +16,10 @@ export class ProductsEditComponent implements OnInit {
   brands:Brand[];
   selectedBrand:number;
 
-  constructor(private productsService: ProductsService,
-    private ar: ActivatedRoute, private router: Router, private brandsService:BrandsService) {
+  constructor(
+    private productsService: ProductsService,
+    private ar: ActivatedRoute, private router: Router
+    ) {
     this.ar.params.forEach(
       params => {
         this.selectedProductId = params.id

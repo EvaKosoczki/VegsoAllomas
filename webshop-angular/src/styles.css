@@ -1,1 +1,209 @@
 /* You can add global styles to this file, and also import other style files */
+
+.expandRow {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.adminPage {
+  font-family: "Robato", sans-serif;
+  font-size: 17px;
+  width: 100%;
+  height: 100vh;
+}
+
+.text-inactive {
+  color: #a8b8c0;
+}
+
+.text-active {
+  color: #d7e4eb;
+}
+
+.adminBackBlue {
+  background: -webkit-linear-gradient(0deg,  #66a6ff 0%, #89f7fe 100%);
+}
+
+.adminBackSand {
+  background: -webkit-linear-gradient(0deg, #66a6ff 0%, #FFCF71 100%);
+}
+
+
+.adminBackDark {
+  background: -webkit-linear-gradient(0deg, #66a6ff 0%,  #494f52 100%);
+}
+
+.adminBackGreen {
+  background: -webkit-linear-gradient(0deg, #66a6ff 0%, #04a877 100%);  
+}
+
+.tableBack {
+  background-color: #596164;
+  padding: 0 20px;
+  border-radius: 10px;
+}
+
+
+#logreg-forms {
+  width: 50vw;
+  margin: 10vh auto;
+  background-color: #ffffff4d;
+  box-shadow: 0 7px 7px rgba(0, 0, 0, 0.12), 0 12px 40px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+#logreg-forms form {
+  width: 100%;
+  max-width: 50vw;
+  padding: 15px;
+  margin: auto;
+}
+
+#logreg-forms .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+#logreg-forms .form-control:focus {
+  z-index: 2;
+}
+
+#logreg-forms .form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+#logreg-forms .form-signin input[type="password"] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+#logreg-forms .social-login {
+  width: 390px;
+  margin: 0 auto;
+  margin-bottom: 14px;
+}
+
+#logreg-forms .social-btn {
+  font-weight: 100;
+  color: white;
+  width: 190px;
+  font-size: 0.9rem;
+}
+
+#logreg-forms a {
+  display: block;
+  padding-top: 10px;
+  color: #fff;
+}
+
+#logreg-form .lines {
+  width: 200px;
+  border: 1px solid red;
+}
+
+
+#logreg-forms button[type="submit"] {
+  margin-top: 10px;
+}
+
+#logreg-forms .facebook-btn {
+  background-color: #3C589C;
+}
+
+#logreg-forms .google-btn {
+  background-color: #DF4B3B;
+}
+
+#logreg-forms .form-reset,
+#logreg-forms .form-signup {
+  display: none;
+}
+
+#logreg-forms .form-signup .social-btn {
+  width: 210px;
+}
+
+#logreg-forms .form-signup input {
+  margin-bottom: 2px;
+}
+
+.form-signup .social-login {
+  width: 210px !important;
+  margin: 0 auto;
+}
+
+.submit {
+  background: -webkit-linear-gradient(0deg, #2dfbff 0%, #3c96ff 100%);
+  border-radius: 25px;
+  color: #fff;
+}
+
+/* Mobile */
+
+@media screen and (max-width:500px) {
+  #logreg-forms {
+    width: 300px;
+  }
+
+  #logreg-forms .social-login {
+    width: 200px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+}
+
+#logreg-forms .input-group {
+  margin: 20px 0;
+}
+
+.cancel {
+  background-color: #2dfbff;
+  color: #fff;
+  border-radius: 25px;
+}
+
+.icon {
+  width: 70px;
+  margin: 30px 40px;
+}
+
+/* The sidebar menu */
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 160px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #dae2e7; 
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Style page content */
+.main {
+  margin-left: 160px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
+}
+
+.expandedData {
+  width: 80vw;
+}
+
+.expandRow {
+  background-color: #363a3b;
+}

@@ -57,8 +57,7 @@ module.exports = class UserDB {
     async checkBasket(user) {
         let sql = await sqlParser({
             select: {
-                'basket': 'orderItems',
-                'quantity': 'quantity'
+                'sum(quantity)': 'orderItems'
             },
             from: 'users',
             join: {
@@ -76,7 +75,7 @@ module.exports = class UserDB {
         });
         console.log('proba', sql);
         const result = await this.conn.query(sql[0], sql[1]);
-        return result;
+        return result[0].orderItems;
     }
 
 }

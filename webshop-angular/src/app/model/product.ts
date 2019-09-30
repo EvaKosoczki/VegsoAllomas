@@ -8,4 +8,5 @@ export class Product {
   postfix: string = '';
   price: number = 0;
   picture: string = '';
+  status: string = '';
 }

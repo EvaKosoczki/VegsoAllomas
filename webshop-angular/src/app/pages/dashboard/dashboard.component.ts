@@ -44,9 +44,17 @@ export class DashboardComponent implements OnInit {
     return this.allProduct.length;
   }
 
+  activeProducts() {
+    return this.allProduct.filter(item => item.status !== 'deleted').length;
+  }
+
   //Orders:
   numberOfOrders() {
     return this.allOrder.length;
+  }
+
+  activeOrders() {
+    return this.allOrder.filter(item => item.status !== 'closed').length;
   }
 
 }

@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const db = require('../modules/db');
-
+const UserDb = require('../modules/user');
+const userDb = new UserDb();
 
 router.get('/:postfix', async (req, res, next) => {
   const productDetails = await db.get({
@@ -37,16 +38,23 @@ router.get('/:postfix', async (req, res, next) => {
 
 /* GET all products in JSON format */
 router.get('/', async (req, res, next) => {
+  const page = req.query.page || 0;
   const productDetails = await db.get({
     select: '*',
     from: "snowboards",
-  })
-
+    limit: {
+      start:page,
+      limit: 12
+    }
+  });
+  const pagination = await userDb.pagination(page);
+  console.log(pagination);
   res.render('products', {
     title: 'Snowboards',
     products: productDetails,
     user: req.user,
-    counter: req.body.counter
+    counter: req.body.counter,
+    pagination: pagination
   });
 });
 //get filtered products

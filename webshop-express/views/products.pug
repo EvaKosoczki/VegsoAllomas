@@ -1,94 +1,92 @@
 extends layout
 
 block content
-	h1.page-title= title
+  h1.page-title= title
 
-	.container-fluid
-		.row
-			.dropdown
-				button#dropdownMenuButton.btn.btn-info.dropdown-toggle(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-					| Products per page
-				.dropdown-menu(aria-labelledby='dropdownMenuButton')
-					a.dropdown-item(href='#') 4
-					a.dropdown-item(href='#') 8
-					a.dropdown-item(href='#') 12
-					a.dropdown-item(href='#') 20
-					a.dropdown-item(href='#') All
-				br    
-		.row
-			.col-xs-12.col-sm-2.col-md-3.col-lg-3
-				.col-12.sticky-top.sidenav
-					form(method='POST' action='/products' role='form')
-						.form-group.form-check
-							p.font-weight-bold Brands
-							input#Burton.form-check-input(type='checkbox' name="brand" value=1)
-							label.form-check-label.pr-5(for='Burton') Burton 
-							input#CAPiTA.form-check-input(type='checkbox' name="brand" value=2)
-							label.form-check-label.pr-5(for='CAPiTA') CAPiTA 
-							input#LibTech.form-check-input(type='checkbox' name="brand" value=3)
-							label.form-check-label.pr-5(for='LibTech') LibTech 
-							br
-							input#Nitro.form-check-input(type='checkbox' name="brand" value=4)
-							label.form-check-label.pr-5(for='Nitro') Nitro
-							input#K2.form-check-input(type='checkbox' name="brand" value=5)
-							label.form-check-label.pr-5(for='K2') K2
-							input#GNU.form-check-input(type='checkbox' name="brand" value=6)
-							label.form-check-label(for='GNU') GNU
-							br
-							input#Jones.form-check-input(type='checkbox' name="brand" value=7)
-							label.form-check-label.pr-5(for='Jones') Jones 
-							input#Ride.form-check-input(type='checkbox' name="brand" value=8)
-							label.form-check-label.pr-5(for='Ride') Ride 
-							input#Salomon.form-check-input(type='checkbox' name="brand" value=9)
-							label.form-check-label.pr-5(for='Salomon') Salomon
-							br
-							input#Rome.form-check-input(type='checkbox' name="brand" value=10)
-							label.form-check-label.pr-5(for='Rome') Rome
-							input#Nidecker.form-check-input(type='checkbox' name="brand" value=11)
-							label.form-check-label.pr-5(for='Nidecker') Nidecker 
-						.form-group.form-check
-							p.font-weight-bold Shape
-							input#Directional.form-check-input(type='checkbox' name="shape" value="Directional")
-							label.form-check-label.pr-5(for='Directional') Directional 
-							input#Twin.form-check-input(type='checkbox' name="shape" value="Twin")
-							label.form-check-label(for='Twin') Twin
-						.form-group.form-check
-							p.font-weight-bold Purpose
-							input#All-mountain.form-check-input(type='checkbox' name="purpose" value="All-mountain")
-							label.form-check-label.pr-5(for='All-mountain') All-mountain 
-							input#Freestyle.form-check-input(type='checkbox' name="purpose" value="Freestyle")
-							label.form-check-label.pr-5(for='Freestyle') Freestyle
-							input#Freeride.form-check-input(type='checkbox' name="purpose" value="Freeride")
-							label.form-check-label(for='Freeride') Freeride
-							br
-						button.btn.btn-primary(type='submit') Filter
-		
+  .container-fluid
+    .row
+      .dropdown
+        button#dropdownMenuButton.btn.btn-info.dropdown-toggle(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+          | Products per page
+        .dropdown-menu(aria-labelledby='dropdownMenuButton')
+          a.dropdown-item(href='#') 4
+          a.dropdown-item(href='#') 8
+          a.dropdown-item(href='#') 12
+          a.dropdown-item(href='#') 20
+          a.dropdown-item(href='#') All
+        br    
+    .row
+      .col-xs-12.col-sm-2.col-md-3.col-lg-3
+        .col-12.sticky-top.sidenav
+          form(method='POST' action='/products' role='form')
+            .form-group.form-check
+              p.font-weight-bold Brands
+              input#Burton.form-check-input(type='checkbox' name="brand" value=1)
+              label.form-check-label.pr-5(for='Burton') Burton 
+              input#CAPiTA.form-check-input(type='checkbox' name="brand" value=2)
+              label.form-check-label.pr-5(for='CAPiTA') CAPiTA 
+              input#LibTech.form-check-input(type='checkbox' name="brand" value=3)
+              label.form-check-label.pr-5(for='LibTech') LibTech 
+              br
+              input#Nitro.form-check-input(type='checkbox' name="brand" value=4)
+              label.form-check-label.pr-5(for='Nitro') Nitro
+              input#K2.form-check-input(type='checkbox' name="brand" value=5)
+              label.form-check-label.pr-5(for='K2') K2
+              input#GNU.form-check-input(type='checkbox' name="brand" value=6)
+              label.form-check-label(for='GNU') GNU
+              br
+              input#Jones.form-check-input(type='checkbox' name="brand" value=7)
+              label.form-check-label.pr-5(for='Jones') Jones 
+              input#Ride.form-check-input(type='checkbox' name="brand" value=8)
+              label.form-check-label.pr-5(for='Ride') Ride 
+              input#Salomon.form-check-input(type='checkbox' name="brand" value=9)
+              label.form-check-label.pr-5(for='Salomon') Salomon
+              br
+              input#Rome.form-check-input(type='checkbox' name="brand" value=10)
+              label.form-check-label.pr-5(for='Rome') Rome
+              input#Nidecker.form-check-input(type='checkbox' name="brand" value=11)
+              label.form-check-label.pr-5(for='Nidecker') Nidecker 
+            .form-group.form-check
+              p.font-weight-bold Shape
+              input#Directional.form-check-input(type='checkbox' name="shape" value="Directional")
+              label.form-check-label.pr-5(for='Directional') Directional 
+              input#Twin.form-check-input(type='checkbox' name="shape" value="Twin")
+              label.form-check-label(for='Twin') Twin
+            .form-group.form-check
+              p.font-weight-bold Purpose
+              input#All-mountain.form-check-input(type='checkbox' name="purpose" value="All-mountain")
+              label.form-check-label.pr-5(for='All-mountain') All-mountain 
+              input#Freestyle.form-check-input(type='checkbox' name="purpose" value="Freestyle")
+              label.form-check-label.pr-5(for='Freestyle') Freestyle
+              input#Freeride.form-check-input(type='checkbox' name="purpose" value="Freeride")
+              label.form-check-label(for='Freeride') Freeride
+              br
+            button.btn.btn-primary(type='submit') Filter
+    
 
-			.col-xs-12.col-sm-10.col-md-9.col-lg-9
+      .col-xs-12.col-sm-10.col-md-9.col-lg-9
 
-				.row
-					each product in products
-						.col-xs-12.col-sm-6.col-md-4.col-lg-3
-							.card
-								img.card-img-top(src=`./image/snowboards/${product.picture}` alt='...')
-								.card-body
-									h5.card-title #{product.name}
-									p.card-text $ #{product.price}
-									a.btn.btn-primary(href=`/products/${product.postfix}`) Show
+        .row
+          each product in products
+            .col-xs-12.col-sm-6.col-md-4.col-lg-3
+              .card
+                img.card-img-top(src=`./image/snowboards/${product.picture}` alt='...')
+                .card-body
+                  h5.card-title #{product.name}
+                  p.card-text $ #{product.price}
+                  a.btn.btn-primary(href=`/products/${product.postfix}`) Show
 
-		.row
-			.col-lg-2.offset-5
-				nav(aria-label='Page navigation example')
-					ul.pagination
-						li.page-item
-							a.page-link(href='#' aria-label='Previous')
-								span(aria-hidden='true') &laquo;
-						li.page-item
-							a.page-link(href='#') 1
-						li.page-item
-							a.page-link(href='#') 2
-						li.page-item
-							a.page-link(href='#') 3
-						li.page-item
-							a.page-link(href='#' aria-label='Next')
-								span(aria-hidden='true') &raquo;
+    .row
+      .col-lg-2.offset-5
+        nav(aria-label='Page navigation example')
+          ul.pagination
+            li.page-item
+              a.page-link(href=`/products?page=${pagination.prev}` aria-label='Previous')
+                span(aria-hidden='true') &laquo;
+            each pag in pagination.pages
+              li.page-item
+                a.page-link(href=`/products?page=${pag.page}` aria-label='Previous')
+                  span(aria-hidden='true')= (pag.page+1)
+            li.page-item
+              a.page-link(href=`/products?page=${pagination.next}` aria-label='Next')
+                span(aria-hidden='true') &raquo;

@@ -77,5 +77,11 @@ module.exports = class UserDB {
         const result = await this.conn.query(sql[0], sql[1]);
         return result;
     }
+    async pagination(page){
+        let sql1= await sqlParser({
+            select:{'count(ID)':'amount'},
+            
+        })
+    }
 
 }

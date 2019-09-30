@@ -27,7 +27,7 @@ router.post('/', async (req, res, next) => {
   const result = await db.get({
     select: '*',
     from: 'users',
-    where: { email: `${req.body.email}`, relation: 'and', password: `${req.body.password}` }
+    where: { email: `${req.body.email}`, relation: 'and', password: `SHA1('${req.body.password}')` }
   })
   if (result.length === 1) {
     const token = getToken();

@@ -5,6 +5,14 @@
   </div>
 </div> -->
 <div class="container-fluid">
+  <div class="row">
+    <div class="col-12 title-design">
+      <strong>
+        <h1 class="form-signin">ORDERS</h1>
+      </strong>
+    </div>
+  </div>
+
   <div class="row mt-5">
     <div class="col-12 tableBack">
       <table class="table text-active">
@@ -32,22 +40,23 @@
               <button class="btn btn-warning" (click)="onStatusChange(item)">Inactivate</button>
             </td>
             <div class="expandRow" id="expandRow{{item.orderId}}">
-              <tr>
-                <th class="expandedData">Product</th>
-                <th class="expandedData">Unit price</th>
-                <th class="expandedData">Quantity</th>
-                <th class="expandedData"></th>
-              </tr>
-              <tr *ngFor="let row of orderDetails">
-                <td class="expandedData" *ngIf="row.order==item.orderId">{{row.name}}</td>
-                <td class="expandedData" *ngIf="row.order==item.orderId">{{row.unitPrice}}</td>
-                <td class="expandedData" *ngIf="row.order==item.orderId">{{row.quantity}}</td>
-                <td class="expandedData" *ngIf="row.order==item.orderId"><button class="btn btn-danger" type="button" (click)="onDelete(row)">Delete</button></td>
-              </tr>
-            </div>
+          <tr>
+            <th class="expandedData">Product</th>
+            <th class="expandedData">Unit price</th>
+            <th class="expandedData">Quantity</th>
+            <th class="expandedData"></th>
           </tr>
-        </tbody>
-      </table>
+          <tr *ngFor="let row of orderDetails">
+            <td class="expandedData" *ngIf="row.order==item.orderId">{{row.name}}</td>
+            <td class="expandedData" *ngIf="row.order==item.orderId">{{row.unitPrice}}</td>
+            <td class="expandedData" *ngIf="row.order==item.orderId">{{row.quantity}}</td>
+            <td class="expandedData" *ngIf="row.order==item.orderId"><button class="btn btn-danger" type="button"
+                (click)="onDelete(row)">Delete</button></td>
+          </tr>
     </div>
+    </tr>
+    </tbody>
+    </table>
   </div>
+</div>
 </div>

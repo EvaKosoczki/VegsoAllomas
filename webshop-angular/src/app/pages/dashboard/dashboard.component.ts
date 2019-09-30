@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit {
   }
 
   activeOrders() {
-    return this.allOrder.filter(item => item.status !== 'closed').length;
+    return this.allOrder.filter(item => item.status !== 'deleted').length;
   }
 
 }

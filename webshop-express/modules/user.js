@@ -24,8 +24,12 @@ module.exports = class UserDB {
     async setUserToken(id, token) {
         const sql = await sqlUpdate({
             table: 'users',
-            set: { cookie: token },
-            where: { userId: id }
+            set: {
+                cookie: token
+            },
+            where: {
+                userId: id
+            }
         })
         const result = await this.conn.query(sql);
         return result;
@@ -41,24 +45,38 @@ module.exports = class UserDB {
         const sql = await sqlParser({
             select: '*',
             from: 'users',
-            where: { cookie: `${req.cookies.uuid}` }
+            where: {
+                cookie: `${req.cookies.uuid}`
+            }
         });
         console.log('Checklogin: ', sql);
         const result = await this.conn.query(sql[0], sql[1]);
         console.log('Checklogin2: ', result);
         return result[0];
     };
-    async checkBasket(user){
-        let sql= await sqlParser({
-            select:{'count(basket)':'orderItems'},
-            from :'users',
-            join:{join:"inner", table:'baskets', userId:"user", join2:"inner", table2:'`basket-details`', basketId:'basket'},
-            where:{user:user}
-        
+    async checkBasket(user) {
+        let sql = await sqlParser({
+            select: {
+                'basket': 'orderItems',
+                'quantity': 'quantity'
+            },
+            from: 'users',
+            join: {
+                join: "inner",
+                table: 'baskets',
+                userId: "user",
+                join2: "inner",
+                table2: '`basket-details`',
+                basketId: 'basket'
+            },
+            where: {
+                user: user
+            }
+
         });
-        console.log('proba',sql);
+        console.log('proba', sql);
         const result = await this.conn.query(sql[0], sql[1]);
-        return result[0].orderItems;
+        return result;
     }
 
 }

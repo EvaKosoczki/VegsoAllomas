@@ -38,6 +38,11 @@ nav a {
   font-size: 120%;
 }
 
+.sidenav {
+  top: 100px;
+
+}
+
 .page404Div {
   margin: 0;
   border: 0;

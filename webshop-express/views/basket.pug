@@ -30,61 +30,63 @@ block content
           h2 Shipping & billing info
       .row
         .col-10.col-md-6
-          form.form(action="", method="post")
+          form.form(action="/basket/orders", method="post")
             .form-group
               label Name
-              input.form-control(name="name" required)
+              input.form-control(name="name" )
             .form-group
               label Email
-              input.form-control(type="email" name="email" required)
+              input.form-control(type="email" name="email" )
               <small class="form-text text-muted">We will confirm your order here.</small>
             .form-group
               label Country
-              input.form-control(name="country" required)
+              input.form-control(name="country" )
             .form-group
               label Address
-              input.form-control(name="address" required)
+              input.form-control(name="address" )
             .form-group
               label Postal Code
-              input.form-control(name="postalCode" required)
+              input.form-control(name="postalCode" )
             .form-group
               label City
-              input.form-control(name="city" required)
+              input.form-control(name="city" )
             .form-group
               label State or Province
-              input.form-control(name="state" required)
+              input.form-control(name="state" )
             .form-group
               label Phone Number
-              input.form-control(name="phone" required)
+              input.form-control(name="phone" )
               <small class="form-text text-muted">We will call you only if there is an issue with your order.</small>
-        
+            button.order-buttons.btn.btn-success.btn-large.mr-5(type="submit") Place Order
+            a.order-buttons.btn.btn-danger.btn-large(href="/products") Cancel
+
+
         .col-4.offset-2.basket-content
           .basket-summary.border.border-dark
             .row
               .col-md-6.text-left.ml-2
                 h2 #{basket}
-                p 1 item
+                p #{counter} item
               .col-5.text-right
-                h2 469 $
+                h2 #{basketTotalPrice} $
             hr
             
             .row
-              .col-12.mr-3.text-right
-                h4 Burton Name Dropper Snowboard 2020
-                h5 size: 158
-                h5 price: 469
-              
-            hr            
+              each product in basketDetails
+                .col-12.mr-3.text-right
+                  h4 Name: #{product.name} 
+                  h5 Quantity: #{product.quantity} 
+                  h5 Unit Price: #{product.price} $ 
+                  hr
+                       
             .row
               .col-12.col-md-6.text-left.ml-2
                 h3 Order Total
               .col-12.text-right.mr-3
-                h3 469 $
+                h3 #{basketTotalPrice} $
       
-      .row.mb-3
-        .col-6.text-right
-            button.order-buttons.btn.btn-success.btn-large.mr-5(type="submit") Place Order
-            a.order-buttons.btn.btn-danger.btn-large(href="/products") Cancel
+   
+            
 
     .container.carousel
       .row

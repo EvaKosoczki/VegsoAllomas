@@ -36,7 +36,7 @@ export class ProductsEditComponent implements OnInit {
 
   onSubmit(ev: Event) {
     ev.preventDefault();
-    this.productsService.update(this.oneProduct)
+    this.productsService.updateID(this.oneProduct.ID, this.oneProduct)
       .subscribe(
         response => {
           this.router.navigateByUrl("/products");

@@ -1,8 +1,11 @@
 extends layout
 
 block content
-
     .container.basket-container
+      if (isHidden)
+          .alert.alert-danger(role='alert' class="alert_hidden") Semmi
+      else
+        .alert.alert-danger(role='alert' class="alert_show") #{errorMsg}
       .row
         .col-12.text-center
           h1 #{title}
@@ -32,30 +35,27 @@ block content
         .col-10.col-md-6
           form.form(action="/basket/orders", method="post")
             .form-group
-              label Name
-              input.form-control(name="name" )
+              label First name
+              input.form-control(name="fname" value=`${user.firstName}` required)
+              .form-group
+              label Last name
+              input.form-control(name="lname" value=`${user.lastName}` required)
             .form-group
               label Email
-              input.form-control(type="email" name="email" )
+              input.form-control(type="email" name="email" value=`${user.email}` required)
               <small class="form-text text-muted">We will confirm your order here.</small>
             .form-group
-              label Country
-              input.form-control(name="country" )
-            .form-group
               label Address
-              input.form-control(name="address" )
+              input.form-control(name="address" value=`${user.address}` required)
             .form-group
               label Postal Code
-              input.form-control(name="postalCode" )
+              input.form-control(name="postalCode" value=`${user.zip}` required)
             .form-group
               label City
-              input.form-control(name="city" )
-            .form-group
-              label State or Province
-              input.form-control(name="state" )
+              input.form-control(name="city" value=`${user.city}` required)
             .form-group
               label Phone Number
-              input.form-control(name="phone" )
+              input.form-control(name="phone" required)
               <small class="form-text text-muted">We will call you only if there is an issue with your order.</small>
             button.order-buttons.btn.btn-success.btn-large.mr-5(type="submit") Place Order
             a.order-buttons.btn.btn-danger.btn-large(href="/products") Cancel

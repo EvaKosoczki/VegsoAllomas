@@ -6,7 +6,7 @@ module.exports = async function (update) {
     sql = sql.replace(', ', '');
     for (let key in update.where) {
         if (key.indexOf("relation") > -1) {
-            sql += `${where[key]} `
+            sql += `${update.where[key]} `
         } else {}
         sql += `where ${key}= '${update.where[key]}'`;
     }

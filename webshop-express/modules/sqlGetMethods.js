@@ -32,7 +32,8 @@ module.exports = {
   where(where) {
     let sql = "where ";
     for (let key in where) {
-      if (where[key].indexOf('SHA1') > -1) {
+      console.log('proba login:',where[key]);
+      if (key === 'password')  {
         sql += `${key}=${where[key]}`;
       } else if (key.indexOf("relation") > -1) {
         sql += `${where[key]} `

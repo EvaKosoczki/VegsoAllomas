@@ -18,6 +18,7 @@ import { UsersEditComponent } from './pages/users-edit/users-edit.component';
 import { UsersNewComponent } from './pages/users-new/users-new.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FirstReportComponent } from './pages/first-report/first-report.component';
+import { SecondReportComponent } from './pages/second-report/second-report.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FirstReportComponent } from './pages/first-report/first-report.componen
     UsersNewComponent,
     DashboardComponent,
     FirstReportComponent,
+    SecondReportComponent,
   ],
   imports: [
     BrowserModule,

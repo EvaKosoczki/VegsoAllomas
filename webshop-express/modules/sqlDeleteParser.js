@@ -3,9 +3,12 @@ module.exports = async function (del) {
     for (key in del.where) {
         if (typeof del.where[key] === 'number') {
             sql += `${key}=${del.where[key]}`;
+        } else if (key.indexOf("relation") > -1) {
+            sql += ` ${del.where[key]} `
         } else {
             sql += `${key}='${del.where[key]}'`;
         }
     }
+    console.log(sql)
     return sql;
 }

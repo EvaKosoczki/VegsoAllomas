@@ -9,6 +9,7 @@ import { OrdersEditComponent } from './pages/orders-edit/orders-edit.component';
 import { OrdersNewComponent } from './pages/orders-new/orders-new.component';
 import { UsersNewComponent } from './pages/users-new/users-new.component';
 import { UsersEditComponent } from './pages/users-edit/users-edit.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 const routes: Routes = [{
@@ -46,7 +47,11 @@ const routes: Routes = [{
 {
   path: 'users/edit/:id',
   component: UsersEditComponent
-}
+},
+{
+  path: 'admin/dashboard',
+  component: DashboardComponent
+},
 ];
 
 @NgModule({

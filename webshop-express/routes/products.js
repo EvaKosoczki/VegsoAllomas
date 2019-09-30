@@ -5,14 +5,22 @@ const DB = require('../modules/db');
 
 const db = new DB();
 
-//Get one product:
 router.get('/:postfix', async (req, res, next) => {
   const productDetails = await db.get({
     select: '*',
     from: 'snowboards',
-    where: { postfix: `${req.params.postfix}` },
-    join: { join: 'inner', table: 'brands', 'snowboards.brand': 'brands.brandId' },
-    orderby: { name: 'asc', brandName: 'asc' }
+    where: {
+      postfix: `${req.params.postfix}`
+    },
+    join: {
+      join: 'inner',
+      table: 'brands',
+      'snowboards.brand': 'brands.brandId'
+    },
+    orderby: {
+      name: 'asc',
+      brandName: 'asc'
+    }
   })
   const oneProduct = productDetails[0];
   const img = path.join('/image', 'snowboards', oneProduct.picture);
@@ -30,11 +38,9 @@ router.get('/:postfix', async (req, res, next) => {
 
 /* GET all products in JSON format */
 router.get('/', async (req, res, next) => {
-
-
   const productDetails = await db.get({
     select: '*',
-    from: "snowboards"
+    from: "snowboards",
   })
 
   res.render('products', {
@@ -44,6 +50,65 @@ router.get('/', async (req, res, next) => {
     counter: req.body.counter
   });
 });
+//get filtered products
+router.post('/', async (req, res, next) => {
+  delete req.body.counter;
+  const filteredProducts = await db.get({
+    select: '*',
+    from: 'snowboards',
+    where: req.body,
+  })
+  res.render('products', {
+    title: 'Snowboards',
+    products: filteredProducts,
+  });
+})
+
+
+
+// /* GET products per page */
+// router.get('/:start=0:size=4', async (req, res, next) => {
+
+//   const prodsPerPage = await db.get({
+//     select: '*',
+//     from: "snowboards",
+//     limit: { 0: 4 }
+//   })
+
+//   res.render('products', {
+//     title: 'Snowboards',
+//     products: prodsPerPage,
+//     user: req.user,
+//     counter: req.body.counter
+//   });
+// });
+
+
+// //Pagination:
+// router.get('/:page', async function (req, res, next) {
+//   const productDetails = await db.get({
+//     select: '*',
+//     from: "snowboards",
+//   })
+
+//   let perPage = 4
+//   let page = req.params.page || 1
+
+//   productDetails
+//     .find({})
+//     .skip((perPage * page) - perPage)
+//     .limit(perPage)
+//     .exec(function (err, products) {
+//       Product.count().exec(function (err, count) {
+//         if (err) return next(err)
+//         res.render('products', {
+//           products: products,
+//           current: page,
+//           pages: Math.ceil(count / perPage)
+//         })
+//       })
+//     })
+// })
 
 
 //No product found:

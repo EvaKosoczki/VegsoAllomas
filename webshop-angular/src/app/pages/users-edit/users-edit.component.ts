@@ -19,6 +19,7 @@ userId: number = 0;
     this.ar.params.forEach(
       params => {
         this.userId = params.id;
+        console.log(this.userId);
          this.userService.getOne(this.userId).subscribe(
           data => {
             this.user = data[0];

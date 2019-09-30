@@ -1,17 +1,18 @@
-<div class="container-fluid">
+<div class="container-fluid text-light">
   <div class="row">
-    <div class="col-12">
+    <!-- <div class="col-12 mt-5">
       <h4>Add new customer</h4>
       <button class="btn btn-info" routerLink="new">New user</button>
-    </div>
-    <div class="col-12">
-      <table class="table">
-        <thead class="thead-light">
+    </div> -->
+    <div class="col-12 tableBack mt-5">
+      <table class="table text-active">
+        <thead class="">
           <tr>
             <th>Firstname</th>
             <th>Lastname</th>
             <th>Email</th>
             <th>Address</th>
+            <th>Role</th>
             <th></th>
           </tr>
         </thead>
@@ -20,7 +21,8 @@
             <td>{{item.firstName}}</td>
             <td>{{item.lastName}}</td>
             <td>{{item.email}}</td>
-            <td>{{item.address}}</td>
+            <td>{{item.zip}} {{item.city}} {{item.address}}</td>
+            <td>{{item.role}}</td>
             <td class="btn-group">
               <button type="button" class="btn btn-success" routerLink="/users/edit/{{item.userId}}">Edit</button>
               <button class="btn btn-danger" type="button" (click)="onDelete(item)">Delete</button>

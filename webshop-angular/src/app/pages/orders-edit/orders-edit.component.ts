@@ -10,8 +10,7 @@ import { OrderService } from 'src/app/service/orders.service';
 })
 export class OrdersEditComponent implements OnInit {
 
-  
-  order: Order = new Order();
+  oneOrder: Order;
   orderId: number = 0;
 
   constructor(
@@ -25,7 +24,8 @@ export class OrdersEditComponent implements OnInit {
         this.orderId = params.id
         this.orderService.getOne(this.orderId).subscribe(
           data => {
-            this.order = data[0];
+            this.oneOrder = data[0];
+            console.log(this.oneOrder);
           }
           
         )
@@ -38,7 +38,7 @@ export class OrdersEditComponent implements OnInit {
 
   onSubmit(ev: Event) {
     ev.preventDefault();
-    this.orderService.update(this.order)
+    this.orderService.update(this.oneOrder)
       .subscribe(
         response => {
           this.router.navigateByUrl("/orders");

@@ -62,33 +62,78 @@ router.put('/products/:id', async (req, res, next) => {
 // orders
 
 router.get('/orders', async (req, res, next) => {
-  const orderDetails = await db.get({
+  const orders = [];
+  const ordersByCust = await db.get({
     select: '*',
     from: 'orders',
     join: {
       join: 'inner',
-      table: '`order-details`',
-      'orders.orderId': '`order-details`.order',
-      join1: 'inner',
-      table1: '`users`',
+      table: 'users',
       'orders.userId': 'users.userId'
+    },
+    orderby: {
+      orderDate: 'asc'
+    }
+  });
+
+  const orderDetails = await db.get({
+    select: '*',
+    from: 'orders',
+    join: {
+      join1: 'inner',
+      table1: '`order-details`',
+      'orders.orderId': '`order-details`.order',
+      join2: 'inner',
+      table2: 'snowboards',
+      '`order-details`.snowboardId': 'snowboards.ID'
     }
   })
 
-  res.json(orderDetails);
+  const totalPrice = await db.get({
+    select: {
+      'sum(unitPrice*quantity)': 'totalPrice',
+      '`order`': 'order'
+    },
+    from: '`order-details`',
+    groupby: '`order`'
+  })
+
+  const productQuantity = await db.get({
+    select: {
+      'sum(quantity)': 'productQuantity'
+    },
+    from: '`order-details`',
+    groupby: '`order-details`.order'
+  })
+
+  orders.push(ordersByCust);
+  orders.push(orderDetails);
+  orders.push(totalPrice);
+  orders.push(productQuantity);
+  //console.log(orders);
+  //console.log(totalPrice);
+  //console.log(productQuantity);
+  console.log(orders);
+  res.json(orders);
 });
 
 router.get('/orders/:id', async (req, res, next) => {
   const orderDetails = await db.get({
     select: '*',
-    from: 'orders',
-    where: {
-      ID: `${req.params.id}`
-    },
+    from: 'users',
     join: {
       join: 'inner',
-      table: 'order-details',
-      'orders.orderId': 'order-details.orderId'
+      table: 'orders',
+      'users.userId': 'orders.userId',
+      join1: 'inner',
+      table1: '`order-details`',
+      'orders.orderId': '`order-details`.order',
+      join2: 'inner',
+      table2: 'snowboards',
+      '`order-details`.snowboardId': 'snowboards.ID',
+    },
+    where: {
+      orderId: `${req.params.id}`
     }
   })
 
@@ -96,16 +141,10 @@ router.get('/orders/:id', async (req, res, next) => {
 });
 
 router.delete('/orders/:id', async (req, res, next) => {
-  console.log(req.body)
   const orderDetails = await db.del({
-    table: 'orders',
+    table: '`order-details`',
     where: {
-      ID: `${req.params.id}`
-    },
-    join: {
-      join: 'inner',
-      table: 'order-details',
-      'orders.orderId': 'order-details.orderId'
+      orderDetailsId: `${req.params.id}`
     }
   })
   res.json(orderDetails);
@@ -119,25 +158,22 @@ router.post('/orders', async (req, res, next) => {
     join: {
       join: 'inner',
       table: 'order-details',
-      'orders.orderId': 'order-details.orderId'
+      'orders.orderId': '`order-details`.order'
     }
   })
 
   res.json(orderDetails);
 });
 
-router.put('/orders/:id', async (req, res, next) => {
-  delete req.body.id;
+router.put('/orders', async (req, res, next) => {
+  console.log("Req Body: ", req.body);
   const orderDetails = await db.update({
     table: "orders",
-    set: req.body,
-    where: {
-      ID: `${req.params.id}`
+    set: {
+      'orders.status': 'deleted'
     },
-    join: {
-      join: 'inner',
-      table: 'order-details',
-      'orders.orderId': 'order-details.orderId'
+    where: {
+      orderId: req.body.orderId
     }
   })
   res.json(orderDetails);
@@ -160,7 +196,7 @@ router.get('/users/:id', async (req, res, next) => {
     select: '*',
     from: 'users',
     where: {
-      ID: `${req.params.id}`
+      userId: `${req.params.id}`
     },
   })
 
@@ -172,7 +208,7 @@ router.delete('/users/:id', async (req, res, next) => {
   const userDetails = await db.del({
     table: 'users',
     where: {
-      ID: `${req.params.id}`
+      userId: `${req.params.id}`
     }
   })
   res.json(userDetails);
@@ -194,7 +230,7 @@ router.put('/users/:id', async (req, res, next) => {
     table: "users",
     set: req.body,
     where: {
-      ID: `${req.params.id}`
+      userId: `${req.params.id}`
     }
   })
   res.json(userDetails);

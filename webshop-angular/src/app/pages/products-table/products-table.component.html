@@ -1,11 +1,16 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <button class="btn btn-primary" routerLink="new">New</button>
+  <div class="row mt-5 mb-5">
+    <div class="col-1">
+      <h1 class="">SNOWBOARDS</h1>
     </div>
-    <div class="col-12">
-      <table class="table">
-        <thead class="thead-light">
+    <div class="col-2 offset-9">
+      <button class="btn btn-primary btn-block" routerLink="new">Add new product</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 tableBack">
+      <table class="table text-active">
+        <thead class="">
           <tr>
             <th *ngFor="let row of allData[0] | keyvalue">{{row.key}}</th>
             <th></th>
@@ -20,8 +25,6 @@
           </tr>
         </tbody>
       </table>
-
-
     </div>
   </div>
 </div>

@@ -30,11 +30,9 @@ router.get('/:postfix', async (req, res, next) => {
 
 /* GET all products in JSON format */
 router.get('/', async (req, res, next) => {
-
-
   const productDetails = await db.get({
     select: '*',
-    from: "snowboards"
+    from: "snowboards",
   })
 
   res.render('products', {
@@ -44,6 +42,51 @@ router.get('/', async (req, res, next) => {
     counter: req.body.counter
   });
 });
+
+
+// /* GET products per page */
+// router.get('/:start=0:size=4', async (req, res, next) => {
+
+//   const prodsPerPage = await db.get({
+//     select: '*',
+//     from: "snowboards",
+//     limit: { 0: 4 }
+//   })
+
+//   res.render('products', {
+//     title: 'Snowboards',
+//     products: prodsPerPage,
+//     user: req.user,
+//     counter: req.body.counter
+//   });
+// });
+
+
+// //Pagination:
+// router.get('/:page', async function (req, res, next) {
+//   const productDetails = await db.get({
+//     select: '*',
+//     from: "snowboards",
+//   })
+
+//   let perPage = 4
+//   let page = req.params.page || 1
+
+//   productDetails
+//     .find({})
+//     .skip((perPage * page) - perPage)
+//     .limit(perPage)
+//     .exec(function (err, products) {
+//       Product.count().exec(function (err, count) {
+//         if (err) return next(err)
+//         res.render('products', {
+//           products: products,
+//           current: page,
+//           pages: Math.ceil(count / perPage)
+//         })
+//       })
+//     })
+// })
 
 
 //No product found:

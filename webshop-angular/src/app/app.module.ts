@@ -31,7 +31,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     OrdersEditComponent,
     UsersEditComponent,
     UsersNewComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,7 @@ const pool = mariadb.createPool({
     user: 'root',
     password: 'root',
     database: 'webshop',
-    connectionLimit: 5,
+    connectionLimit: 6,
 });
 
 module.exports = class UserDB {
@@ -89,10 +89,11 @@ module.exports = class UserDB {
         console.log('laspage',lastPage);
         let counter = 0;
         let result = {};
-        result.prev = page == 0 ? 0 : parseInt(page) - 1;
-        result.next = page == lastPage ? lastPage : parseInt(page) + 1;
+        result.prev = parseInt(page) - 1;
+        result.next = parseInt(page) + 1;
         result.pages=[];
-        for (let i = 0; i < lastPage - 2; i++) {
+        result.last=lastPage;
+        for (let i = 0; i < lastPage; i++) {
             let page = {};
             page.page=i;
             result.pages.push(page);

@@ -80,13 +80,28 @@ block content
       .col-lg-2.offset-5
         nav(aria-label='Page navigation example')
           ul.pagination
-            li.page-item
-              a.page-link(href=`/products?page=${pagination.prev}` aria-label='Previous')
-                span(aria-hidden='true') &laquo;
-            each pag in pagination.pages
+            if pagination.prev==-1
+              li.page-item.disabled
+                a.page-link(href=`/products?page=${pagination.prev}` aria-label='Previous')
+                  span(aria-hidden='true') &laquo;
+            else
               li.page-item
+                a.page-link(href=`/products?page=${pagination.prev}` aria-label='Previous')
+                  span(aria-hidden='true') &laquo;                  
+            each pag in pagination.pages
+              if page==pag.page
+                li.page-item.active
+                  a.page-link(href=`/products?page=${pag.page}` aria-label='Previous')
+                    span(aria-hidden='true')= (pag.page+1)
+              else
+               li.page-item
                 a.page-link(href=`/products?page=${pag.page}` aria-label='Previous')
                   span(aria-hidden='true')= (pag.page+1)
-            li.page-item
-              a.page-link(href=`/products?page=${pagination.next}` aria-label='Next')
-                span(aria-hidden='true') &raquo;
+            if pagination.next == pagination.last
+              li.page-item.disabled
+                a.page-link(href=`/products?page=${pagination.next}` aria-label='Next')
+                  span(aria-hidden='true') &raquo;
+            else 
+              li.page-item
+                a.page-link(href=`/products?page=${pagination.next}` aria-label='Next')
+                  span(aria-hidden='true') &raquo;

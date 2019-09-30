@@ -43,7 +43,7 @@ router.get('/', async (req, res, next) => {
     select: '*',
     from: "snowboards",
     limit: {
-      start:page,
+      start:page*12,
       limit: 12
     }
   });
@@ -54,7 +54,8 @@ router.get('/', async (req, res, next) => {
     products: productDetails,
     user: req.user,
     counter: req.body.counter,
-    pagination: pagination
+    pagination: pagination,
+    page:page
   });
 });
 //get filtered products

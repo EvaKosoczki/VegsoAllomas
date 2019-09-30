@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const favicon = require('serve-favicon');
 const UserDB = require('./modules/user');
-const DB = require('./modules/db');
+const db = require('./modules/db');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -16,7 +16,6 @@ const basketRouter = require('./routes/basket');
 const registerRouter = require('./routes/register');
 
 const userDb = new UserDB();
-const db = new DB();
 const app = express();
 
 // view engine setup

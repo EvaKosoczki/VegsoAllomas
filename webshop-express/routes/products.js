@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const DB = require('../modules/db');
+const db = require('../modules/db');
 
-const db = new DB();
 
 router.get('/:postfix', async (req, res, next) => {
   const productDetails = await db.get({

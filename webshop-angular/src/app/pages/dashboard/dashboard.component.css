@@ -2,7 +2,7 @@ h1,
 h4 {
   color: #fff;
   text-align: center;
-  margin: 10px;
+  margin: 20px;
   padding: 5px;
   font-family: "Varela Round", sans-serif;
 }
@@ -11,12 +11,8 @@ h4 {
   margin: 40px 0px 40px 0px;
   height: 80%;
   width: 80%;
-}
 
-.card-body {
-  height: 100%;
 }
-
 
 .card-img-top {
   width: 60%;

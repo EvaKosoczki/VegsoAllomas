@@ -7,7 +7,7 @@ const pool = mariadb.createPool({
   user: 'root',
   password: 'root',
   database: 'webshop',
-  connectionLimit: 5,
+  connectionLimit: 6,
 });
 
 module.exports = class DB {

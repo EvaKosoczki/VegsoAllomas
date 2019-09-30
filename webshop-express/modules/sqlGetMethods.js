@@ -32,9 +32,9 @@ module.exports = {
   where(where) {
     let sql = "where ";
     for (let key in where) {
-      if (typeof where[key] === "number") {
-        sql += `${key}=? `;
-        this.queryParams.push(where[key]);
+      console.log('proba login:',where[key]);
+      if (key === 'password')  {
+        sql += `${key}=${where[key]}`;
       } else if (key.indexOf("relation") > -1) {
         sql += `${where[key]} `
       } else {

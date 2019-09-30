@@ -10,7 +10,5 @@ module.exports = async function (update) {
         } else {}
         sql += `where ${key}= '${update.where[key]}'`;
     }
-}
-
-return sql;
+    return sql;
 }

@@ -77,11 +77,27 @@ module.exports = class UserDB {
         const result = await this.conn.query(sql[0], sql[1]);
         return result;
     }
-    async pagination(page){
-        let sql1= await sqlParser({
-            select:{'count(ID)':'amount'},
-            
+    async pagination(page = 0) {
+        let sql1 = await sqlParser({
+            select: {
+                'count(ID)': 'amount'
+            },
+            from: 'snowboards'
         })
+        const amount = await this.conn.query(sql1[0], sql1[1]);
+        const lastPage = Math.ceil(amount[0].amount / 12);
+        console.log('laspage',lastPage);
+        let counter = 0;
+        let result = {};
+        result.prev = page == 0 ? 0 : parseInt(page) - 1;
+        result.next = page == lastPage ? lastPage : parseInt(page) + 1;
+        result.pages=[];
+        for (let i = 0; i < lastPage - 2; i++) {
+            let page = {};
+            page.page=i;
+            result.pages.push(page);
+        }
+        console.log('pages:',result.pages);
+        return result;
     }
-
 }

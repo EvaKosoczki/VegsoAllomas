@@ -32,8 +32,8 @@ module.exports = {
   where(where) {
     let sql = "where ";
     for (let key in where) {
-      console.log('proba login:',where[key]);
-      if (key === 'password')  {
+      console.log('proba login:', where[key]);
+      if (key === 'password') {
         sql += `${key}=${where[key]}`;
       } else if (key.indexOf("relation") > -1) {
         sql += `${where[key]} `
@@ -59,8 +59,9 @@ module.exports = {
   limit(limit) {
     let sql = ' limit ';
     for (let key in limit) {
-      sql += `${key}, ${limit[key]}`
+      sql += `, ${limit[key]} `
     }
+    sql = sql.replace(',', '');
     return sql;
   },
   deleteQuerys() {

@@ -158,8 +158,8 @@ router.post('/orders', async (req, res, next) => {
   res.redirect('/basket')
 })
 
-
-/*router.get('/:address', async (req, res, next) => {
+//Delete on snowboard from basket
+router.get('/:address', async (req, res, next) => {
   const basketNumber = await db.get({
     select: {
       'basket': 'basket'
@@ -183,17 +183,43 @@ router.post('/orders', async (req, res, next) => {
       postfix: `${req.params.address}`
     },
   });
-  console.log(SnowboardId)
-  const deleteOneProduct = await db.del({
-    table: '`basket-details`',
+
+  const Quantity = await db.get({
+    select: {
+      'quantity': 'quantity'
+    },
+    from: '`basket-details`',
     where: {
       basket: basketNumber[0].basket,
       relation: 'and',
       snowboardId: SnowboardId[0].ID,
     }
-  })
-  req.json(deleteOneProduct)
-})*/
+  });
+  let substractedQuantity = Quantity[0].quantity - 1
+  const deleteOneProduct = await db.update({
+    table: '`basket-details`',
+    set: {
+      'quantity': substractedQuantity
+    },
+    where: {
+      basket: basketNumber[0].basket,
+      relation: 'and',
+      snowboardId: SnowboardId[0].ID,
+    }
+  });
+  if (substractedQuantity == 0) {
+    const deleteRow = await db.del({
+      table: '`basket-details`',
+      where: {
+        basket: basketNumber[0].basket,
+        relation: 'and',
+        snowboardId: SnowboardId[0].ID,
+      }
+    });
+  }
+
+  res.redirect('/basket')
+})
 
 
 

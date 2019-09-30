@@ -3,7 +3,9 @@ module.exports = async function (del) {
     for (key in del.where) {
         if (typeof del.where[key] === 'number') {
             sql += `${key}=${del.where[key]}`;
-        } else {
+        } else if (key.indexOf("relation") > -1) {
+            sql += `${where[key]} `
+          } else {
             sql += `${key}='${del.where[key]}'`;
         }
     }

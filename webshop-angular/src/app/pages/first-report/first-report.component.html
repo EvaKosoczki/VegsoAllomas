@@ -21,10 +21,10 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of allOrder">
-            <td>{{item.orderDate | date: 'yyyy-MMMM' }}</td>
+            <td>{{item.period | date: 'yyyy-MMMM' }}</td>
             <td>{{item.status}}</td>
-            <td>1</td>
-            <td>{{item.email}}</td>
+            <td style="text-align:center">{{item.numberOfOrders}}</td>
+            <td style="text-align:right">{{item.orderValue | number: decimal}}</td>
           </tr>
           <tr>
             <td>Total:</td>

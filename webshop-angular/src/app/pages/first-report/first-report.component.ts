@@ -8,18 +8,11 @@ import { OrderService } from 'src/app/service/orders.service';
 })
 export class FirstReportComponent implements OnInit {
   allOrder: any[] = [];
-  changeCounter: number = 0;
-  productsQuantityArr: [] = [];
-  totalPriceArr: [] = [];
-  orderDetails: any[] = [];
 
   constructor(private orderService: OrderService) {
     this.orderService.getAll().subscribe(orders => {
-      this.allOrder = orders[0];
-      this.orderDetails = orders[1];
-      this.totalPriceArr = orders[2];
-      this.productsQuantityArr = orders[3];
-      console.log('Orders: ', orders);
+      this.allOrder = orders[4];
+      console.log('Orders: ', orders[4]);
     });
   }
 

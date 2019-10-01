@@ -17,6 +17,7 @@ export class OrdersTableComponent implements OnInit {
   productsQuantityArr: [] = [];
   totalPriceArr: [] = [];
   orderDetails: any[] = [];
+  statusArray: string[] = ['received', 'processed', 'shipped', 'delivered'];
 
   constructor(
     private orderService: OrderService
@@ -27,10 +28,11 @@ export class OrdersTableComponent implements OnInit {
       this.totalPriceArr = orders[2];
       this.productsQuantityArr = orders[3];
     }
-      );
+    );
   }
 
   ngOnInit() {
+
   }
 
   onDelete(picked: any) {
@@ -49,13 +51,28 @@ export class OrdersTableComponent implements OnInit {
     document.getElementById(`expandRow${id}`).classList.toggle("show");
   }
 
-  onStatusChange(order: any){
+  onStatusChange(order: any) {
+    order.status = 'deleted';
     this.orderService.update(order).subscribe(
       response => {
         this.changeCounter++;
       },
       err => console.error(err),
     )
+  }
+
+  onChange(value, order) {
+    order.status = value;
+    this.orderService.update(order).subscribe(
+      response => {
+        this.changeCounter++;
+      },
+      err => console.error(err),
+    )
+  }
+
+  setSorterKey(status){
+
   }
 
 }

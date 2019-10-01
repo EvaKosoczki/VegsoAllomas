@@ -35,7 +35,11 @@ userId: number = 0;
 
   onSubmit(ev: Event) {
     ev.preventDefault();
-    this.userService.update(this.user)
+    if (this.user.zip == null) {
+      delete this.user.zip
+    }
+    console.log(this.user);
+    this.userService.updateID(this.userId, this.user)
       .subscribe(
         response => {
           this.router.navigateByUrl("/users");

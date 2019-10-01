@@ -21,15 +21,26 @@ export class UsersTableComponent implements OnInit {
 
   ngOnInit() {
   }
-  onDelete(picked: User) {
-    this.userService.delete(picked.userId).subscribe(
-      response => {
-        let index = this.allData.indexOf(picked);
-        this.allData.splice(index, 1);
-        this.changeCounter++;
-      },
-      err => console.error(err)
-    )
+  onDelete(user: User) {
+    if (user.zip == null) {
+      delete user.zip
+    }
+    user.firstName = 'deleted';
+    user.lastName = 'user';
+    this.userService.updateID(user.userId, user)
+      .subscribe(
+        response => {
+          this.changeCounter++;
+        },
+        err => {
+          console.error(err)
+        })
+  }
+
+  toggleView(id){
+    document.getElementsByClassName("passwordHidden")[id-1].classList.toggle("show");
+    document.getElementsByClassName("passwordHidden")[id-1].classList.toggle("noShow");
+    document.getElementsByClassName("stars")[id-1].classList.toggle("noShow");
   }
 
 }

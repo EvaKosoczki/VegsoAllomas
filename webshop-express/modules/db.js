@@ -7,13 +7,13 @@ const pool = mariadb.createPool({
   user: 'root',
   password: 'root',
   database: 'webshop',
-  connectionLimit: 5,
 });
 
 module.exports = class DB {
   constructor() {
     pool.getConnection().then((conn) => {
       this.conn = conn;
+      // this.conn.query("SET SESSION time_zone = '+2:00'");
     });
   }
 

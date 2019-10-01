@@ -1,7 +1,7 @@
 <div id="formsBack">
   <div id="logreg-forms">
     <form class="form-signin" (submit)="onSubmit($event)">
-      <h1 class="h3 mb-3 font-weight-normal text-light" style="text-align: center"> Edit user</h1>
+      <h1 class="h3 mt-5 font-weight-normal text-light"> Edit user</h1>
       <div class="input-group">
         <input name="firstName" [(ngModel)]="user.firstName" type="text" id="inputFirstName" class="form-control" placeholder="Firstname" required=""
           autofocus="">
@@ -15,19 +15,21 @@
           autofocus="">
       </div>
       <div class="input-group">
+        <input name="password" [(ngModel)]="user.password" id="inputPassword" class="form-control" placeholder="Password">
+      </div>
+      <div class="input-group">
+          <input name="passwordAgain" [(ngModel)]="user.passwordagain" id="inputPasswordAgain" class="form-control" placeholder="Password again">
+        </div>
+      <div class="input-group">
         <input name="address" [(ngModel)]="user.address" type="text" id="inputAddress" class="form-control" placeholder="Address" required=""
           autofocus="">
         <input name="zip" [(ngModel)]="user.zip" type="number" id="inputZip" class="form-control" placeHolder="1010" required="" autofocus="">
         <input name="city" [(ngModel)]="user.city" type="text" id="inputCity" class="form-control" placeHolder="City" required="" autofocus="">
       </div>
 
-      <div class="input-group">
-        <button class="btn btn-md btn-rounded btn-block form-control submit mb-3" type="submit">Save changes<i
-            class="fas fa-sign-in-alt"></i> </button>
-      </div>
-      <div class="input-group">
-        <button class="btn btn-md btn-rounded btn-block form-control submit" type="button" (click)="onCancel()">Cancel<i
-            class="fas fa-sign-in-alt"></i> </button>
+      <div>
+        <button class="btn btn-md col-5 submit btn-info" type="submit">Save changes</button>
+        <button class="btn btn-md col-5 offset-2 cancel btn-light" type="button" (click)="onCancel()">Cancel</button>
       </div>
 
 

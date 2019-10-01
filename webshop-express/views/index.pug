@@ -1,5 +1,54 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div.div-wrapper.success
+    div.index-opening-div.div-showup Your snowboard journey
+    div.index-opening-div.div-reveal
+      span starts here!
+
+ 
+  #myCarousel.carousel.slide.carousel-fade(data-ride="carousel")
+    .carousel-inner
+      .carousel-item.active
+        .mask.flex-center
+          .container
+            .row.align-items-center
+              .col-md-7.col-12.order-md-1.order-2
+                h4 #{products[0].name}
+                p Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum 
+                  br
+                  | necessitatibus praesentium voluptatum deleniti atque corrupti.
+                a(href=`/products/${products[0].postfix}`) BUY NOW
+              .col-md-5.col-12.order-md-2.order-1
+                img.mx-auto(src=`./image/snowboards/${products[0].picture}` alt=`${products[0].name}`)
+      .carousel-item
+        .mask.flex-center
+          .container
+            .row.align-items-center
+              .col-md-7.col-12.order-md-1.order-2
+                h4 
+                p Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum 
+                  br
+                  | necessitatibus praesentium voluptatum deleniti atque corrupti.
+                a(href="#") BUY NOW
+              .col-md-5.col-12.order-md-2.order-1
+                img.mx-auto(src="https://i.imgur.com/NKvkfTT.png" alt="slide")
+      .carousel-item
+        .mask.flex-center
+          .container
+            .row.align-items-center
+              .col-md-7.col-12.order-md-1.order-2
+                h4 Present your 
+                h4 awesome product
+                p Lorem ipsum dolor sit amet. Reprehenderit, qui blanditiis quidem rerum 
+                  br
+                  | necessitatibus praesentium voluptatum deleniti atque corrupti.
+                a(href="#") BUY NOW
+              .col-md-5.col-12.order-md-2.order-1
+                img.mx-auto(src="https://i.imgur.com/NKvkfTT.png" alt="slide")
+    a.carousel-control-prev(href="#myCarousel" role="button" data-slide="prev")
+      span.carousel-control-prev-icon(aria-hidden="true")
+      span.sr-only Previous
+    a.carousel-control-next(href="#myCarousel" role="button" data-slide="next")
+      span.carousel-control-next-icon(aria-hidden="true")
+      span.sr-only Next

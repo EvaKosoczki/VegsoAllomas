@@ -3,8 +3,7 @@ const sqlParser = require('./sqlGetParser');
 const sqlDel = require('../modules/sqlDeleteParser');
 const sqlInsert = require('../modules/sqlInsertParser');
 const sqlUpdate = require('../modules/sqlUpdateParser');
-const DB = require('../modules/db');
-const db = new DB();
+const db = require('../modules/db');
 
 const pool = mariadb.createPool({
     user: 'root',
@@ -77,6 +76,12 @@ module.exports = class UserDB {
         console.log('proba', sql);
         const result = await this.conn.query(sql[0], sql[1]);
         return result;
+    }
+    async pagination(page){
+        let sql1= await sqlParser({
+            select:{'count(ID)':'amount'},
+            
+        })
     }
 
 }

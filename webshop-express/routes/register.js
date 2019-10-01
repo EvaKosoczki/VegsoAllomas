@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const DB = require('../modules/db');
-const db = new DB();
+const db = require('../modules/db');
 let isHidden = true;
 
 const {

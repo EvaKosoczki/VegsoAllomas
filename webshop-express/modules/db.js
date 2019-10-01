@@ -10,7 +10,7 @@ const pool = mariadb.createPool({
   connectionLimit: 6,
 });
 
-module.exports = class DB {
+ class DB {
   constructor() {
     pool.getConnection().then((conn) => {
       this.conn = conn;
@@ -40,6 +40,5 @@ module.exports = class DB {
     let result = await this.conn.query(sql);
     return result;
   }
-  
-
 }
+module.exports= new DB();

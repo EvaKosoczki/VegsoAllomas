@@ -5,8 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(value: any, ...args: any[]): any {
-    return null;
+  transform(baseArray: any, phrase: string = ''): any {
+    return baseArray.filter( item => {
+      let jsonString = JSON.stringify(item)
+        .replace(/"[^"]*"\:/g, '')
+        .replace(/[",\{\}]/g, '');
+      return jsonString.toLowerCase().indexOf(phrase.toLowerCase()) > -1;
+    });
   }
 
 }

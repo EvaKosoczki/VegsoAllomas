@@ -12,6 +12,7 @@ export class FirstReportComponent implements OnInit {
   sumOrders: number = 0;
   orderKey: string = '';
   orderDirection: number = 1;
+  filterPhrase: string = '';
 
   constructor(private orderService: OrderService) {
     this.orderService.getAll().subscribe(orders => {

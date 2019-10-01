@@ -30,7 +30,6 @@ export class BaseService {
 
   delete(id): Observable<any> {
     let url: string = this.getUrl()
-    console.log(`${url}/${id}`)
     return this.http.delete(`${url}/${id}`)
   }
 
@@ -43,6 +42,10 @@ export class BaseService {
     let url: string = this.getUrl()
     return this.http.put<any>(url, data)
   }
-  
- 
+
+  updateID(id, data): Observable<any> {
+    let url: string = this.getUrl()
+    return this.http.put<any>(`${url}/${id}`, data)
+  }
+
 }

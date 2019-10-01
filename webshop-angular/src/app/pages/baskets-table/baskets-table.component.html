@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row mt-5">
+    <div class="col-12 tableBack">
+      <table class="table text-active">
+        <thead class="">
+          <tr class="row">
+            <th class="col-3">Customer</th>
+            <th class="col-3">Quantity</th>
+            <th class="col-3">Total price</th>
+            <th class="col-3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row" *ngFor="let item of allData; let i = index">
+            <td class="col-3">{{item.firstName}} {{item.lastName}}</td>
+            <td class="col-3">{{productsQuantityArr[i].productQuantity}}</td>
+            <td class="col-3">{{totalPriceArr[i].totalPrice}}</td>
+            <td class="col-3 btn-group">
+              <!-- <button type="button" class="btn btn-success" routerLink="/orders/edit/{{item.orderId}}">Edit</button> -->
+              <!-- <button class="btn btn-danger" type="button" (click)="onDelete(item)">Delete</button> -->
+              <button class="btn btn-info" (click)="toggleView(item.basketId)">Details</button>
+            </td>
+            <div class="expandRow" id="expandRow{{item.basketId}}">
+          <tr>
+            <th class="expandedData">Product</th>
+            <th class="expandedData">Unit price</th>
+            <th class="expandedData">Quantity</th>
+            <th class="expandedData"></th>
+          </tr>
+          <tr *ngFor="let row of basketDetails">
+            <td class="expandedData" *ngIf="row.basket==item.basketId">{{row.name}}</td>
+            <td class="expandedData" *ngIf="row.basket==item.basketId">{{row.price}}</td>
+            <td class="expandedData" *ngIf="row.basket==item.basketId">{{row.quantity}}</td>
+            <td class="expandedData" *ngIf="row.basket==item.basketId"><button class="btn btn-danger" type="button"
+                (click)="onDelete(row)">Delete</button></td>
+          </tr>
+    </div>
+    </tr>
+    </tbody>
+    </table>
+  </div>
+</div>
+</div>

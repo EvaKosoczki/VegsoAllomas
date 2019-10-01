@@ -1,0 +1,35 @@
+<div class="container-fluid text-light">
+  <div class="row">
+    <div class="col-12 title-design">
+      <strong>
+        <h5 class="form-signin">MONTHLY REPORT OF</h5>
+        <h1 class="form-signin">DELIVERED ORDERS</h1>
+      </strong>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 tableBack mt-5">
+      <table class="table text-active">
+        <thead class="">
+          <tr>
+            <th>Period</th>
+            <th>Snowboard</th>
+            <th>Quantity</th>
+            <th>Unit price</th>
+            <th>Income</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of allData">
+            <td>{{item.firstName}}</td>
+            <td>{{item.lastName}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.email}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

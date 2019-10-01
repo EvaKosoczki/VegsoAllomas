@@ -5,6 +5,14 @@
   </div>
 </div> -->
 <div class="container-fluid">
+  <div class="row">
+    <div class="col-12 title-design">
+      <strong>
+        <h1 class="form-signin">ORDERS</h1>
+      </strong>
+    </div>
+  </div>
+
   <div class="row mt-5">
     <div class="col-12 tableBack">
       <table class="table text-active">
@@ -14,7 +22,7 @@
             <th class="col-2">Order Date</th>
             <th class="col-2">Quantity</th>
             <th class="col-2">Total price</th>
-            <th class="col-2">Status</th>
+            <th class="col-2" (click)="setSorterKey('status')">Status</th>
             <th class="col-2"></th>
           </tr>
         </thead>
@@ -24,7 +32,12 @@
             <td class="col-2">{{item.orderDate}}</td>
             <td class="col-2">{{productsQuantityArr[i].productQuantity}}</td>
             <td class="col-2">{{totalPriceArr[i].totalPrice}}</td>
-            <td class="col-2">{{item.status}}</td>
+            <td class="col-2">
+              <select *ngIf="item.status!='deleted'" name="status" class="custom-select" (change)="onChange($event.target.value, item)">
+                <option *ngFor="let status of statusArray" value="{{status}}" [selected]="status == item.status">{{status}}</option>
+              </select>
+              <p *ngIf="item.status=='deleted'" class="text-inactive">deleted</p>
+            </td>
             <td class="col-2 btn-group">
               <!-- <button type="button" class="btn btn-success" routerLink="/orders/edit/{{item.orderId}}">Edit</button> -->
               <!-- <button class="btn btn-danger" type="button" (click)="onDelete(item)">Delete</button> -->
@@ -32,22 +45,23 @@
               <button class="btn btn-warning" (click)="onStatusChange(item)">Inactivate</button>
             </td>
             <div class="expandRow" id="expandRow{{item.orderId}}">
-              <tr>
-                <th class="expandedData">Product</th>
-                <th class="expandedData">Unit price</th>
-                <th class="expandedData">Quantity</th>
-                <th class="expandedData"></th>
-              </tr>
-              <tr *ngFor="let row of orderDetails">
-                <td class="expandedData" *ngIf="row.order==item.orderId">{{row.name}}</td>
-                <td class="expandedData" *ngIf="row.order==item.orderId">{{row.unitPrice}}</td>
-                <td class="expandedData" *ngIf="row.order==item.orderId">{{row.quantity}}</td>
-                <td class="expandedData" *ngIf="row.order==item.orderId"><button class="btn btn-danger" type="button" (click)="onDelete(row)">Delete</button></td>
-              </tr>
-            </div>
+          <tr>
+            <th class="expandedData">Product</th>
+            <th class="expandedData">Unit price</th>
+            <th class="expandedData">Quantity</th>
+            <th class="expandedData"></th>
           </tr>
-        </tbody>
-      </table>
+          <tr *ngFor="let row of orderDetails">
+            <td class="expandedData" *ngIf="row.order==item.orderId">{{row.name}}</td>
+            <td class="expandedData" *ngIf="row.order==item.orderId">{{row.unitPrice}}</td>
+            <td class="expandedData" *ngIf="row.order==item.orderId">{{row.quantity}}</td>
+            <td class="expandedData" *ngIf="row.order==item.orderId"><button class="btn btn-danger" type="button"
+                (click)="onDelete(row)">Delete</button></td>
+          </tr>
     </div>
+    </tr>
+    </tbody>
+    </table>
   </div>
+</div>
 </div>

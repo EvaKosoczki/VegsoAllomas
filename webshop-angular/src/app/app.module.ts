@@ -18,6 +18,10 @@ import { OrdersEditComponent } from './pages/orders-edit/orders-edit.component';
 import { UsersEditComponent } from './pages/users-edit/users-edit.component';
 import { UsersNewComponent } from './pages/users-new/users-new.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { BasketsTableComponent } from './pages/baskets-table/baskets-table.component';
+import { DeletedPipe } from './pipe/deleted.pipe';
+import { FirstReportComponent } from './pages/first-report/first-report.component';
+import { SecondReportComponent } from './pages/second-report/second-report.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,10 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     UsersEditComponent,
     UsersNewComponent,
     DashboardComponent,
+    BasketsTableComponent,
+    DeletedPipe,
+    FirstReportComponent,
+    SecondReportComponent,
   ],
   imports: [
     BrowserModule,

@@ -18,7 +18,8 @@ export class ProductsEditComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
-    private ar: ActivatedRoute, private router: Router
+    private ar: ActivatedRoute, private router: Router,
+    private brandsService: BrandsService
     ) {
     this.ar.params.forEach(
       params => {
@@ -44,9 +45,7 @@ export class ProductsEditComponent implements OnInit {
 
   onSubmit(ev: Event) {
     ev.preventDefault();
-    console.log(this.selectedBrand);
-    this.oneProduct.brand=this.selectedBrand;
-    this.productsService.update(this.oneProduct)
+    this.productsService.updateID(this.oneProduct.ID, this.oneProduct)
       .subscribe(
         response => {
           this.router.navigateByUrl("/products");

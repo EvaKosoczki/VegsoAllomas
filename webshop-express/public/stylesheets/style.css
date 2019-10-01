@@ -60,8 +60,8 @@ nav a {
 
 .backToButtonPos {
   position: relative;
-  left: 100px;
-  top: 450px;
+  left: 10vw;
+  top: 60vh;
 }
 
 
@@ -374,6 +374,14 @@ footer {
 
 .explode {
   animation: explosionEffect 1s;
+}
+
+.alert_hidden {
+  display: none
+}
+
+.alert_show {
+  display: block
 }
 
 @keyframes explosionEffect {

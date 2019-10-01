@@ -21,6 +21,7 @@ router.get('/', (req, res, next) => {
 router.post('/', userValidationRules(), validate, async (req, res, next) => {
   req.body.password = `SHA1('${req.body.password}')`;
   req.body.passwordagain = `SHA1('${req.body.passwordagain}')`;
+  req.body.role = 'customer';
   const newUser = await db.create({
     table: 'users',
     values: req.body,

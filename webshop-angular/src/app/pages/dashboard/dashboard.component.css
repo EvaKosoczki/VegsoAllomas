@@ -41,5 +41,6 @@ a {
 }
 
 #report-button {
-  margin: auto;
+  margin-top: 60px;
+  border-color: #fff;
 }

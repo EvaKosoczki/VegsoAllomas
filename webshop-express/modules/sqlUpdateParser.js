@@ -7,10 +7,9 @@ module.exports = async function (update) {
     for (let key in update.where) {
         if (key.indexOf("relation") > -1) {
             sql += `${update.where[key]} `
-        } else {}
+        } else { }
         sql += `where ${key}= '${update.where[key]}'`;
     }
-}
 
-return sql;
+    return sql;
 }

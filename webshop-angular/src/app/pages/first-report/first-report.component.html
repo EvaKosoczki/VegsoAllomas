@@ -27,10 +27,10 @@
             <td style="text-align:right">{{item.orderValue | number: decimal}}</td>
           </tr>
           <tr>
-            <td>Total:</td>
+            <td class="total">Total:</td>
             <td></td>
             <td></td>
-            <td></td>
+            <td class="total" style="text-align:right">{{ allOrder | sum:'orderValue' | number: decimal}}</td>
           </tr>
         </tbody>
       </table>

@@ -21,6 +21,9 @@ import { BasketsTableComponent } from './pages/baskets-table/baskets-table.compo
 import { DeletedPipe } from './pipe/deleted.pipe';
 import { FirstReportComponent } from './pages/first-report/first-report.component';
 import { SecondReportComponent } from './pages/second-report/second-report.component';
+import { SumPipe } from './pipe/sum.pipe';
+import { FilterPipe } from './pipe/filter.pipe';
+import { SortPipe } from './pipe/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,9 @@ import { SecondReportComponent } from './pages/second-report/second-report.compo
     DeletedPipe,
     FirstReportComponent,
     SecondReportComponent,
+    SumPipe,
+    FilterPipe,
+    SortPipe,
   ],
   imports: [
     BrowserModule,

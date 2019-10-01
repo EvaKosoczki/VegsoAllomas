@@ -1,5 +1,120 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+
+  div.div-wrapper.success.mb-3
+    div.index-opening-div.div-showup Your snowboard journey
+    div.index-opening-div.div-reveal
+      span starts here!
+
+  
+  #myCarousel.carousel.slide.carousel-fade(data-ride="carousel")
+    .carousel-inner
+      .carousel-item.active
+        .mask.flex-center
+          .container
+            .row.align-items-center
+              .col-md-6.ml-5.col-12.order-md-1.order-2
+                h4 #{products[0].name}
+                p #{products[0].shape} shape, #{products[0].purpose} purpose!
+                a(href=`/products/${products[0].postfix}`) Get it now
+              .col-md-5.col-12.order-md-2.order-1
+                a.sales-item(href=`/products/${products[0].postfix}`)
+                  img.mx-auto.img-fluid(src=`./image/snowboards/${products[0].picture}` alt=`${products[0].name}`)
+      .carousel-item
+        .mask.flex-center
+          .container
+            .row.align-items-center
+              .col-md-6.ml-5.col-12.order-md-1.order-2
+                h4 #{products[1].name}
+                p #{products[1].shape} shape, #{products[1].purpose} purpose!
+                a(href=`/products/${products[1].postfix}`) Get it now
+              .col-md-5.col-12.order-md-2.order-1
+                a.sales-item(href=`/products/${products[1].postfix}`)
+                  img.mx-auto.img-fluid(src=`./image/snowboards/${products[1].picture}` alt=`${products[1].name}`)
+      .carousel-item
+        .mask.flex-center
+          .container
+            .row.align-items-center
+              .col-md-6.ml-5.col-12.order-md-1.order-2
+                h4 #{products[2].name}
+                p #{products[2].shape} shape, #{products[2].purpose} purpose! 
+                a(href=`/products/${products[2].postfix}`) Get it now
+              .col-md-5.col-12.order-md-2.order-1
+                a.sales-item(href=`/products/${products[2].postfix}`)
+                  img.mx-auto.img-fluid(src=`./image/snowboards/${products[2].picture}` alt=`${products[2].name}`)
+    a.carousel-control-prev(href="#myCarousel" role="button" data-slide="prev")
+      span.carousel-control-prev-icon(aria-hidden="true")
+      span.sr-only Previous
+    a.carousel-control-next(href="#myCarousel" role="button" data-slide="next")
+      span.carousel-control-next-icon(aria-hidden="true")
+      span.sr-only Next
+
+  .parallax-2
+
+  .container-fluid.browsing-container
+    .row
+      .col-12.text-center.mb-4
+        h1 Start snowboarding today!
+        h3 Browse among our top-quality snowboards.
+      .col-md-4
+        img.img-fluid(class="browser-image" src="./image/photos/photo-1498146831523-fbe41acdc5ad.jpg", alt="snowboard in the snow")
+      .col-md-8
+        .row
+          .col-12.text-center.mb-3
+            h3.browsing-headline  Browse by brands:
+        .row.d-flex.flex-wrap.align-items-center
+          div.col-4.col-md-2
+            a(href="")
+              img.img-fluid(src="./image/brands/1_burton.png", alt="")
+          div.col-4.col-md-2
+            a(href="")
+              img.img-fluid(src="./image/brands/2_capita.jpg", alt="")
+          div.col-4.col-md-2
+            a(href="")
+              img.img-fluid(src="./image/brands/GNU.png", alt="")
+          div.col-4.col-md-2
+            a(href="")
+              img.img-fluid(src="./image/brands/3_libtech.jpg", alt="")
+          div.col-4.col-md-2
+            a(href="")
+              img.img-fluid(src="./image/brands/4_nitro.jpg", alt="")
+          div.col-4.col-md-2
+            a(href="")
+              img.img-fluid(src="./image/brands/5_k2.png", alt="")
+        .row.d-flex.flex-wrap.align-items-center
+          div.col-4.col-md-2.offset-md-1
+            a(href="")
+              img.img-fluid(src="./image/brands/7_jones.png", alt="")
+          div.col-4.col-md-2
+            a(href="")
+              img.img-fluid(src="./image/brands/8_ride.png", alt="")
+          div.col-4.col-md-2
+            a(href="")
+              img.img-fluid(src="./image/brands/9_salomon.png", alt="")
+          div.col-4.col-md-2
+            a(href="")
+              img.img-fluid(src="./image/brands/10_rome.jfif", alt="")
+          div.col-4.col-md-2
+            a(href="")
+              img.img-fluid(src="./image/brands/11_nidecker.png", alt="")
+        
+        .row
+          .col-md-6.text-center.mt-5.mb-2
+            h3.browsing-headline  Browse by style:
+            ul.browsing-ul
+              li
+                a(href="/products/purpose/All-mountain") All-mountain
+              li
+                a(href="/products/purpose/Freestyle") Freestyle
+              li
+                a(href="/products/purpose/Freeride") Freeride
+          .col-md-6.text-center.mt-5.mb-2
+            h3.browsing-headline  Browse by shape:
+            ul.browsing-ul
+              li
+                a(href="/products/shape/Twin") Twin
+              li
+                a(href="/products/shape/Directional") Directional
+
+  .parallax-3

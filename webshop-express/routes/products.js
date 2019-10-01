@@ -119,6 +119,8 @@ router.post('/', async (req, res, next) => {
 // })
 
 
+
+
 //No product found:
 router.get('/*', (req, res, next) => {
   res.render('no-product', {
@@ -126,5 +128,7 @@ router.get('/*', (req, res, next) => {
     counter: req.body.counter
   });
 });
+
+
 
 module.exports = router;

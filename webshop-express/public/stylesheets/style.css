@@ -639,7 +639,7 @@ animation-name: slideInRight;
 .browsing-container{
   background-color: #F8F9FA;
   border-radius: 10px;
-  max-width: 1140px;
+  padding-bottom: 10px;
 }
 
 .browsing-headline{
@@ -663,4 +663,14 @@ animation-name: slideInRight;
 
 .browsing-ul li a:hover{
   font-weight: bold;
+}
+
+.parallax{
+  background-image: url("./../image/photos/photo-1518085050105-3c33befa5442.jpg");
+  opacity: 0.7;
+  height: 200px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

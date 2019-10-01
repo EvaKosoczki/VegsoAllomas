@@ -25,7 +25,7 @@ router.get('/', async (req, res, next) => {
   });
 });
 
-router.get('/:purpose', async (req, res, next) => {
+/* router.get('/:purpose', async (req, res, next) => {
   const productDetails = await db.get({
     select: '*',
     from: "snowboards",
@@ -49,6 +49,8 @@ router.get('/:purpose', async (req, res, next) => {
     title: 'Snowboards',
     products: productDetails
   });
-});
+}); */
+
+
 
 module.exports = router;

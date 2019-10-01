@@ -22,6 +22,25 @@ router.get('/:postfix', async (req, res, next) => {
       brandName: 'asc'
     }
   })
+
+  let reviewDets = await db.get({
+    select: '*',
+    from: '`review-details`',
+    join: {
+      join: 'inner',
+      table: 'reviews',
+      '`review-details`.review':'reviews.reviewId',
+    },
+    where: {
+      'reviews.snowboardId': `${productDetails[0].ID}`
+    }
+  })
+  let reviewD = reviewDets[0];
+  if (reviewD == undefined) {
+    reviewD = 0;
+  }
+  console.log(reviewD);
+
   const oneProduct = productDetails[0];
   const img = path.join('/image', 'snowboards', oneProduct.picture);
   const icon = path.join('/image', 'brands', oneProduct.logo);
@@ -31,7 +50,8 @@ router.get('/:postfix', async (req, res, next) => {
     imgRoot: img,
     iconRoot: icon,
     user: req.user,
-    counter: req.body.counter
+    counter: req.body.counter,
+    reviews: reviewD
   });
 });
 
@@ -43,7 +63,7 @@ router.get('/', async (req, res, next) => {
     select: '*',
     from: "snowboards",
     limit: {
-      start:page*12,
+      start: page * 12,
       limit: 12
     }
   });
@@ -55,7 +75,7 @@ router.get('/', async (req, res, next) => {
     user: req.user,
     counter: req.body.counter,
     pagination: pagination,
-    page:page
+    page: page
   });
 });
 //get filtered products
@@ -126,5 +146,58 @@ router.get('/*', (req, res, next) => {
     counter: req.body.counter
   });
 });
+
+//  review added
+router.post('/reviews', async (req, res, next) => {
+  delete req.body.counter;
+  const allData = [];
+
+  const reviewsTable = await db.get({
+    select: {
+      'snowboardId': 'ids'
+    },
+    from: 'reviews'
+  })
+  const reviewsTableNums = [];
+  for (let i = 0; i < reviewsTable.length; i++) {
+    reviewsTableNums.push(reviewsTable[i].ids);
+  }
+
+  if (reviewsTableNums.indexOf(req.body.snowboardId) == -1) {
+
+    const review = await db.create({
+      table: 'reviews',
+      values: {
+        snowboardId: `${req.body.snowboardId}`
+      }
+    })
+
+    allData.push(review);
+  }
+
+
+  const reviewNum = await db.get({
+    select: {
+      'reviewId': 'reviewId'
+    },
+    from: '`reviews`',
+    where: {
+      snowboardId: `${req.body.snowboardId}`
+    }
+  })
+
+  const updateReviews = await db.create({
+    table: '`review-details`',
+    values: {
+      review: `${reviewNum[0].reviewId}`,
+      rate: `${req.body.rate}`,
+      details: `${req.body.details}`
+    }
+  });
+
+  allData.push(updateReviews);
+  res.json(allData);
+
+})
 
 module.exports = router;

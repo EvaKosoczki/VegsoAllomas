@@ -28,19 +28,54 @@ block content
                     button.btn.btn-secondary.minus(type='button' onclick='incValue()') ⯅
               .col-5.col-sm-5
                 button.btn.btn-dark.btn-block.basketButton(onclick=`addToBasket(${product.ID})`) Add to Basket
-        
+            .row
+              .col-3.offset-5
+                button.btn.btn-info.btn-block.basketButton(onclick='toggleReview()') Leave a review
+      .col-12.mt-5#review.hide
+        h2 Leave a review
+        textarea.form-control.mb-3(name='text' placeholder='Write something...')
+        .col-3
+          h4 Rate it
+          fieldset.rating
+            input#star5(type='radio' name='rating' value='5')
+            label.full(for='star5' title='Awesome - 5 stars')
+            input#star4half(type='radio' name='rating' value='4.5')
+            label.half(for='star4half' title='Pretty good - 4.5 stars')
+            input#star4(type='radio' name='rating' value='4')
+            label.full(for='star4' title='Pretty good - 4 stars')
+            input#star3half(type='radio' name='rating' value='3.5')
+            label.half(for='star3half' title='Meh - 3.5 stars')
+            input#star3(type='radio' name='rating' value='3')
+            label.full(for='star3' title='Meh - 3 stars')
+            input#star2half(type='radio' name='rating' value='2.5')
+            label.half(for='star2half' title='Kinda bad - 2.5 stars')
+            input#star2(type='radio' name='rating' value='2')
+            label.full(for='star2' title='Kinda bad - 2 stars')
+            input#star1half(type='radio' name='rating' value='1.5')
+            label.half(for='star1half' title='Meh - 1.5 stars')
+            input#star1(type='radio' name='rating' value='1')
+            label.full(for='star1' title='No good - 1 star')
+            input#starhalf(type='radio' name='rating' value='0.5')
+            label.half(for='starhalf' title='No good - 0.5 stars')
+        .col-2.offset-10
+          button.btn.btn-dark.btn-block.basketButton(onclick=`leaveReview(${product.ID})`) Send
+
+
   .container-fluid.toggleDiv
     .row
-      .col-2.offset-5
-        button.btn.toggleButtons(href='#' type='button' onclick='showDesc()') Description
-        button.btn.toggleButtons(href='#' type='button' onclick='showRev()') Reviews
+      .col-2.offset-4.col-md-2.offset-md-4.col-lg-2.offset-lg-5.btn-group
+        button.btn.toggleButtons.basketButton(href='#' type='button' onclick='showDesc()') Description
+        button.btn.toggleButtons.basketButton(href='#' type='button' onclick='showRev()') Reviews
     .descriptionDiv
       .row
-        .col-12
-          h1 Description
-          p Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+        .col-10.offset-1
+          h3 Description
+          h5.mt-5.pb-5 #{product.details}
     .reviewsDiv
       .row
-        .col-12
-          h1 Reviews
-          p Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?
+        h3 Reviews
+        if reviews!=0
+          .col-10.offset-1
+            each review in reviews
+              p= review.details
+

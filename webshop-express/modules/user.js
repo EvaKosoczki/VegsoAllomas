@@ -85,19 +85,39 @@ module.exports = class UserDB {
         })
         const amount = await this.conn.query(sql1[0], sql1[1]);
         const lastPage = Math.ceil(amount[0].amount / 12);
-        console.log('laspage',lastPage);
+        console.log('laspage', lastPage);
         let counter = 0;
         let result = {};
         result.prev = parseInt(page) - 1;
         result.next = parseInt(page) + 1;
-        result.pages=[];
-        result.last=lastPage;
+        result.pages = [];
+        result.last = lastPage;
         for (let i = 0; i < lastPage; i++) {
             let page = {};
-            page.page=i;
+            page.page = i;
             result.pages.push(page);
         }
-        console.log('pages:',result.pages);
+        console.log('pages:', result.pages);
         return result;
+    }
+    async filter(filters) {
+        let sql = 'select * from snowboards where';
+        let keys = Object.keys(filters);
+        for (let key in filters) {
+            if (key.indexOf('brand') > -1) {
+                sql += ` or brand=${filters[key]}`;
+            }
+        
+            sql = keys.indexOf('shape') ? sql+=' and ' : sql=sql; 
+            if (key.indexOf('shape')) {
+                sql += ` or shape=${filters[key]} `;
+            }    
+        }
+        console.log('filtersql',sql);
+    }
+    setFilterArray(filters){
+        let filterArray = [];
+        let filterObj=();
+        let keys = Object.keys(filters);
     }
 }

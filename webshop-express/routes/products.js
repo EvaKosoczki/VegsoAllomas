@@ -61,11 +61,7 @@ router.get('/', async (req, res, next) => {
 //get filtered products
 router.post('/', async (req, res, next) => {
   delete req.body.counter;
-  const filteredProducts = await db.get({
-    select: '*',
-    from: 'snowboards',
-    where: req.body,
-  })
+  const filteredProducts = userDb.filter(req.body);
   res.render('products', {
     title: 'Snowboards',
     products: filteredProducts,

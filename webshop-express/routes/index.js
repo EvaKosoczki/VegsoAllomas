@@ -16,17 +16,38 @@ router.get('/', async (req, res, next) => {
   });
  
   let onSaleItems =  productDetails.sort(() => .5 - Math.random()).slice(0,3)
-  console.log(onSaleItems);
-
-let name = onSaleItems[0].name;
-let brand = onSaleItems[0].purpose;
-console.log(name)
-console.log(brand);
+  
 
   res.render('index', {
     products: onSaleItems,
     user: req.user,
     counter: req.body.counter,
+  });
+});
+
+router.get('/:purpose', async (req, res, next) => {
+  const productDetails = await db.get({
+    select: '*',
+    from: "snowboards",
+    where: {
+      purpose: `${req.params.purpose}`
+    },
+    join: {
+      join: 'inner',
+      table: 'brands',
+      'snowboards.brand': 'brands.brandId'
+    },
+    orderby: {
+      name: 'asc',
+      brandName: 'asc'
+    }
+  });
+
+  console.log(productDetails);
+
+  res.render('products', {
+    title: 'Snowboards',
+    products: productDetails
   });
 });
 

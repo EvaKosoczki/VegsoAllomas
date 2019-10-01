@@ -83,7 +83,7 @@ nav a {
 
 .hero-container {
   position: relative;
-  widows: 100%;
+  width: 100%;
 }
 
 .hero-container .hero-btn {
@@ -324,7 +324,7 @@ footer {
 
 .carousel {
   margin-bottom: 0;
-  padding: 0 0 30px 0;
+  padding-bottom: 30px;
 }
 
 .arrival-product .arrival-item ul {
@@ -464,7 +464,7 @@ height:100%;
 #myCarousel h4{
 font-size:50px;
 margin-bottom:15px;
-color:#FFF;
+color: rgba(0,0,0,.9);
 line-height:100%;
 letter-spacing:0.5px;
 font-weight:600;
@@ -472,10 +472,10 @@ font-weight:600;
 #myCarousel p{
 font-size:18px;
 margin-bottom:15px;
-color:#d5d5d5;
+color:rgba(0,0,0,.9);
 }
-#myCarousel .carousel-item a{background:#F47735; font-size:14px; color:#FFF; padding:13px 32px; display:inline-block; }
-#myCarousel .carousel-item a:hover{background:#FFF; text-decoration:none;  }
+#myCarousel .carousel-item a{background:#3D95C1; border-radius: 10px; font-size:18px; color:#FFF; padding:13px 32px; display:inline-block; }
+#myCarousel .carousel-item a:hover{text-decoration:none; text-transform: uppercase;  }
 
 #myCarousel .carousel-item h4{-webkit-animation-name:fadeInLeft; animation-name:fadeInLeft;} 
 #myCarousel .carousel-item p{-webkit-animation-name:slideInRight; animation-name:slideInRight;} 
@@ -634,4 +634,33 @@ to {
 .slideInRight {
 -webkit-animation-name: slideInRight;
 animation-name: slideInRight;
+}
+
+.browsing-container{
+  background-color: #F8F9FA;
+  border-radius: 10px;
+  max-width: 1140px;
+}
+
+.browsing-headline{
+  text-decoration: underline;
+}
+
+.browser-image{
+  border-radius: 20px;
+}
+
+.browsing-ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+.browsing-ul li a{
+  color: #000;
+  font-size: 25px;
+  text-decoration: none;
+}
+
+.browsing-ul li a:hover{
+  font-weight: bold;
 }

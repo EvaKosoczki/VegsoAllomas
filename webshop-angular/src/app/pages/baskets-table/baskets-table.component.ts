@@ -33,4 +33,23 @@ export class BasketsTableComponent implements OnInit {
   toggleView(id) {
     document.getElementById(`expandRow${id}`).classList.toggle("show");
   }
+
+  onDelete(picked: any) {
+    this.basketService.update(picked).subscribe(
+      response => {
+        this.changeCounter++;
+      },
+      err => console.error(err),
+    )
+  }
+
+  clearBasket(item){
+    this.basketService.delete(item.basketId).subscribe(
+      response => {
+        this.changeCounter++;
+      },
+      err => console.error(err)
+    )
+  }
+
 }

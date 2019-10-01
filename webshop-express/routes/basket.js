@@ -182,7 +182,7 @@ router.post('/orders', async (req, res, next) => {
       basket: basketNumber[0].basket
     }
   })
-  res.redirect('/order')
+  res.redirect('/orders')
 })
 
 //Delete a snowboard from basket

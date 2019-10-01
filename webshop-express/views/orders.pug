@@ -1,0 +1,35 @@
+extends layout
+
+block content
+		.container-fluid
+			.row
+				.col-6.text-center
+					h1 #{title}
+			.row
+				.col-6
+					table.table.table-bordered
+						thead
+						
+							tr
+								th(scope='col') Date
+								th(scope='col') Order Number
+								th(scope='col') #
+								
+						tbody
+							each order in Orders
+									tr.bg-secondary
+										td #{order[0].orderDate}
+										td #{order[0].orderId}
+										td 
+											button.btn.btn-primary Show details
+											tr
+												th Product Name
+												th Quantity
+												th Unit Prize
+											each item in order	
+												tr
+													td #{item.name}
+													td #{item.quantity}
+													td #{item.price}
+										
+													

@@ -22,7 +22,6 @@ const pool = mariadb.createPool({
     let sql = await sqlParser(params)
     console.log(sql);
     let result = await this.conn.query(sql[0],sql[1]);
-    //console.log(result);
     return result;
   }
   async del(params) {

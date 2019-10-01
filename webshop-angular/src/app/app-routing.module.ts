@@ -11,6 +11,8 @@ import { UsersNewComponent } from './pages/users-new/users-new.component';
 import { UsersEditComponent } from './pages/users-edit/users-edit.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { BasketsTableComponent } from './pages/baskets-table/baskets-table.component';
+import { FirstReportComponent } from './pages/first-report/first-report.component';
+import { SecondReportComponent } from './pages/second-report/second-report.component';
 
 
 const routes: Routes = [{
@@ -56,7 +58,15 @@ const routes: Routes = [{
 {
   path: 'baskets',
   component: BasketsTableComponent
-}
+},
+{
+  path: 'admin/reports/orders',
+  component: FirstReportComponent
+},
+{
+  path: 'admin/reports/products',
+  component: SecondReportComponent
+},
 ];
 
 @NgModule({

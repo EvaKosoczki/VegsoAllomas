@@ -120,11 +120,12 @@ router.get('/orders', async (req, res, next) => {
       table: '`order-details`',
       'orders.orderId': '`order-details`.order'
     },
-    groupby: 'orders.orderId'
-    // 'orders.status',
-    // 'orders.orderDate'
-
+    groupby: {
+      groupby1: 'orders.orderDate',
+      groupby2: 'orders.status'
+    }
   })
+
 
   orders.push(ordersByCust);
   orders.push(orderDetails);

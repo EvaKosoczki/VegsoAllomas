@@ -19,7 +19,8 @@ block content
                 p #{products[0].shape} shape, #{products[0].purpose} purpose!
                 a(href=`/products/${products[0].postfix}`) Get it now
               .col-md-5.col-12.order-md-2.order-1
-                img.mx-auto.img-fluid(src=`./image/snowboards/${products[0].picture}` alt=`${products[0].name}`)
+                a.sales-item(href=`/products/${products[0].postfix}`)
+                  img.mx-auto.img-fluid(src=`./image/snowboards/${products[0].picture}` alt=`${products[0].name}`)
       .carousel-item
         .mask.flex-center
           .container
@@ -29,7 +30,8 @@ block content
                 p #{products[1].shape} shape, #{products[1].purpose} purpose!
                 a(href=`/products/${products[1].postfix}`) Get it now
               .col-md-5.col-12.order-md-2.order-1
-                img.mx-auto.img-fluid(src=`./image/snowboards/${products[1].picture}` alt=`${products[1].name}`)
+                a.sales-item(href=`/products/${products[1].postfix}`)
+                  img.mx-auto.img-fluid(src=`./image/snowboards/${products[1].picture}` alt=`${products[1].name}`)
       .carousel-item
         .mask.flex-center
           .container
@@ -39,7 +41,8 @@ block content
                 p #{products[2].shape} shape, #{products[2].purpose} purpose! 
                 a(href=`/products/${products[2].postfix}`) Get it now
               .col-md-5.col-12.order-md-2.order-1
-                img.mx-auto.img-fluid(src=`./image/snowboards/${products[2].picture}` alt=`${products[2].name}`)
+                a.sales-item(href=`/products/${products[2].postfix}`)
+                  img.mx-auto.img-fluid(src=`./image/snowboards/${products[2].picture}` alt=`${products[2].name}`)
     a.carousel-control-prev(href="#myCarousel" role="button" data-slide="prev")
       span.carousel-control-prev-icon(aria-hidden="true")
       span.sr-only Previous

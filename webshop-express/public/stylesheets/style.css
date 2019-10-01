@@ -324,7 +324,7 @@ footer {
 
 .carousel {
   margin-bottom: 0;
-  padding-bottom: 30px;
+  padding: 0;
 }
 
 .arrival-product .arrival-item ul {
@@ -634,6 +634,10 @@ to {
 .slideInRight {
 -webkit-animation-name: slideInRight;
 animation-name: slideInRight;
+}
+
+.sales-item{
+  background: #fff !important;
 }
 
 .browsing-container{

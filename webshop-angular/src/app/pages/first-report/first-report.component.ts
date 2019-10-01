@@ -9,6 +9,9 @@ import { OrderService } from 'src/app/service/orders.service';
 export class FirstReportComponent implements OnInit {
   allOrder: any[] = [];
   sumOrderValue: number = 0;
+  sumOrders: number = 0;
+  orderKey: string = '';
+  orderDirection: number = 1;
 
   constructor(private orderService: OrderService) {
     this.orderService.getAll().subscribe(orders => {
@@ -16,8 +19,8 @@ export class FirstReportComponent implements OnInit {
         if (!orders[4][k]) {
           continue;
         }
-        console.log(orders[4][k].orderValue);
         this.sumOrderValue += orders[4][k].orderValue;
+        this.sumOrders += orders[4][k].numberOfOrders;
       }
       this.allOrder = orders[4];
       console.log('Orders: ', orders[4]);
@@ -27,8 +30,13 @@ export class FirstReportComponent implements OnInit {
   ngOnInit() {
   }
 
-  getTotal(arr) {
-    return arr.reduce((sum, curr) => sum + curr.Total, 0);
-  }
+  setSorterKey(key: string): void {
+    if (key === this.orderKey) {
+      this.orderDirection = this.orderDirection === -1 ? 1 : -1;
+    } else {
+      this.orderDirection = 1;
+    }
 
+    this.orderKey = key;
+  }
 }

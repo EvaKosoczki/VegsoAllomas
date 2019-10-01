@@ -5,8 +5,21 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SortPipe implements PipeTransform {
 
-  transform(value: any, ...args: any[]): any {
-    return null;
+  transform(baseArray: any[], key: string = '', direction: number = 1): any {
+    if (key === '') {
+      return baseArray;
+    }
+
+    baseArray.sort( (a, b) => {
+      if (typeof a[key] === 'number') {
+        return ((a[key] - b[key]) * direction);
+      } else {
+        return (a[key].toString() as string)
+          .localeCompare( b[key].toString() ) * direction;
+      }
+    });
+
+    return baseArray;
   }
 
 }

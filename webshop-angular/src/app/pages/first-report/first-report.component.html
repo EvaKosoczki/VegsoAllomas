@@ -13,14 +13,14 @@
       <table class="table text-active">
         <thead class="">
           <tr>
-            <th>Period</th>
-            <th>Status</th>
-            <th>Number of orders</th>
-            <th>Income</th>
+            <th (click)="setSorterKey('period')">Period</th>
+            <th (click)="setSorterKey('status')">Status</th>
+            <th (click)="setSorterKey('numberOfOrders')">Number of orders</th>
+            <th (click)="setSorterKey('orderValue')">Income</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of allOrder">
+          <tr *ngFor="let item of allOrder | sort:orderKey:orderDirection">
             <td>{{item.period | date: 'yyyy-MMMM' }}</td>
             <td>{{item.status}}</td>
             <td style="text-align:center">{{item.numberOfOrders}}</td>
@@ -29,8 +29,10 @@
           <tr>
             <td class="total">Total:</td>
             <td></td>
-            <td></td>
-            <td class="total" style="text-align:right">{{ allOrder | sum:'orderValue' | number: decimal}}</td>
+            <td class="total" style="text-align:center">
+              {{ allOrder | sort:orderKey:orderDirection | sum:'numberOfOrders' | number: decimal}}</td>
+            <td class="total" style="text-align:right">
+              {{ allOrder | sort:orderKey:orderDirection | sum:'orderValue' | number: decimal}}</td>
           </tr>
         </tbody>
       </table>

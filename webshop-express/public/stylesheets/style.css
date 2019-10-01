@@ -376,6 +376,14 @@ footer {
   animation: explosionEffect 1s;
 }
 
+.alert_hidden {
+  display: none
+}
+
+.alert_show {
+  display: block
+}
+
 @keyframes explosionEffect {
   0% {
     transition: 0.5s;

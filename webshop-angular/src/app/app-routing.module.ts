@@ -10,6 +10,7 @@ import { OrdersNewComponent } from './pages/orders-new/orders-new.component';
 import { UsersNewComponent } from './pages/users-new/users-new.component';
 import { UsersEditComponent } from './pages/users-edit/users-edit.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { BasketsTableComponent } from './pages/baskets-table/baskets-table.component';
 
 
 const routes: Routes = [{
@@ -52,6 +53,10 @@ const routes: Routes = [{
   path: 'admin/dashboard',
   component: DashboardComponent
 },
+{
+  path: 'baskets',
+  component: BasketsTableComponent
+}
 ];
 
 @NgModule({

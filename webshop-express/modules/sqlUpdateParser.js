@@ -3,12 +3,16 @@ module.exports = async function (update) {
     for (let key in update.set) {
         sql += `, ${key}='${update.set[key]}' `;
     }
-    sql = sql.replace(', ', '');
+    sql = sql.replace(', ', '') + 'where ';
     for (let key in update.where) {
+
         if (key.indexOf("relation") > -1) {
             sql += `${update.where[key]} `
-        } else {}
-        sql += `where ${key}= '${update.where[key]}'`;
+        } else {
+            sql += `${key}= '${update.where[key]}'`;
+        }
     }
+
+
     return sql;
 }

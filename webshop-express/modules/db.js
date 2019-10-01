@@ -14,6 +14,7 @@ const pool = mariadb.createPool({
   constructor() {
     pool.getConnection().then((conn) => {
       this.conn = conn;
+      // this.conn.query("SET SESSION time_zone = '+2:00'");
     });
   }
 

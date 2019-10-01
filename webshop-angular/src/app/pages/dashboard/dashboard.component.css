@@ -39,3 +39,8 @@ h4 {
 a {
   text-decoration: none;
 }
+
+#report-button {
+  margin-top: 60px;
+  border-color: #fff;
+}

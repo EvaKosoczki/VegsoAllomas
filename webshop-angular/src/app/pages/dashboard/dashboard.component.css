@@ -39,3 +39,7 @@ h4 {
 a {
   text-decoration: none;
 }
+
+#report-button {
+  margin: auto;
+}

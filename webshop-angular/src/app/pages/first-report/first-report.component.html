@@ -9,20 +9,28 @@
   </div>
 
   <div class="row">
-    <div class="col-12 tableBack mt-5">
+    <div class="col-6 offset-3 tableBack mt-5">
       <table class="table text-active">
         <thead class="">
           <tr>
             <th>Period</th>
             <th>Status</th>
+            <th>Number of orders</th>
             <th>Income</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of allData">
-            <td>{{item.firstName}}</td>
-            <td>{{item.lastName}}</td>
+          <tr *ngFor="let item of allOrder">
+            <td>{{item.orderDate | date: 'yyyy-MMMM' }}</td>
+            <td>{{item.status}}</td>
+            <td>1</td>
             <td>{{item.email}}</td>
+          </tr>
+          <tr>
+            <td>Total:</td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </table>

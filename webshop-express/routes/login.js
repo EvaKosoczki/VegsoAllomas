@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const DB = require('../modules/db');
+const db = require('../modules/db');
 const UserDB = require('../modules/user');
-
-const db = new DB();
 const userDb = new UserDB();
 const app = express();
 

@@ -10,10 +10,11 @@ const pool = mariadb.createPool({
   connectionLimit: 6,
 });
 
-module.exports = class DB {
+ class DB {
   constructor() {
     pool.getConnection().then((conn) => {
       this.conn = conn;
+      // this.conn.query("SET SESSION time_zone = '+2:00'");
     });
   }
 
@@ -41,6 +42,5 @@ module.exports = class DB {
     let result = await this.conn.query(sql);
     return result;
   }
-  
-
 }
+module.exports= new DB();

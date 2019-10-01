@@ -3,14 +3,13 @@ const sqlParser = require('./sqlGetParser');
 const sqlDel = require('../modules/sqlDeleteParser');
 const sqlInsert = require('../modules/sqlInsertParser');
 const sqlUpdate = require('../modules/sqlUpdateParser');
-const DB = require('../modules/db');
-const db = new DB();
+const db = require('../modules/db');
 
 const pool = mariadb.createPool({
     user: 'root',
     password: 'root',
     database: 'webshop',
-    connectionLimit: 5,
+    connectionLimit: 6,
 });
 
 module.exports = class UserDB {
@@ -57,8 +56,7 @@ module.exports = class UserDB {
     async checkBasket(user) {
         let sql = await sqlParser({
             select: {
-                'basket': 'orderItems',
-                'quantity': 'quantity'
+                'sum(quantity)': 'orderItems'
             },
             from: 'users',
             join: {
@@ -76,7 +74,30 @@ module.exports = class UserDB {
         });
         console.log('proba', sql);
         const result = await this.conn.query(sql[0], sql[1]);
+        return result[0].orderItems;
+    }
+    async pagination(page = 0) {
+        let sql1 = await sqlParser({
+            select: {
+                'count(ID)': 'amount'
+            },
+            from: 'snowboards'
+        })
+        const amount = await this.conn.query(sql1[0], sql1[1]);
+        const lastPage = Math.ceil(amount[0].amount / 12);
+        console.log('laspage',lastPage);
+        let counter = 0;
+        let result = {};
+        result.prev = parseInt(page) - 1;
+        result.next = parseInt(page) + 1;
+        result.pages=[];
+        result.last=lastPage;
+        for (let i = 0; i < lastPage; i++) {
+            let page = {};
+            page.page=i;
+            result.pages.push(page);
+        }
+        console.log('pages:',result.pages);
         return result;
     }
-
 }

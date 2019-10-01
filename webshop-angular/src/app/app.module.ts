@@ -17,6 +17,8 @@ import { OrdersEditComponent } from './pages/orders-edit/orders-edit.component';
 import { UsersEditComponent } from './pages/users-edit/users-edit.component';
 import { UsersNewComponent } from './pages/users-new/users-new.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { BasketsTableComponent } from './pages/baskets-table/baskets-table.component';
+import { DeletedPipe } from './pipe/deleted.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     UsersEditComponent,
     UsersNewComponent,
     DashboardComponent,
+    BasketsTableComponent,
+    DeletedPipe
   ],
   imports: [
     BrowserModule,

@@ -16,24 +16,27 @@
       <table class="table text-active">
         <thead class="">
           <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
+            <th>Fullname</th>
             <th>Email</th>
+            <th>Password</th>
             <th>Address</th>
             <th>Role</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of allData">
-            <td>{{item.firstName}}</td>
-            <td>{{item.lastName}}</td>
+          <tr *ngFor="let item of allData | deleted:firstName">
+            <td>{{item.firstName}} {{item.lastName}}</td>
             <td>{{item.email}}</td>
+            <td (click)="toggleView(item.userId)">
+              <p class="stars">*******</p>
+              <p class="passwordHidden noShow">{{item.password}}</p>
+            </td>
             <td>{{item.zip}} {{item.city}} {{item.address}}</td>
             <td>{{item.role}}</td>
             <td class="btn-group">
-              <button type="button" class="btn btn-success" routerLink="/users/edit/{{item.userId}}">Edit</button>
-              <button class="btn btn-danger" type="button" (click)="onDelete(item)">Delete</button>
+              <button type="button" class="btn btn-info" routerLink="/users/edit/{{item.userId}}">Edit</button>
+              <button class="btn btn-warning" type="button" (click)="onDelete(item)">Delete</button>
             </td>
           </tr>
         </tbody>

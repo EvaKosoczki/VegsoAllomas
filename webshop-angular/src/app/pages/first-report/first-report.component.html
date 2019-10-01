@@ -26,7 +26,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of allOrder | filter:filterPhrase | sort:orderKey:orderDirection">
-            <td>{{item.period | date: 'yyyy-MMMM' }}</td>
+            <td>{{item.period | customDate }}</td>
             <td>{{item.status}}</td>
             <td style="text-align:center">{{item.numberOfOrders}}</td>
             <td style="text-align:right">{{item.orderValue | number: decimal}}</td>

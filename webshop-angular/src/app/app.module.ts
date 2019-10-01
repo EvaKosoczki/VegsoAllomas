@@ -24,6 +24,7 @@ import { SecondReportComponent } from './pages/second-report/second-report.compo
 import { SumPipe } from './pipe/sum.pipe';
 import { FilterPipe } from './pipe/filter.pipe';
 import { SortPipe } from './pipe/sort.pipe';
+import { CustomDatePipe } from './pipe/custom-date.pipe';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SortPipe } from './pipe/sort.pipe';
     SumPipe,
     FilterPipe,
     SortPipe,
+    CustomDatePipe,
   ],
   imports: [
     BrowserModule,

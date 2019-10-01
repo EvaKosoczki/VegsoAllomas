@@ -4,11 +4,12 @@ const router = express.Router();
 
 const DB = require('./../modules/db');
 const db = new DB();
-let newArray = [];
+let basketDetails = [];
+isHidden = true;
 
 //get all basket item and details
 router.get('/', async (req, res, next) => {
-  const basketDetails = await db.get({
+  basketDetails = await db.get({
     select: '*',
     from: 'baskets',
     where: {
@@ -24,7 +25,7 @@ router.get('/', async (req, res, next) => {
     },
 
   })
-  let isHidden = true;
+
 
   function totalPriceCounter(array) {
     let basketTotalPrice = 0;
@@ -35,36 +36,20 @@ router.get('/', async (req, res, next) => {
     return basketTotalPrice;
   }
 
-  function repeatCheck(array) {
-    newArray = [];
-    let names = [];
-    array.map(item => {
-      if ((names.indexOf(item.name)) > -1) {
-        newArray.map(newitem => {
-          if (newitem.name == item.name) {
-            newitem.quantity += item.quantity
-          }
-        })
-      } else {
-        newArray.push(item);
-        names.push(item.name);
-      }
-    })
-    return newArray
-  }
   res.render('basket', {
     title: 'My basket',
     basket: 'Basket Summary',
     basketTotalPrice: totalPriceCounter(basketDetails),
-    basketDetails: repeatCheck(basketDetails),
+    basketDetails: basketDetails,
     user: req.user,
     counter: req.body.counter,
     isHidden: isHidden
   });
+  isHidden = true;
 });
 
 
-//counter when product added
+//new product added + counter 
 router.post('/', async (req, res, next) => {
 
   const basket = await db.get({
@@ -94,34 +79,37 @@ router.post('/', async (req, res, next) => {
       'basket': basket[0].basket
     }
   })
-  console.log('1: ' + basketStuff[0].snowboardId)
-  console.log('2: ' + req.body.snowboardId)
+  let productIdsInBasket = []
+  basketStuff.map(item => {
+    productIdsInBasket.push(item.snowboardId)
+  })
   req.body.basket = basket[0].basket;
   delete req.body.user;
   delete req.body.counter;
-  for (let i = 0; i < basketStuff.length; i += 1) {
-    if (basketStuff[i].snowboardId == req.body.snowboardId) {
-      console.log('stuff: ')
-      let addedQuantity = basketStuff[i].quantity += 1;
-      const updateQuantity = await db.update({
-        table: '`basket-details`',
-        set: {
-          'quantity': `${addedQuantity}`
-        },
-        where: {
-          snowboardId: `${basketStuff[i].snowboardId}`,
-        }
-      });
-    } else {
-      continue;
+
+  if (productIdsInBasket.indexOf(req.body.snowboardId) > -1) {
+
+    for (let i = 0; i < basketStuff.length; i += 1) {
+      if (basketStuff[i].snowboardId == req.body.snowboardId) {
+        let addedQuantity = basketStuff[i].quantity += req.body.quantity;
+        const updateQuantity = await db.update({
+          table: '`basket-details`',
+          set: {
+            'quantity': `${addedQuantity}`
+          },
+          where: {
+            snowboardId: `${basketStuff[i].snowboardId}`,
+          }
+        });
+      }
     }
+  } else {
+    const productDetails = await db.create({
+      table: '`basket-details`',
+      values: req.body,
+    })
 
   }
-  const productDetails = await db.create({
-    table: '`basket-details`',
-    values: req.body,
-  })
-
 
   const count = await db.get({
     select: {
@@ -140,11 +128,10 @@ router.post('/', async (req, res, next) => {
 
 //place an order
 router.post('/orders', async (req, res, next) => {
-  /* if (newArray == [undefined]) {
-     isHidden = false;
-     res.redirect('/basket')
-   }
-   console.log(req.body)*/
+  if (basketDetails.length == 0) {
+    isHidden = false;
+    res.redirect('/basket')
+  }
   const newOrder = await db.create({
     table: 'orders',
     values: {
@@ -161,7 +148,7 @@ router.post('/orders', async (req, res, next) => {
     }
   })
   let orderDetails = [];
-  newArray.map(item => {
+  basketDetails.map(item => {
     orderDetails.push({
       '`order`': orderId[0].order,
       'snowboardId': item.snowboardId,
@@ -169,6 +156,7 @@ router.post('/orders', async (req, res, next) => {
       'quantity': item.quantity
     })
   })
+
   for (let i = 0; i < orderDetails.length; i += 1) {
     let newOrderDetails = await db.create({
       table: '`order-details`',

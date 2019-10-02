@@ -24,7 +24,6 @@ export class FirstReportComponent implements OnInit {
         this.sumOrders += orders[4][k].numberOfOrders;
       }
       this.allOrder = orders[4];
-      console.log('Orders: ', orders[4]);
     });
   }
 
@@ -37,7 +36,6 @@ export class FirstReportComponent implements OnInit {
     } else {
       this.orderDirection = 1;
     }
-
     this.orderKey = key;
   }
 }

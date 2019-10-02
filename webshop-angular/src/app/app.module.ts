@@ -22,7 +22,7 @@ import { BasketsTableComponent } from './pages/baskets-table/baskets-table.compo
 import { DeletedPipe } from './pipe/deleted.pipe';
 import { FirstReportComponent } from './pages/first-report/first-report.component';
 import { SecondReportComponent } from './pages/second-report/second-report.component';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     AppComponent,

@@ -185,6 +185,35 @@ router.post('/orders', async (req, res, next) => {
   res.redirect('/orders')
 })
 
+router.get('/delete', async (req, res, next) => {
+  const basketNumber = await db.get({
+    select: {
+      'basket': 'basket'
+    },
+    from: 'baskets',
+    where: {
+      user: `${req.user.userId}`
+    },
+    join: {
+      join: 'inner',
+      table: '`basket-details`',
+      'baskets.basketId': '`basket-details`.basket',
+    }
+  });
+
+  console.log('deleteBasket ' + basketNumber[0].basket)
+  const deleteBasket = await db.del({
+    table: '`basket-details`',
+    where: {
+      basket: basketNumber[0].basket,
+    }
+  });
+
+
+  res.redirect('/basket')
+
+});
+
 //Delete a snowboard from basket
 router.get('/:address', async (req, res, next) => {
   const basketNumber = await db.get({
@@ -247,6 +276,8 @@ router.get('/:address', async (req, res, next) => {
 
   res.redirect('/basket')
 })
+
+
 // add one snowboard
 router.get('/add/:address', async (req, res, next) => {
   const basketNumber = await db.get({
@@ -300,6 +331,8 @@ router.get('/add/:address', async (req, res, next) => {
 })
 
 
+
+//delete whole basket
 
 
 

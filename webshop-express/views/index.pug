@@ -14,13 +14,13 @@ block content
         .mask.flex-center
           .container
             .row.align-items-center
-              .col-md-6.ml-5.col-12.order-md-1.order-2
+              .col-md-6.ml-5.col-12.order-md-1.order-1
                 h4 #{products[0].name}
                 p #{products[0].shape} shape, #{products[0].purpose} purpose!
                 a(href=`/products/${products[0].postfix}`) Get it now
               .col-md-5.col-12.order-md-2.order-1
                 a.sales-item(href=`/products/${products[0].postfix}`)
-                  img.mx-auto.img-fluid(src=`./image/snowboards/${products[0].picture}` alt=`${products[0].name}`)
+                  img.mx-auto.img-fluid.carousel-img(src=`./image/snowboards/${products[0].picture}` alt=`${products[0].name}`)
       .carousel-item
         .mask.flex-center
           .container
@@ -31,18 +31,18 @@ block content
                 a(href=`/products/${products[1].postfix}`) Get it now
               .col-md-5.col-12.order-md-2.order-1
                 a.sales-item(href=`/products/${products[1].postfix}`)
-                  img.mx-auto.img-fluid(src=`./image/snowboards/${products[1].picture}` alt=`${products[1].name}`)
+                  img.mx-auto.img-fluid.carousel-img(src=`./image/snowboards/${products[1].picture}` alt=`${products[1].name}`)
       .carousel-item
         .mask.flex-center
           .container
             .row.align-items-center
-              .col-md-6.ml-5.col-12.order-md-1.order-2
+              .col-md-6.ml-5.col-12.order-md-1.order-3
                 h4 #{products[2].name}
                 p #{products[2].shape} shape, #{products[2].purpose} purpose! 
                 a(href=`/products/${products[2].postfix}`) Get it now
               .col-md-5.col-12.order-md-2.order-1
                 a.sales-item(href=`/products/${products[2].postfix}`)
-                  img.mx-auto.img-fluid(src=`./image/snowboards/${products[2].picture}` alt=`${products[2].name}`)
+                  img.mx-auto.img-fluid.carousel-img(src=`./image/snowboards/${products[2].picture}` alt=`${products[2].name}`)
     a.carousel-control-prev(href="#myCarousel" role="button" data-slide="prev")
       span.carousel-control-prev-icon(aria-hidden="true")
       span.sr-only Previous
@@ -65,56 +65,56 @@ block content
             h3.browsing-headline  Browse by brands:
         .row.d-flex.flex-wrap.align-items-center
           div.col-4.col-md-2
-            a(href="")
-              img.img-fluid(src="./image/brands/1_burton.png", alt="")
+            a(href="/products?filter=1&page=0&brand=1")
+              img.img-fluid(src="./image/brands/1_burton.png", alt="Burton")
           div.col-4.col-md-2
-            a(href="")
-              img.img-fluid(src="./image/brands/2_capita.jpg", alt="")
+            a(href="/products?filter=1&page=0&brand1=2")
+              img.img-fluid(src="./image/brands/2_capita.jpg", alt="Capita")
           div.col-4.col-md-2
-            a(href="")
-              img.img-fluid(src="./image/brands/GNU.png", alt="")
+            a(href="/products?filter=1&page=0&brand5=6")
+              img.img-fluid(src="./image/brands/GNU.png", alt="GNU")
           div.col-4.col-md-2
-            a(href="")
-              img.img-fluid(src="./image/brands/3_libtech.jpg", alt="")
+            a(href="/products?filter=1&page=0&brand2=3")
+              img.img-fluid(src="./image/brands/3_libtech.jpg", alt="LibTech")
           div.col-4.col-md-2
-            a(href="")
-              img.img-fluid(src="./image/brands/4_nitro.jpg", alt="")
+            a(href="/products?filter=1&page=0&brand3=4")
+              img.img-fluid(src="./image/brands/4_nitro.jpg", alt="Nitro")
           div.col-4.col-md-2
-            a(href="")
-              img.img-fluid(src="./image/brands/5_k2.png", alt="")
+            a(href="/products?filter=1&page=0&brand4=5")
+              img.img-fluid(src="./image/brands/5_k2.png", alt="K2")
         .row.d-flex.flex-wrap.align-items-center
           div.col-4.col-md-2.offset-md-1
-            a(href="")
-              img.img-fluid(src="./image/brands/7_jones.png", alt="")
+            a(href="/products?filter=1&page=0&brand6=7")
+              img.img-fluid(src="./image/brands/7_jones.png", alt="Jones")
           div.col-4.col-md-2
-            a(href="")
-              img.img-fluid(src="./image/brands/8_ride.png", alt="")
+            a(href="/products?filter=1&page=0&brand7=8")
+              img.img-fluid(src="./image/brands/8_ride.png", alt="Ride")
           div.col-4.col-md-2
-            a(href="")
-              img.img-fluid(src="./image/brands/9_salomon.png", alt="")
+            a(href="/products?filter=1&page=0&brand8=9")
+              img.img-fluid(src="./image/brands/9_salomon.png", alt="Salomon")
           div.col-4.col-md-2
-            a(href="")
-              img.img-fluid(src="./image/brands/10_rome.jfif", alt="")
+            a(href="/products?filter=1&page=0&brand9=10")
+              img.img-fluid(src="./image/brands/10_rome.jfif", alt="Rome")
           div.col-4.col-md-2
-            a(href="")
-              img.img-fluid(src="./image/brands/11_nidecker.png", alt="")
+            a(href="/products?filter=1&page=0&brand10=11")
+              img.img-fluid(src="./image/brands/11_nidecker.png", alt="Nidecker")
         
         .row
           .col-md-6.text-center.mt-5.mb-2
             h3.browsing-headline  Browse by style:
             ul.browsing-ul
               li
-                a(href="/products/purpose/All-mountain") All-mountain
+                a(href="/products?filter=1&page=0&purpose=All-mountain") All-mountain
               li
-                a(href="/products/purpose/Freestyle") Freestyle
+                a(href="/products?filter=1&page=0&purpose1=Freestyle") Freestyle
               li
-                a(href="/products/purpose/Freeride") Freeride
+                a(href="/products?filter=1&page=0&purpose2=Freeride") Freeride
           .col-md-6.text-center.mt-5.mb-2
             h3.browsing-headline  Browse by shape:
             ul.browsing-ul
               li
-                a(href="/products/shape/Twin") Twin
+                a(href="/products?filter=1&page=0&shape2=Twin") Twin
               li
-                a(href="/products/shape/Directional") Directional
+                a(href="/products?filter=1&page=0&shape=Directional") Directional
 
   .parallax-3

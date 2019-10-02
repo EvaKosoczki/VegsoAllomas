@@ -7,7 +7,7 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { BrandsService } from 'src/app/service/brands.service';
 import { Brand } from 'src/app/model/brand';
-import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+
 
 const URL = 'http://localhost:3000/api';
 
@@ -24,10 +24,6 @@ export class ProductsNewComponent implements OnInit {
   replacedName: string = '';
   brands: Brand[];
   selectedBrand:number;
-  public uploader: FileUploader = new FileUploader({
-    url: URL,
-    itemAlias: 'photo'
-  });
 
 
   constructor(private productService: ProductsService,
@@ -40,10 +36,6 @@ export class ProductsNewComponent implements OnInit {
     this.brandService.getBrands().forEach(brands =>{
       this.brands =brands;
     });
-    this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
-       this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-            console.log("ImageUpload:uploaded:", item, status, response);
-        };
     }
   
   onSubmit(ev: Event): void {

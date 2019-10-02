@@ -22,38 +22,40 @@ block content
             input(type="hidden", name="filter", value="1")
             input(type="hidden", name="page", value="0")
             .form-group.form-check
-              p.font-weight-bold Brands
+            
+            h4.filter-heading.mb-3.mt-3.font-weight-bold Brands
               - let index = 0;
+              
+            .row
               each brand in brands
                 -let name = `brand${index}`
                 -let checked = keys.indexOf(`${name}`) > -1 ? true : false
-                .row
-                  .col-3
+                  .col-4
                     input.form-check-input(type="checkbox" name=`${name}` value=`${++index}` checked=checked )
                     label.form-check-label.pr-5(for=`${brand.name}`) #{brand.name}
 
-              p.font-weight-bold Shape
+            h4.filter-heading.mb-3.mt-3.font-weight-bold Shape
               -let shapeIndex = 0;
+            .row
               each shape in shapes
                 -let shapeName = `shape${shapeIndex++}`
                 -let shapeChecked = keys.indexOf(`${shapeName}`) > -1 ? true : false
-                .row
                   .col-3
                     input.form-check-input(type="checkbox" name=`${shapeName}` value=`${shape.shape}` checked=shapeChecked )
                     label.form-check-label.pr-5(for=`${shape.shape}`) #{shape.shape}
 
-              p.font-weight-bold Purpose
+            h4.filter-heading.mb-3.mt-3.font-weight-bold Purpose
               -let purposeIndex = 0;
+            .row
               each purpose in purposes
                 -let purposeName = `purpose${purposeIndex++}`
                 -let purposeChecked = keys.indexOf(`${purposeName}`) > -1 ? true : false
-                .row
-                  .col-3
+                  .col-5
                     input.form-check-input(type="checkbox" name=`${purposeName}` value=`${purpose.purpose}` checked=purposeChecked )
                     label.form-check-label.pr-5(for=`${purpose.purpose}`) #{purpose.purpose}
 
 
-            button.btn.btn-primary(type='submit') Filter
+            button.btn.btn-primary.mt-3(type='submit') Filter
     
 
       .col-xs-12.col-sm-10.col-md-9.col-lg-9

@@ -14,14 +14,14 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-6 offset-3 tableBack mt-5">
+    <div class="col-6 offset-3 tableBack mt-3">
       <table class="table text-active">
         <thead class="">
           <tr>
             <th (click)="setSorterKey('period')">Period</th>
             <th (click)="setSorterKey('status')">Status</th>
-            <th (click)="setSorterKey('numberOfOrders')">Number of orders</th>
-            <th (click)="setSorterKey('orderValue')">Income</th>
+            <th (click)="setSorterKey('numberOfOrders')" style="text-align:center">Number of orders</th>
+            <th (click)="setSorterKey('orderValue')" style="text-align:right">Income ($)</th>
           </tr>
         </thead>
         <tbody>
@@ -45,5 +45,11 @@
       </table>
     </div>
   </div>
-
+  <div class="row">
+    <div class="col-2 offset-5 mt-4">
+      <a name="" id="report-button" class="btn btn-lg btn-info" href="/admin/reports/products" role="button"
+        style=" border-color:white">Report of
+        delivered orders</a>
+    </div>
+  </div>
 </div>

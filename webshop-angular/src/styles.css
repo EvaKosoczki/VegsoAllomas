@@ -153,3 +153,7 @@
 .noShow {
   display: none;
 }
+
+thead tr th {
+  color: #ff0;
+}

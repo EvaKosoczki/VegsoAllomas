@@ -40,7 +40,21 @@ router.get('/:postfix', async (req, res, next) => {
 router.get('/', async (req, res, next) => {
   let productDetails = [];
   console.log('req.filter', req.query.filter);
+  const filteredKeys=Object.keys(req.query) || [];
+  console.log('keys',filteredKeys);
   const page = req.query.page || 0;
+  const brands = await db.get({
+    select: {'brandName': 'name'},
+    from: "brands",
+    });
+    const shapes=await db.get({
+      select: {'distinct shape': 'shape'},
+      from: "snowboards",
+      });
+      const purposes = await db.get({
+        select: {'distinct purpose': 'purpose'},
+        from: "snowboards",
+        });
   let pagination = 0;
   if (req.query.filter) {
     let sql = await userDb.filter(req.query);
@@ -65,7 +79,6 @@ router.get('/', async (req, res, next) => {
       from: 'snowboards'
     });
   }
-  console.log(pagination);
   res.render('products', {
     title: 'Snowboards',
     products: productDetails,
@@ -92,7 +105,10 @@ router.post('/', async (req, res, next) => {
     counter: req.body.counter,
     products: productDetails,
     pagination: pagination,
-    page: page
+    page: page,
+    brands:brands,
+    shapes:shapes,
+    purposes:purposes
   });
 })
 

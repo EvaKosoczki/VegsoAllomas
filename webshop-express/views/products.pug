@@ -22,10 +22,11 @@ block content
             input(type="hidden", name="filter", value="1")
             input(type="hidden", name="page", value="0")
             .form-group.form-check
+            - let index = 0;
               p.font-weight-bold Brands
-              input#Burton.form-check-input(type='checkbox' name="brand" value=1)
+              input#Burton.form-check-input(type='checkbox' name="brand" value=`${++index}`)
               label.form-check-label.pr-5(for='Burton') Burton 
-              input#CAPiTA.form-check-input(type='checkbox' name="brand1" value=2)
+              input#CAPiTA.form-check-input(type='checkbox' name=`brand` +`${index}`  value=`${++index}`)
               label.form-check-label.pr-5(for='CAPiTA') CAPiTA 
               input#LibTech.form-check-input(type='checkbox' name="brand2" value=3)
               label.form-check-label.pr-5(for='LibTech') LibTech 

@@ -1,3 +1,39 @@
+const toggleReview = function (productId, userId) {
+
+  // Data creating
+  var url = 'http://localhost:3000/products/reviews';
+  var data = {
+    user: userId,
+    snowboardId: productId,
+  };
+
+  // Fetch http req
+  fetch(url, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => {
+      if (response) {
+        document.getElementById("review").classList.toggle("show");
+        document.getElementById("review").classList.toggle("hide");
+      } else {
+        document.getElementById("alertDiv").classList.toggle("show");
+        document.getElementById("alertDiv").classList.toggle("hide");
+        setTimeout(function () {
+          document.getElementById("alertDiv").classList.toggle("hide");
+          document.getElementById("alertDiv").classList.toggle("show");
+        }, 5000);
+
+      }
+    });
+
+}
+
+
 const leaveReview = function (productId, userId) {
 
   // Value read from document
@@ -9,7 +45,7 @@ const leaveReview = function (productId, userId) {
     }
   }
   const details = document.querySelector('textarea').value;
-  
+
   // Data creating
   var url = 'http://localhost:3000/products/reviews';
   var data = {

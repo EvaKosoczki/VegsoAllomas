@@ -23,9 +23,3 @@ const descValue = function () {
   } else {}
 
 }
-
-const toggleReview = function (){
-
-  document.getElementById("review").classList.toggle("show");
-  document.getElementById("review").classList.toggle("hide");
-}

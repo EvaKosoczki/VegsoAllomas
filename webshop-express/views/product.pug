@@ -3,6 +3,8 @@ extends layout
 block content
   h1.text-center.mt-5 #{product.name}
   .container.mt-5.mb-5
+    .row#alertDiv.hide
+      .alert.alert-primary(role='alert') You can't leave a review, until you purchased the product.
     .row
       .col-12.col-md-6
         img.uniquePic(src=imgRoot)
@@ -30,7 +32,7 @@ block content
                 button.btn.btn-dark.btn-block.basketButton(onclick=`addToBasket(${product.ID})`) Add to Basket
             .row
               .col-3.offset-5
-                button.btn.btn-info.btn-block.basketButton(onclick='toggleReview()') Leave a review
+                button.btn.btn-info.btn-block.basketButton(onclick=`toggleReview(${product.ID})`) Leave a review
       .col-12.mt-5#review.hide
         h2 Leave a review
         textarea.form-control.mb-3(name='text' placeholder='Write something...')
@@ -73,9 +75,13 @@ block content
           h5.mt-5.pb-5 #{product.details}
     .reviewsDiv
       .row
-        h3 Reviews
         if reviews!=0
-          .col-10.offset-1
-            each review in reviews
-              p= review.details
+          .col-8.offset-1
+            h3 Reviews
+              each review in reviews
+                h6 Someone said about it:
+                .oneReview.mt-2
+                  p #{review.details}
+                p.mb-5.ml-2 #{review.rate} &star;
+
 

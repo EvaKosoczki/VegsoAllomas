@@ -4,6 +4,7 @@ const path = require('path');
 const db = require('../modules/db');
 const UserDb = require('../modules/user');
 const userDb = new UserDb();
+let isHidden = true;
 
 router.get('/:postfix', async (req, res, next) => {
   const productDetails = await db.get({
@@ -29,17 +30,17 @@ router.get('/:postfix', async (req, res, next) => {
     join: {
       join: 'inner',
       table: 'reviews',
-      '`review-details`.review':'reviews.reviewId',
+      '`review-details`.review': 'reviews.reviewId',
     },
     where: {
       'reviews.snowboardId': `${productDetails[0].ID}`
     }
   })
-  let reviewD = reviewDets[0];
+  console.log("REVIEWDETS", reviewDets);
+  let reviewD = reviewDets;
   if (reviewD == undefined) {
     reviewD = 0;
   }
-  console.log(reviewD);
 
   const oneProduct = productDetails[0];
   const img = path.join('/image', 'snowboards', oneProduct.picture);
@@ -51,7 +52,8 @@ router.get('/:postfix', async (req, res, next) => {
     iconRoot: icon,
     user: req.user,
     counter: req.body.counter,
-    reviews: reviewD
+    reviews: reviewD,
+    isHidden: isHidden
   });
 });
 
@@ -68,7 +70,7 @@ router.get('/', async (req, res, next) => {
     }
   });
   const pagination = await userDb.pagination(page);
-  console.log(pagination);
+  // console.log(pagination);
   res.render('products', {
     title: 'Snowboards',
     products: productDetails,
@@ -139,7 +141,7 @@ router.post('/', async (req, res, next) => {
 // })
 
 
-//No product found:
+// No product found:
 router.get('/*', (req, res, next) => {
   res.render('no-product', {
     title: 'No product found!',
@@ -147,7 +149,42 @@ router.get('/*', (req, res, next) => {
   });
 });
 
-//  review added
+// can you review?
+router.put('/reviews', async (req, res, next) => {
+  const user = req.user;
+  const canReview = await db.get({
+    select: {
+      'userId': 'userId'
+    },
+    from: 'orders',
+    join: {
+      join: 'inner',
+      table: '`order-details`',
+      'orders.orderId': '`order-details`.order',
+    },
+    where: {
+      '`order-details`.snowboardId': `${req.body.snowboardId}`
+    }
+  })
+
+  let isTrue = true;
+  if (canReview[0] == undefined){
+    isTrue = false;
+  }
+  for (let i = 0; i < canReview.length; i++) {
+    if (canReview[i].userId == user.userId) {
+      isTrue = true;
+      break;
+    } else {
+      isTrue = false;
+    }
+  }
+
+  res.json(isTrue);
+
+})
+
+// new review added
 router.post('/reviews', async (req, res, next) => {
   delete req.body.counter;
   const allData = [];

@@ -7,33 +7,43 @@
       </strong>
     </div>
   </div>
-
+  <div class="row">
+    <div class="col-4 offset-4 search-input">
+      <input [(ngModel)]="filterPhrase" type="text" class="form-control"
+        placeholder="Please enter the period or status to filter...">
+    </div>
+  </div>
   <div class="row">
     <div class="col-6 offset-3 tableBack mt-5">
       <table class="table text-active">
         <thead class="">
           <tr>
-            <th>Period</th>
-            <th>Status</th>
-            <th>Number of orders</th>
-            <th>Income</th>
+            <th (click)="setSorterKey('period')">Period</th>
+            <th (click)="setSorterKey('status')">Status</th>
+            <th (click)="setSorterKey('numberOfOrders')">Number of orders</th>
+            <th (click)="setSorterKey('orderValue')">Income</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of allOrder">
-            <td>{{item.orderDate | date: 'yyyy-MMMM' }}</td>
+          <tr *ngFor="let item of allOrder | filter:filterPhrase | sort:orderKey:orderDirection">
+            <td>{{item.period | customDate }}</td>
             <td>{{item.status}}</td>
-            <td>1</td>
-            <td>{{item.email}}</td>
+            <td style="text-align:center">{{item.numberOfOrders}}</td>
+            <td style="text-align:right">{{item.orderValue | number: decimal}}</td>
           </tr>
           <tr>
-            <td>Total:</td>
+            <td class="total">Total:</td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="total" style="text-align:center">
+              {{ allOrder | filter:filterPhrase | sort:orderKey:orderDirection | sum:'numberOfOrders' | number: decimal}}
+            </td>
+            <td class="total" style="text-align:right">
+              {{ allOrder | filter:filterPhrase | sort:orderKey:orderDirection | sum:'orderValue' | number: decimal}}
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+
 </div>

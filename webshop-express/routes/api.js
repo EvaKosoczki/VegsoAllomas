@@ -26,6 +26,9 @@ router.post('/', function (req, res, next) {
 })
 
 
+
+// products
+
 router.get('/products', async (req, res, next) => {
   const productDetails = await db.get({
     select: '*',
@@ -136,14 +139,32 @@ router.get('/orders', async (req, res, next) => {
     groupby: '`order-details`.order'
   })
 
+  const firstReport = await db.get({
+    select: {
+      'orders.orderDate': 'period',
+      'orders.status': 'status',
+      'count(orders.orderId)': 'numberOfOrders',
+      'sum(unitPrice*quantity)': 'orderValue'
+    },
+    from: 'orders',
+    join: {
+      join: 'inner',
+      table: '`order-details`',
+      'orders.orderId': '`order-details`.order'
+    },
+    groupby: {
+      groupby1: 'orders.orderDate',
+      groupby2: 'orders.status'
+    }
+  })
+
+
   orders.push(ordersByCust);
   orders.push(orderDetails);
   orders.push(totalPrice);
   orders.push(productQuantity);
-  //console.log(orders);
-  //console.log(totalPrice);
-  //console.log(productQuantity);
-  console.log(orders);
+  orders.push(firstReport);
+
   res.json(orders);
 });
 
@@ -168,6 +189,10 @@ router.get('/orders/:id', async (req, res, next) => {
   })
 
   res.json(orderDetails);
+});
+
+router.get('/orders', async (req, res, next) => {
+
 });
 
 router.delete('/orders/:id', async (req, res, next) => {

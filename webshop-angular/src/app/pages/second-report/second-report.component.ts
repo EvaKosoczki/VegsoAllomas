@@ -15,14 +15,14 @@ export class SecondReportComponent implements OnInit {
 
   constructor(private orderService: OrderService) {
     this.orderService.getAll().subscribe(orders => {
-      for (let k in orders[4]) {
+      for (let k in orders[5]) {
         if (!orders[5][k]) {
           continue;
         }
         this.sumOrderValue += orders[5][k].orderValue;
       }
       this.allOrder = orders[5];
-      console.log('Orders: ', orders[5]);
+      console.log('Orders: ', orders);
     });
   }
 

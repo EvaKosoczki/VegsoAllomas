@@ -33,8 +33,6 @@
               <p *ngIf="item.status=='deleted'" class="text-inactive">deleted</p>
             </td>
             <td class="col-2 btn-group">
-              <!-- <button type="button" class="btn btn-success" routerLink="/orders/edit/{{item.orderId}}">Edit</button> -->
-              <!-- <button class="btn btn-danger" type="button" (click)="onDelete(item)">Delete</button> -->
               <button class="btn btn-info" (click)="toggleView(item.orderId)">Details</button>
               <button class="btn btn-warning" (click)="onStatusChange(item)">Inactivate</button>
             </td>

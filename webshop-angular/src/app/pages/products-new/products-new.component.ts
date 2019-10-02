@@ -12,6 +12,8 @@ export class ProductsNewComponent implements OnInit {
   addedProduct: Product = new Product();
   originalName: string = '';
   replacedName: string = '';
+  purposes: string[] = ['All-mountain', 'Freeride', 'Freestyle'];
+  shapes: string[] = ['Directional', 'Twin'];
 
   constructor(private productService: ProductsService,
     private router: Router) { }
@@ -20,7 +22,7 @@ export class ProductsNewComponent implements OnInit {
   }
   onSubmit(ev: Event): void {
     ev.preventDefault();
-
+    delete this.addedProduct.status;
     this.productService.create(this.addedProduct).subscribe(
       response => {
         console.log('sikeres');
@@ -36,5 +38,9 @@ export class ProductsNewComponent implements OnInit {
   }
   onBlurMethod(data) {
     this.addedProduct.postfix = data.target.value
+  }
+
+  onCancel() {
+    this.router.navigateByUrl("/products");
   }
 }

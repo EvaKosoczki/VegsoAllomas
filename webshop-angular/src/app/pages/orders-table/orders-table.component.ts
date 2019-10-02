@@ -71,8 +71,5 @@ export class OrdersTableComponent implements OnInit {
     )
   }
 
-  setSorterKey(status){
-
-  }
 
 }

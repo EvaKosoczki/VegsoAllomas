@@ -38,8 +38,9 @@ userId: number = 0;
     if (this.user.zip == null) {
       delete this.user.zip
     }
-    console.log(this.user);
-    this.userService.updateID(this.userId, this.user)
+    delete this.user.email;
+    
+    this.userService.update(this.user)
       .subscribe(
         response => {
           this.router.navigateByUrl("/users");

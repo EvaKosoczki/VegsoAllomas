@@ -55,6 +55,19 @@ router.put('/products/:id', async (req, res, next) => {
   res.json(productDetails);
 })
 
+router.put('/products', async (req, res, next) => {
+  const productDetails = await db.update({
+    table: "snowboards",
+    set: {
+      'snowboards.postfix': req.body.postfix
+    },
+    where: {
+      ID: req.body.ID
+    }
+  })
+  res.json(productDetails);
+})
+
 
 
 // orders
@@ -163,7 +176,7 @@ router.get('/users/:id', async (req, res, next) => {
 
 
 router.put('/users/:id', async (req, res, next) => {
-  console.log("REQBODY:", req.body);
+
   const users = [];
   const userDetails = await db.update({
     table: "users",
@@ -261,6 +274,11 @@ router.get('/baskets', async (req, res, next) => {
     from: '`basket-details`',
     groupby: '`basket-details`.basket'
   })
+
+  console.log(basketsByCust);
+  console.log(basketDetails);
+  console.log(totalPrice);
+  console.log(productQuantity);
 
   baskets.push(basketsByCust);
   baskets.push(basketDetails);

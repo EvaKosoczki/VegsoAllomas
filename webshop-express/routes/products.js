@@ -6,53 +6,69 @@ const UserDb = require('../modules/user');
 const userDb = new UserDb();
 
 router.get('/:postfix', async (req, res, next) => {
-  const productDetails = await db.get({
+  const postfixes = await db.get({
     select: '*',
     from: 'snowboards',
     where: {
       postfix: `${req.params.postfix}`
-    },
-    join: {
-      join: 'inner',
-      table: 'brands',
-      'snowboards.brand': 'brands.brandId'
-    },
-    orderby: {
-      name: 'asc',
-      brandName: 'asc'
     }
-  })
-
-  let reviewDets = await db.get({
-    select: '*',
-    from: '`review-details`',
-    join: {
-      join: 'inner',
-      table: 'reviews',
-      '`review-details`.review': 'reviews.reviewId',
-    },
-    where: {
-      'reviews.snowboardId': `${productDetails[0].ID}`
-    }
-  })
-  console.log("REVIEWDETS", reviewDets);
-  let reviewD = reviewDets;
-  if (reviewD == undefined) {
-    reviewD = 0;
-  }
-
-  const oneProduct = productDetails[0];
-  const img = path.join('/image', 'snowboards', oneProduct.picture);
-  const icon = path.join('/image', 'brands', oneProduct.logo);
-
-  res.render('product', {
-    product: oneProduct,
-    imgRoot: img,
-    iconRoot: icon,
-    user: req.user,
-    counter: req.body.counter,
-    reviews: reviewD
   });
+
+  if (postfixes[0] == undefined) {
+    res.render('no-product', {
+      title: 'No product found!',
+      counter: req.body.counter
+    });
+  } else {
+
+    const productDetails = await db.get({
+      select: '*',
+      from: 'snowboards',
+      where: {
+        postfix: `${req.params.postfix}`
+      },
+      join: {
+        join: 'inner',
+        table: 'brands',
+        'snowboards.brand': 'brands.brandId'
+      },
+      orderby: {
+        name: 'asc',
+        brandName: 'asc'
+      }
+    })
+
+    let reviewDets = await db.get({
+      select: '*',
+      from: '`review-details`',
+      join: {
+        join: 'inner',
+        table: 'reviews',
+        '`review-details`.review': 'reviews.reviewId',
+      },
+      where: {
+        'reviews.snowboardId': `${productDetails[0].ID}`
+      }
+    })
+    console.log("REVIEWDETS", reviewDets);
+    let reviewD = reviewDets;
+    if (reviewD == undefined) {
+      reviewD = 0;
+    }
+
+    const oneProduct = productDetails[0];
+    const img = path.join('/image', 'snowboards', oneProduct.picture);
+    const icon = path.join('/image', 'brands', oneProduct.logo);
+
+    res.render('product', {
+      product: oneProduct,
+      imgRoot: img,
+      iconRoot: icon,
+      user: req.user,
+      counter: req.body.counter,
+      reviews: reviewD
+    });
+  }
 });
 
 
@@ -139,13 +155,13 @@ router.post('/', async (req, res, next) => {
 // })
 
 
-// No product found:
-router.get('/*', (req, res, next) => {
-  res.render('no-product', {
-    title: 'No product found!',
-    counter: req.body.counter
-  });
-});
+// // No product found:
+// router.get('/*', (req, res, next) => {
+//   res.render('no-product', {
+//     title: 'No product found!',
+//     counter: req.body.counter
+//   });
+// });
 
 // can you review?
 router.put('/reviews', async (req, res, next) => {
@@ -166,7 +182,7 @@ router.put('/reviews', async (req, res, next) => {
   })
 
   let isTrue = true;
-  if (canReview[0] == undefined){
+  if (canReview[0] == undefined) {
     isTrue = false;
   }
   for (let i = 0; i < canReview.length; i++) {

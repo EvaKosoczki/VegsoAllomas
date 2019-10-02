@@ -7,7 +7,7 @@ isHidden = true;
 
 //get all basket item and details
 router.get('/', async (req, res, next) => {
-	const ordersByCust = await db.get({
+	const diffOrders = await db.get({
 		select: {
 			'OrderId': 'OrderId'
 		},
@@ -17,16 +17,19 @@ router.get('/', async (req, res, next) => {
 			table: 'users',
 			'orders.userId': 'users.userId'
 		},
+		orderby: {
+			'orderDate': 'desc'
+		}
 	});
 	let Orders = []
-	for (let i = 0; i < ordersByCust.length; i += 1) {
+	for (let i = 0; i < diffOrders.length; i += 1) {
 		let orderDetails = await db.get({
 			select: '*',
 			from: 'orders',
 			where: {
 				userId: `${req.user.userId}`,
 				relation: 'and',
-				OrderId: ordersByCust[i].OrderId
+				OrderId: diffOrders[i].OrderId
 			},
 			join: {
 				join: 'inner',
@@ -36,6 +39,7 @@ router.get('/', async (req, res, next) => {
 				table1: '`snowboards`',
 				'snowboards.ID': '`order-details`.snowboardId'
 			},
+
 		});
 		orderDetails.Total = orderDetails.map(product => product.quantity * product.price)
 			.reduce((a, b) => {

@@ -1,6 +1,30 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
 const db = require('../modules/db');
+const path = require('path')
+
+const DIR = './public/image/snowboards';
+
+const upload = multer({dest: DIR, filename: function (req, file, cb) {
+  (null, file.fieldname + '-' + Date.now())
+}
+}).single('photo');
+
+router.post('/', function (req, res, next) {
+  var path = '';
+  upload(req, res, function (err) {
+     if (err) {
+       // An error occurred when uploading
+       console.log(err);
+       return res.status(422).send("an Error occured")
+     }  
+    // No error occured.
+     path = req.file.path;
+     return res.send("Upload Completed for "+path); 
+});     
+})
+
 
 router.get('/products', async (req, res, next) => {
   const productDetails = await db.get({

@@ -269,6 +269,20 @@ footer {
   .basket-small-res {
     display: block;
   }
+
+  .carousel-img{
+    max-height: 320px;
+  }
+
+  #myCarousel h4{
+    font-size: 30px !important;
+    text-align: left
+  }
+
+  #myCarousel .carousel-item a{
+    padding: 10px 10px;
+  }
+
 }
 
 @media screen and (max-width: 1030px) {

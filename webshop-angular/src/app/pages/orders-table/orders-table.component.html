@@ -29,12 +29,14 @@
         <tbody>
           <tr class="row" *ngFor="let item of allData; let i = index">
             <td class="col-2">{{item.firstName}} {{item.lastName}}</td>
-            <td class="col-2">{{item.orderDate}}</td>
+            <td class="col-2">{{item.orderDate | datePipe }}</td>
             <td class="col-2">{{productsQuantityArr[i].productQuantity}}</td>
             <td class="col-2">{{totalPriceArr[i].totalPrice}}</td>
             <td class="col-2">
-              <select *ngIf="item.status!='deleted'" name="status" class="custom-select" (change)="onChange($event.target.value, item)">
-                <option *ngFor="let status of statusArray" value="{{status}}" [selected]="status == item.status">{{status}}</option>
+              <select *ngIf="item.status!='deleted'" name="status" class="custom-select"
+                (change)="onChange($event.target.value, item)">
+                <option *ngFor="let status of statusArray" value="{{status}}" [selected]="status == item.status">
+                  {{status}}</option>
               </select>
               <p *ngIf="item.status=='deleted'" class="text-inactive">deleted</p>
             </td>

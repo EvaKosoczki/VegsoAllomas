@@ -8,22 +8,34 @@ import { OrderService } from 'src/app/service/orders.service';
 })
 export class FirstReportComponent implements OnInit {
   allOrder: any[] = [];
-  changeCounter: number = 0;
-  productsQuantityArr: [] = [];
-  totalPriceArr: [] = [];
-  orderDetails: any[] = [];
+  sumOrderValue: number = 0;
+  sumOrders: number = 0;
+  orderKey: string = '';
+  orderDirection: number = 1;
+  filterPhrase: string = '';
 
   constructor(private orderService: OrderService) {
     this.orderService.getAll().subscribe(orders => {
-      this.allOrder = orders[0];
-      this.orderDetails = orders[1];
-      this.totalPriceArr = orders[2];
-      this.productsQuantityArr = orders[3];
-      console.log('Orders: ', orders);
+      for (let k in orders[4]) {
+        if (!orders[4][k]) {
+          continue;
+        }
+        this.sumOrderValue += orders[4][k].orderValue;
+        this.sumOrders += orders[4][k].numberOfOrders;
+      }
+      this.allOrder = orders[4];
     });
   }
 
   ngOnInit() {
   }
 
+  setSorterKey(key: string): void {
+    if (key === this.orderKey) {
+      this.orderDirection = this.orderDirection === -1 ? 1 : -1;
+    } else {
+      this.orderDirection = 1;
+    }
+    this.orderKey = key;
+  }
 }

@@ -2,13 +2,16 @@
   <div class="row">
     <div class="col-12">
       <h1>New Product</h1>
-      <form (submit)="onSubmit($event)">
+      <form (submit)="onSubmit($event)" #newProductForm = "ngForm">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" name="name"
-            placeholder="Name" [(ngModel)]="addedProduct.name"
-            (blur)="onBlurMethod($event)">
-        </div>
+            placeholder="Name" (blur)="onBlurMethod($event)" #name="ngModel" required [(ngModel)]="addedProduct.name">
+            <span>
+                <fa-icon [icon]="faTimesCircle" style="color:  firebrick" *ngIf="name.errors?.required && name.touched"></fa-icon>
+                <span *ngIf="name.errors?.required && name.touched">Name is required. Please fill it out.</span>
+            </span>
+          </div>
         <div class="form-group">
           <label for="postfix">Postfix</label>
           <input type="text" class="form-control" id="postfix" name="postfix"
@@ -17,36 +20,79 @@
         </div>
         <div class="form-group">
           <label for="brand">Brand</label>
-          <input type="text" class="form-control" id="brand" name="brand"
-            placeholder="Brand" [(ngModel)]="addedProduct.brand">
+          <select name="brand" id="brand" class="form-control" required #brand="ngModel" [(ngModel)]="selectedBrand">
+            <option *ngFor="let brand of brands" value="{{brand.brandId}}">{{brand.brandName}}</option>
+          </select>
+            <span>
+                <fa-icon [icon]="faTimesCircle" style="color:  firebrick" *ngIf="brand.errors?.required && brand.touched"></fa-icon>
+                <span *ngIf="brand.errors?.required && brand.touched">Select a brand.</span>
+            </span>
         </div>
         <div class="form-group">
           <label for="purpose">Purpose</label>
-          <input type="text" class="form-control" id="purpose" name="purpose"
-            placeholder="Purpose" [(ngModel)]="addedProduct.purpose">
+          <select name="purpose" id="purpose" #purpose="ngModel" required class="form-control" [(ngModel)]="addedProduct.purpose">
+            <option value="All-mountain">All-mountain</option>
+            <option value="Freeride">Freeride</option>
+            <option value="Freestyle">Freestyle</option>
+          </select>
+          <span>
+              <fa-icon [icon]="faTimesCircle" style="color:  firebrick" *ngIf="purpose.errors?.required && purpose.touched"></fa-icon>
+              <span *ngIf="purpose.errors?.required && purpose.touched">Select a purpose.</span>
+          </span>
         </div>
         <div class="form-group">
           <label for="shape">Shape</label>
-          <input type="text" class="form-control" id="shape" name="shape"
-            placeholder="Shape" [(ngModel)]="addedProduct.shape">
+          <select name="shape" id="shape" #style="ngModel" required class="form-control" [(ngModel)]="addedProduct.shape">
+            <option value="Directional">Directional</option>
+            <option value="Twin">Twin</option>
+          </select>
+          <span>
+              <fa-icon [icon]="faTimesCircle" style="color:  firebrick" *ngIf="style.errors?.required && style.touched"></fa-icon>
+              <span *ngIf="style.errors?.required && style.touched">Select a style.</span>
+          </span>
         </div>
         <div class="form-group">
           <label for="size">Size</label>
           <input type="number" class="form-control" id="size" name="size"
-            placeholder="Size" [(ngModel)]="addedProduct.size">
+           placeholder="Size" #size="ngModel" required pattern="^(1[2-8][0-9]|19[0-9]|2[01][0-9]|220)$" [(ngModel)]="addedProduct.size">
+           <span>
+              <fa-icon [icon]="faTimesCircle" style="color:  firebrick" *ngIf="size.errors?.required && size.touched"></fa-icon>
+              <span *ngIf="size.errors?.required && size.touched">Size is required.</span>
+          </span>
+          <span>
+              <fa-icon [icon]="faTimesCircle" style="color:  firebrick" *ngIf="size.errors?.pattern && size.touched"></fa-icon>
+              <span *ngIf="size.errors?.pattern && size.touched">Size must be within 120 and 220.</span>
+          </span>
         </div>
 
         <div class="form-group">
           <label for="price">Price</label>
           <input type="number" class="form-control" id="price" name="price"
-            placeholder="Price" [(ngModel)]="addedProduct.price">
+           placeholder="Price" #price="ngModel" required pattern="^([5-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-5][0-9]{3}|6000)$" [(ngModel)]="addedProduct.price">
+           <span>
+              <fa-icon [icon]="faTimesCircle" style="color:  firebrick" *ngIf="price.errors?.required && price.touched"></fa-icon>
+              <span *ngIf="price.errors?.required && price.touched">Price is required.</span>
+          </span>
+          <span>
+              <fa-icon [icon]="faTimesCircle" style="color:  firebrick" *ngIf="price.errors?.pattern && price.touched"></fa-icon>
+              <span *ngIf="price.errors?.pattern && price.touched">Price must be within 50 and 6000.</span>
+          </span>
         </div>
         <div class="form-group">
           <label for="picture">Picture</label>
           <input type="text" class="form-control" id="picture" name="picture"
-            placeholder="Picture" [(ngModel)]="addedProduct.picture">
+            placeholder="Picture" #picture="ngModel" required pattern="([A-Za-z0-9\-_]+).(?:jpg|png)" [(ngModel)]="addedProduct.picture">
+            <span>
+                <fa-icon [icon]="faTimesCircle" style="color:  firebrick" *ngIf="picture.errors?.required && picture.touched"></fa-icon>
+                <span *ngIf="picture.errors?.required && picture.touched">Type in the name of the picture.</span>
+            </span>
+            <span>
+                <fa-icon [icon]="faTimesCircle" style="color:  firebrick" *ngIf="picture.errors?.pattern && picture.touched"></fa-icon>
+                <span *ngIf="picture.errors?.pattern && picture.touched">Invalid name format. Valid characters: letters, numbers and hyphens. Extensions: .jpg or .png</span>
+            </span>
         </div>
-        <button type="submit" class="btn btn-primary">Send</button>
+        <button type="submit" [disabled]=newProductForm.form.invalid class="btn btn-primary">Send</button>
+        <button type="button" routerLink="/products" class="btn btn-warning">Cancel</button>
       </form>
     </div>
   </div>

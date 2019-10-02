@@ -41,5 +41,11 @@ class DB {
     let result = await this.conn.query(sql);
     return result;
   }
+  async getFilteredItems(sql, limit) {
+    sql += `limit ${limit.start}, ${limit.limit}`;
+    console.log(sql);
+    let result = await this.conn.query(sql);
+    return result;
+  }
 }
 module.exports = new DB();

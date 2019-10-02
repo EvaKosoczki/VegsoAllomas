@@ -7,29 +7,49 @@
       </strong>
     </div>
   </div>
-
   <div class="row">
-    <div class="col-12 tableBack mt-5">
+    <div class="col-4 offset-4 search-input">
+      <input [(ngModel)]="filterPhrase" type="text" class="form-control"
+        placeholder="Please enter the period or snowboard name to filter...">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8 offset-2 tableBack mt-3">
       <table class="table text-active">
         <thead class="">
           <tr>
-            <th>Period</th>
-            <th>Snowboard</th>
-            <th>Quantity</th>
-            <th>Unit price</th>
-            <th>Income</th>
+            <th (click)="setSorterKey('period')">Period</th>
+            <th (click)="setSorterKey('snowboardName')">Snowboard</th>
+            <th (click)="setSorterKey('price')">Unit price ($)</th>
+            <th (click)="setSorterKey('quantity')">Quantity</th>
+            <th (click)="setSorterKey('orderValue')" style="text-align:right">Income ($)</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of allData">
-            <td>{{item.firstName}}</td>
-            <td>{{item.lastName}}</td>
-            <td>{{item.email}}</td>
-            <td>{{item.email}}</td>
-            <td>{{item.email}}</td>
+          <tr *ngFor="let item of allOrder | filter:filterPhrase | sort:orderKey:orderDirection">
+            <td>{{item.period | customDate }}</td>
+            <td>{{item.snowboardName}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.quantity}}</td>
+            <td style="text-align:right">{{item.orderValue | number: decimal }}</td>
+          </tr>
+          <tr>
+            <td class="total">Total:</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="total" style="text-align:right">
+              {{ allOrder | filter:filterPhrase | sort:orderKey:orderDirection | sum:'orderValue' | number: decimal}}
+            </td>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2 offset-5 mt-4">
+      <a name="" id="report-button" class="btn btn-lg btn-info" href="/admin/reports/orders" role="button"
+        style=" border-color:white">Report of all orders per status</a>
     </div>
   </div>
 </div>

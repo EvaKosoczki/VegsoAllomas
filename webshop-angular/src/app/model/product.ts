@@ -1,7 +1,7 @@
 export class Product {
   ID: number = 0;
   name: string = '';
-  brand: number = 0;
+  brand: number;
   purpose: string = '';
   shape: string = '';
   size: number = 0;

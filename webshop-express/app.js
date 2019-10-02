@@ -7,6 +7,7 @@ const favicon = require('serve-favicon');
 const UserDB = require('./modules/user');
 const db = require('./modules/db');
 
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
@@ -19,6 +20,11 @@ const ordersRouter = require('./routes/orders');
 const userDb = new UserDB();
 const app = express();
 
+var corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200,
+};
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -28,6 +34,7 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST,PUT,DELETE,GET,OPTIONS');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 })
 

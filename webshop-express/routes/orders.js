@@ -48,7 +48,6 @@ router.get('/', async (req, res, next) => {
 			.reduce((a, b) => {
 				return a + b
 			}, 0)
-		console.log(orderDetails)
 		Orders.push(orderDetails);
 	}
 
@@ -60,12 +59,11 @@ router.get('/', async (req, res, next) => {
 			userId: `${req.user.userId}`
 		},
 	});
-
+	console.log(userData[0])
 
 	res.render('orders', {
 		title: 'My orders',
 		Orders: Orders,
-		user: req.user,
 		userData: userData[0]
 	});
 

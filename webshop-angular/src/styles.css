@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 .expandRow {
   display: none;
@@ -145,10 +146,14 @@
 
 .title-design {
   text-align: center;
-  padding: 20px;
+  padding: 40px;
   color: #fff;
 }
+
 .noShow {
   display: none;
 }
 
+thead tr th {
+  color: #ff0;
+}

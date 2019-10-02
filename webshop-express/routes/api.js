@@ -1,6 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../modules/db');
+const path = require('path');
+
+
+
+
+
+// products
 
 router.get('/products', async (req, res, next) => {
   const productDetails = await db.get({
@@ -41,6 +48,14 @@ router.post('/products', async (req, res, next) => {
   })
 
   res.json(productDetails);
+});
+router.get('/brands', async (req, res, next) => {
+  const result = await db.get({
+    select: '*',
+    from: 'brands'
+  });
+  console.log(result);
+  res.json(result);
 });
 
 router.put('/products/:id', async (req, res, next) => {
@@ -104,14 +119,58 @@ router.get('/orders', async (req, res, next) => {
     groupby: '`order-details`.order'
   })
 
+  const firstReport = await db.get({
+    select: {
+      'orders.orderDate': 'period',
+      'orders.status': 'status',
+      'count(distinct orders.orderId)': 'numberOfOrders',
+      'sum(unitPrice*quantity)': 'orderValue'
+    },
+    from: 'orders',
+    join: {
+      join: 'inner',
+      table: '`order-details`',
+      'orders.orderId': '`order-details`.order'
+    },
+    groupby: {
+      groupby1: 'month(orders.orderDate)',
+      groupby2: 'orders.status'
+    }
+  })
+
+  const secondReport = await db.get({
+    select: {
+      'orders.orderDate': 'period',
+      'snowboards.name': 'snowboardName',
+      '`order-details`.quantity': 'quantity',
+      '`order-details`.unitPrice': 'price',
+      'sum(unitPrice*quantity)': 'orderValue'
+    },
+    from: 'orders',
+    join: {
+      join1: 'inner',
+      table1: '`order-details`',
+      'orders.orderId': '`order-details`.order',
+      join2: 'inner',
+      table2: 'snowboards',
+      '`order-details`.snowboardId': 'snowboards.ID'
+    },
+    where: {
+      status: 'delivered'
+    },
+    groupby: {
+      groupby1: 'month(orders.orderDate)',
+      groupby2: '`order-details`.snowboardId'
+    }
+  })
+
   orders.push(ordersByCust);
   orders.push(orderDetails);
   orders.push(totalPrice);
   orders.push(productQuantity);
-  //console.log(orders);
-  //console.log(totalPrice);
-  //console.log(productQuantity);
-  console.log(orders);
+  orders.push(firstReport);
+  orders.push(secondReport);
+
   res.json(orders);
 });
 
@@ -136,6 +195,10 @@ router.get('/orders/:id', async (req, res, next) => {
   })
 
   res.json(orderDetails);
+});
+
+router.get('/orders', async (req, res, next) => {
+
 });
 
 router.delete('/orders/:id', async (req, res, next) => {
@@ -374,4 +437,13 @@ router.put('/orders', async (req, res, next) => {
 
 
 
-module.exports = router;
+module.exports = router,
+function upload(req, res) {
+  let form = new IncomingForm();
+  form.on('file', (field, file) => {
+  });
+  form.on('end', () => {
+    res.json()
+  });
+  form.parse(req)
+};

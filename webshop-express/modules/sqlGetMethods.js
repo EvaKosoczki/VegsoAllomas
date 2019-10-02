@@ -45,8 +45,18 @@ module.exports = {
     return [sql, this.queryParams];
   },
   groupby(groupby) {
-    let sql = ` group by ${groupby}`;
-    return sql;
+    let sql = ' group by ';
+    if (typeof groupby === 'string') {
+      sql += `${groupby}`;
+      return sql;
+    }
+    else {
+      for (let key in groupby) {
+        sql += `, ${groupby[key]}`
+      }
+      sql = sql.replace(',', '');
+      return sql;
+    }
   },
   orderby(orderby) {
     let sql = ' order by';

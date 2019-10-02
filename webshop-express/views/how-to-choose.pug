@@ -1,0 +1,48 @@
+extends layout
+
+block content
+	.container
+		.row
+			.col-12.text-center
+				h3 Answer three simple questions to see what board suits you the best!
+
+	.container
+		.row
+			.col-12
+				form
+					.form-group
+						h4 Are you new to the world of snowboarding?
+							div
+								input(id="beginner" type="radio" name="first" value=1)
+								label(for="beginner") Yes, I'm just starting now.
+							div
+								input(id="intermediate" type="radio" name="first" value=2)
+								label(for="intermediate") I've been snowboarding for some time.
+							div
+								input(id="intermediate" type="radio" name="first" value=2)
+								label(for="intermediate") I've been snowboarding for some time.
+					.form-group
+						h4 Where do you see yourself boarding?
+							div
+								input(id="starting" type="radio" name="second" value=4)
+								label(for="starting") I don't know, I'm just starting it.
+							div
+								input(id="freestyle" type="radio" name="second" value=5)
+								label(for="freestyle") In the fun park, where I can practice my tricks!
+							div
+								input(id="freeride" type="radio" name="second" value=6)
+								label(for="freeride") I love the fresh snow, and the mountains where no one's been before.
+					.form-group
+						h4 What is your height?
+							div
+								input(id="short" type="radio" name="third" value=7)
+								label(for="short") Between 150-170 cm.
+							div
+								input(id="average" type="radio" name="third" value=8)
+								label(for="average") Between 170-180 cm.
+							div
+								input(id="tall" type="radio" name="third" value=9)
+								label(for="tall") Above 180 cm.
+					button.btn.btn-success(id="quizButton" type="button" onclick="getValues()") Show me!
+
+	script(src="/javascripts/how-to-choose.js")

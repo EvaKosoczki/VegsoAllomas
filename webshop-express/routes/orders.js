@@ -12,6 +12,9 @@ router.get('/', async (req, res, next) => {
 			'OrderId': 'OrderId'
 		},
 		from: 'orders',
+		where: {
+			'orders.userId': `${req.user.userId}`
+		},
 		join: {
 			join: 'inner',
 			table: 'users',

@@ -137,17 +137,7 @@ router.post('/orders', async (req, res, next) => {
       'userId': `${req.user.userId}`,
     }
   })
-  console.log('neworder ', newOrder)
   
-  /*const orderId = await db.get({
-    select: {
-      'orderId': 'order'
-    },
-    from: 'orders',
-    where: {
-      'userId': `${req.user.userId}`,
-    }
-  })*/
   let orderDetails = [];
   basketDetails.map(item => {
     orderDetails.push({

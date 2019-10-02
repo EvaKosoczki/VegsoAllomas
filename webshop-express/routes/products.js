@@ -38,16 +38,33 @@ router.get('/:postfix', async (req, res, next) => {
 
 /* GET all products in JSON format */
 router.get('/', async (req, res, next) => {
+  let productDetails = [];
+  console.log('req.filter', req.query.filter);
   const page = req.query.page || 0;
-  const productDetails = await db.get({
-    select: '*',
-    from: "snowboards",
-    limit: {
-      start:page*12,
+  let pagination = 0;
+  if (req.query.filter) {
+    let sql = await userDb.filter(req.query);
+    productDetails = await db.getFilteredItems(sql, {
+      start: page * 12,
       limit: 12
-    }
-  });
-  const pagination = await userDb.pagination(page);
+    });
+    pagination = await userDb.pagination(page, sql);
+  } else {
+    productDetails = await db.get({
+      select: '*',
+      from: "snowboards",
+      limit: {
+        start: page * 12,
+        limit: 12
+      }
+    });
+    pagination = await userDb.pagination(page, {
+      select: {
+        'count(ID)': 'amount'
+      },
+      from: 'snowboards'
+    });
+  }
   console.log(pagination);
   res.render('products', {
     title: 'Snowboards',
@@ -55,20 +72,27 @@ router.get('/', async (req, res, next) => {
     user: req.user,
     counter: req.body.counter,
     pagination: pagination,
-    page:page
+    page: page,
+    query: req.url.split('?')[1] || "" 
   });
 });
 //get filtered products
 router.post('/', async (req, res, next) => {
-  delete req.body.counter;
-  const filteredProducts = await db.get({
-    select: '*',
-    from: 'snowboards',
-    where: req.body,
-  })
+  const page = req.query.page || 0;
+  let sql = await userDb.filter(req.body);
+  req.filter = sql;
+  const productDetails = await db.getFilteredItems(sql, {
+    start: page * 12,
+    limit: 12
+  });
+  let pagination = await userDb.pagination(page, sql);
+  console.log(pagination);
   res.render('products', {
     title: 'Snowboards',
-    products: filteredProducts,
+    counter: req.body.counter,
+    products: productDetails,
+    pagination: pagination,
+    page: page
   });
 })
 
@@ -119,6 +143,8 @@ router.post('/', async (req, res, next) => {
 // })
 
 
+
+
 //No product found:
 router.get('/*', (req, res, next) => {
   res.render('no-product', {
@@ -126,5 +152,7 @@ router.get('/*', (req, res, next) => {
     counter: req.body.counter
   });
 });
+
+
 
 module.exports = router;

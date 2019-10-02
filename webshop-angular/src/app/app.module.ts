@@ -26,6 +26,19 @@ import { FilterPipe } from './pipe/filter.pipe';
 import { SortPipe } from './pipe/sort.pipe';
 import { CustomDatePipe } from './pipe/custom-date.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FileSelectDirective } from 'ng2-file-upload';
+import { CommonModule } from '@angular/common';
+import {
+  MatButtonModule,
+  MatDialogModule,
+  MatListModule,
+  MatProgressBarModule,
+} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { DatePipePipe } from './pipe/date-pipe.pipe';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +61,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FilterPipe,
     SortPipe,
     CustomDatePipe,
+    FileSelectDirective,
+    DatePipePipe
   ],
   imports: [
     BrowserModule,
@@ -56,6 +71,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    CommonModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatListModule,
+    FlexLayoutModule,
+    BrowserAnimationsModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../modules/db');
+const path = require('path');
+
+const IncomingForm = require('formidable').IncomingForm;
+
+
 
 
 // products
@@ -433,4 +438,13 @@ router.put('/orders', async (req, res, next) => {
 
 
 
-module.exports = router;
+module.exports = router,
+function upload(req, res) {
+  let form = new IncomingForm();
+  form.on('file', (field, file) => {
+  });
+  form.on('end', () => {
+    res.json()
+  });
+  form.parse(req)
+};

@@ -33,8 +33,9 @@ export class ProductsNewComponent implements OnInit {
     this.addedProduct = new Product();
     this.brandService.getBrands().forEach(brands =>{
       this.brands =brands;
-    })
-  }
+    });
+    }
+  
   onSubmit(ev: Event): void {
     ev.preventDefault();
     console.log(this.addedProduct);

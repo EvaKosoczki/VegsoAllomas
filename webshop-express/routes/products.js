@@ -79,6 +79,9 @@ router.get('/', async (req, res, next) => {
       from: 'snowboards'
     });
   }
+
+  console.log(filteredKeys);
+
   res.render('products', {
     title: 'Snowboards',
     products: productDetails,
@@ -86,9 +89,14 @@ router.get('/', async (req, res, next) => {
     counter: req.body.counter,
     pagination: pagination,
     page: page,
+    brands:brands,
+    shapes:shapes,
+    purposes:purposes,
+    keys: filteredKeys,
     query: req.url.split('?')[1] || "" 
   });
 });
+
 //get filtered products
 router.post('/', async (req, res, next) => {
   const page = req.query.page || 0;

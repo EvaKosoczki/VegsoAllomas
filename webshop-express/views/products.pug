@@ -22,48 +22,37 @@ block content
             input(type="hidden", name="filter", value="1")
             input(type="hidden", name="page", value="0")
             .form-group.form-check
-            - let index = 0;
               p.font-weight-bold Brands
-              input#Burton.form-check-input(type='checkbox' name="brand" value=`${++index}`)
-              label.form-check-label.pr-5(for='Burton') Burton 
-              input#CAPiTA.form-check-input(type='checkbox' name=`brand` +`${index}`  value=`${++index}`)
-              label.form-check-label.pr-5(for='CAPiTA') CAPiTA 
-              input#LibTech.form-check-input(type='checkbox' name="brand2" value=3)
-              label.form-check-label.pr-5(for='LibTech') LibTech 
-              br
-              input#Nitro.form-check-input(type='checkbox' name="brand3" value=4)
-              label.form-check-label.pr-5(for='Nitro') Nitro
-              input#K2.form-check-input(type='checkbox' name="brand4" value=5)
-              label.form-check-label.pr-5(for='K2') K2
-              input#GNU.form-check-input(type='checkbox' name="brand5" value=6)
-              label.form-check-label(for='GNU') GNU
-              br
-              input#Jones.form-check-input(type='checkbox' name="brand6" value=7)
-              label.form-check-label.pr-5(for='Jones') Jones 
-              input#Ride.form-check-input(type='checkbox' name="brand7" value=8)
-              label.form-check-label.pr-5(for='Ride') Ride 
-              input#Salomon.form-check-input(type='checkbox' name="brand8" value=9)
-              label.form-check-label.pr-5(for='Salomon') Salomon
-              br
-              input#Rome.form-check-input(type='checkbox' name="brand9" value=10)
-              label.form-check-label.pr-5(for='Rome') Rome
-              input#Nidecker.form-check-input(type='checkbox' name="brand10" value=11)
-              label.form-check-label.pr-5(for='Nidecker') Nidecker 
-            .form-group.form-check
+              - let index = 0;
+              each brand in brands
+                -let name = `brand${index}`
+                -let checked = keys.indexOf(`${name}`) > -1 ? true : false
+                .row
+                  .col-3
+                    input.form-check-input(type="checkbox" name=`${name}` value=`${++index}` checked=checked )
+                    label.form-check-label.pr-5(for=`${brand.name}`) #{brand.name}
+
               p.font-weight-bold Shape
-              input#Directional.form-check-input(type='checkbox' name="shape" value="Directional")
-              label.form-check-label.pr-5(for='Directional') Directional 
-              input#Twin.form-check-input(type='checkbox' name="shape2" value="Twin")
-              label.form-check-label(for='Twin') Twin
-            .form-group.form-check
+              -let shapeIndex = 0;
+              each shape in shapes
+                -let shapeName = `shape${shapeIndex++}`
+                -let shapeChecked = keys.indexOf(`${shapeName}`) > -1 ? true : false
+                .row
+                  .col-3
+                    input.form-check-input(type="checkbox" name=`${shapeName}` value=`${shape.shape}` checked=shapeChecked )
+                    label.form-check-label.pr-5(for=`${shape.shape}`) #{shape.shape}
+
               p.font-weight-bold Purpose
-              input#All-mountain.form-check-input(type='checkbox' name="purpose" value="All-mountain")
-              label.form-check-label.pr-5(for='All-mountain') All-mountain 
-              input#Freestyle.form-check-input(type='checkbox' name="purpose1" value="Freestyle")
-              label.form-check-label.pr-5(for='Freestyle') Freestyle
-              input#Freeride.form-check-input(type='checkbox' name="purpose2" value="Freeride")
-              label.form-check-label(for='Freeride') Freeride
-              br
+              -let purposeIndex = 0;
+              each purpose in purposes
+                -let purposeName = `purpose${purposeIndex++}`
+                -let purposeChecked = keys.indexOf(`${purposeName}`) > -1 ? true : false
+                .row
+                  .col-3
+                    input.form-check-input(type="checkbox" name=`${purposeName}` value=`${purpose.purpose}` checked=purposeChecked )
+                    label.form-check-label.pr-5(for=`${purpose.purpose}`) #{purpose.purpose}
+
+
             button.btn.btn-primary(type='submit') Filter
     
 

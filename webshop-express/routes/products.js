@@ -4,7 +4,6 @@ const path = require('path');
 const db = require('../modules/db');
 const UserDb = require('../modules/user');
 const userDb = new UserDb();
-let isHidden = true;
 
 router.get('/:postfix', async (req, res, next) => {
   const productDetails = await db.get({
@@ -52,8 +51,7 @@ router.get('/:postfix', async (req, res, next) => {
     iconRoot: icon,
     user: req.user,
     counter: req.body.counter,
-    reviews: reviewD,
-    isHidden: isHidden
+    reviews: reviewD
   });
 });
 

@@ -36,6 +36,7 @@ import {
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DatePipePipe } from './pipe/date-pipe.pipe';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FilterPipe,
     SortPipe,
     CustomDatePipe,
-    FileSelectDirective
+    FileSelectDirective,
+    DatePipePipe
   ],
   imports: [
     BrowserModule,

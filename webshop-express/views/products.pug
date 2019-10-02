@@ -31,7 +31,7 @@ block content
                 -let name = `brand${index}`
                 -let checked = keys.indexOf(`${name}`) > -1 ? true : false
                   .col-4
-                    input.form-check-input(type="checkbox" name=`${name}` value=`${++index}` checked=checked )
+                    input.form-check-input(id=`${brand.name}` type="checkbox" name=`${name}` value=`${++index}` checked=checked )
                     label.form-check-label.pr-5(for=`${brand.name}`) #{brand.name}
 
             h4.filter-heading.mb-3.mt-3.font-weight-bold Shape
@@ -41,7 +41,7 @@ block content
                 -let shapeName = `shape${shapeIndex++}`
                 -let shapeChecked = keys.indexOf(`${shapeName}`) > -1 ? true : false
                   .col-3
-                    input.form-check-input(type="checkbox" name=`${shapeName}` value=`${shape.shape}` checked=shapeChecked )
+                    input.form-check-input(id=`${shape.shape}` type="checkbox" name=`${shapeName}` value=`${shape.shape}` checked=shapeChecked )
                     label.form-check-label.pr-5(for=`${shape.shape}`) #{shape.shape}
 
             h4.filter-heading.mb-3.mt-3.font-weight-bold Purpose
@@ -51,7 +51,7 @@ block content
                 -let purposeName = `purpose${purposeIndex++}`
                 -let purposeChecked = keys.indexOf(`${purposeName}`) > -1 ? true : false
                   .col-5
-                    input.form-check-input(type="checkbox" name=`${purposeName}` value=`${purpose.purpose}` checked=purposeChecked )
+                    input.form-check-input(id=`${purpose.purpose}` type="checkbox" name=`${purposeName}` value=`${purpose.purpose}` checked=purposeChecked )
                     label.form-check-label.pr-5(for=`${purpose.purpose}`) #{purpose.purpose}
 
 

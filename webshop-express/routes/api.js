@@ -45,14 +45,14 @@ router.post('/products', async (req, res, next) => {
 
   res.json(productDetails);
 });
-  router.get('/brands', async (req,res, next) =>{
-    const result = await db.get({
-      select:'*',
-      from:'brands'
-    });
-    console.log(result);
-    res.json(result);
+router.get('/brands', async (req, res, next) => {
+  const result = await db.get({
+    select: '*',
+    from: 'brands'
   });
+  console.log(result);
+  res.json(result);
+});
 
 router.put('/products/:id', async (req, res, next) => {
   delete req.body.id;
@@ -119,7 +119,7 @@ router.get('/orders', async (req, res, next) => {
     select: {
       'orders.orderDate': 'period',
       'orders.status': 'status',
-      'count(orders.orderId)': 'numberOfOrders',
+      'count(distinct orders.orderId)': 'numberOfOrders',
       'sum(unitPrice*quantity)': 'orderValue'
     },
     from: 'orders',

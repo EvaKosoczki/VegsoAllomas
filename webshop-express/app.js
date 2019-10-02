@@ -15,6 +15,7 @@ const apiRouter = require('./routes/api');
 const loginRouter = require('./routes/login');
 const basketRouter = require('./routes/basket');
 const registerRouter = require('./routes/register');
+const howToChooseRouter = require('./routes/how-to-choose');
 
 const userDb = new UserDB();
 const app = express();
@@ -61,6 +62,7 @@ app.use('/logout', (req, res, next) => {
   res.redirect('/products');
 });
 
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
@@ -68,6 +70,7 @@ app.use('/api', apiRouter);
 app.use('/login', loginRouter);
 app.use('/basket', basketRouter);
 app.use('/register', registerRouter);
+app.use('/how-to-choose', howToChooseRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

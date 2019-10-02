@@ -151,6 +151,9 @@ router.get('/orders', async (req, res, next) => {
       table2: 'snowboards',
       '`order-details`.snowboardId': 'snowboards.ID'
     },
+    where: {
+      status: 'delivered'
+    },
     groupby: {
       groupby1: 'month(orders.orderDate)',
       groupby2: '`order-details`.snowboardId'

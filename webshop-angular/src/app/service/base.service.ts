@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../model/product';
 import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -9,7 +10,8 @@ import { HttpClient } from '@angular/common/http';
 export class BaseService {
   routeUrl: string = '';
   entity: string;
-  baseUrl = 'http://localhost:3000/api/'
+  baseUrl = 'http://localhost:3000/api/';
+  list: BehaviorSubject<any> = new BehaviorSubject([]);
   constructor(protected http: HttpClient) { }
 
   getUrl(): any {
@@ -47,4 +49,24 @@ export class BaseService {
     return this.http.put<any>(`${url}/${id}`, data)
   }
 
+  readAll(): void {
+    let url: string = this.getUrl()
+    this.http.get(url).forEach(
+      data => this.list.next(data)
+    );
+  }
+
+  updateBS(user): void {
+    let url: string = this.getUrl()
+    this.http.put(url, user).forEach(
+      resp => this.readAll()
+    );
+  }
+
+  deleteBS(id): void {
+    let url: string = this.getUrl()
+    this.http.delete(url+'/'+id).forEach(
+      done => this.readAll()
+    );
+  }
 }

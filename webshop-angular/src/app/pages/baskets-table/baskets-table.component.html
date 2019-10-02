@@ -1,3 +1,5 @@
+<!-- {{ list | json }} -->
+
 <div class="container-fluid">
   <div class="row mt-5">
     <div class="col-12 tableBack">
@@ -16,10 +18,10 @@
             <td class="col-3">{{productsQuantityArr[i].productQuantity}}</td>
             <td class="col-3">{{totalPriceArr[i].totalPrice}}</td>
             <td class="col-3 btn-group">
-              <button class="btn btn-info" (click)="toggleView(item.basketId)">Details</button>
+              <button class="btn btn-info" (click)="selectedRowFunc(item.basketId)">Details</button>
               <button class="btn btn-warning" (click)="clearBasket(item)">Clear</button>
             </td>
-            <div class="expandRow" id="expandRow{{item.basketId}}">
+            <div class="expandRow" id="expandRow{{item.basketId}}" *ngIf="item.basketId==selectedRow">
               <tr>
                 <th class="expandedData">Product</th>
                 <th class="expandedData">Unit price</th>

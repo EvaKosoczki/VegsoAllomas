@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BasketService } from 'src/app/service/basket.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-baskets-table',
@@ -7,26 +8,31 @@ import { BasketService } from 'src/app/service/basket.service';
   styleUrls: ['./baskets-table.component.css']
 })
 export class BasketsTableComponent implements OnInit {
-  allData: any[] = [];
+  list: [] = [];
   changeCounter: number = 0;
-  productsQuantityArr: [] = [];
+  allData: [] = [];
+  basketDetails: [] = [];
   totalPriceArr: [] = [];
-  basketDetails: any[] = [];
+  productsQuantityArr: [] = [];
+  selectedRow: number = -1;
+
 
   constructor(
     private basketService: BasketService
   ) {
-    this.basketService.getAll().subscribe(baskets => {
-      this.allData = baskets[0];
-      this.basketDetails = baskets[1];
-      this.totalPriceArr = baskets[2];
-      this.productsQuantityArr = baskets[3];
-    }
-    );
   }
 
   ngOnInit() {
-
+    this.basketService.readAll();
+    this.basketService.list.subscribe(
+      data => {
+        this.list = data;
+        this.allData = data[0];
+        this.basketDetails = data[1];
+        this.totalPriceArr = data[2];
+        this.productsQuantityArr = data[3];
+      }
+    )
   }
 
 
@@ -35,21 +41,20 @@ export class BasketsTableComponent implements OnInit {
   }
 
   onDelete(picked: any) {
-    this.basketService.update(picked).subscribe(
-      response => {
-        this.changeCounter++;
-      },
-      err => console.error(err),
-    )
+    const id = picked.basket;
+    this.basketService.updateBS(picked);
+    document.getElementById(`expandRow${id}`).classList.add("show");
   }
 
-  clearBasket(item){
-    this.basketService.delete(item.basketId).subscribe(
-      response => {
-        this.changeCounter++;
-      },
-      err => console.error(err)
-    )
+  clearBasket(item) {
+    this.basketService.deleteBS(item.basketId);
   }
 
+  selectedRowFunc(id) {
+    if (this.selectedRow == -1) {
+      this.selectedRow = id;
+    } else {
+      this.selectedRow = -1
+    }
+  }
 }

@@ -19,6 +19,14 @@ block content
       .col-xs-12.col-sm-2.col-md-3.col-lg-3
         .col-12.sticky-top.sidenav
           form(method='GET' action='/products' role='form')
+            -let num = ['4','8','12'];
+            select(name='prodsPerPage')
+              each perPage in num
+                if limit==perPage
+                  option(value=perPage selected) #{perPage}
+                else 
+                  option(value=perPage) #{perPage}
+
             input(type="hidden", name="filter", value="1")
             input(type="hidden", name="page", value="0")
             .form-group.form-check
@@ -102,3 +110,5 @@ block content
               - let link = query.replace(/page\=[^\&]/, `page=${pagination.next}`) || `page=${pagination.next}`;
                 a.page-link(href=`/products?${link}` aria-label='Next')
                   span(aria-hidden='true') &raquo;
+            
+            

@@ -76,18 +76,18 @@ module.exports = class UserDB {
         const result = await this.conn.query(sql[0], sql[1]);
         return result[0].orderItems;
     }
-    async pagination(page = 0, sql) {
+    async pagination(page = 0, sql, limit) {
         let amount =0;
         let lastPage =0;
         console.log('lekeres',sql);
         if(typeof sql === 'string'){
             let result= await this.conn.query(sql);
             amount = result.length;
-            lastPage = Math.ceil(amount / 12);
+            lastPage = Math.ceil(amount / limit);
         } else {
         let sql1 = await sqlParser(sql)
          amount = await this.conn.query(sql1[0], sql1[1]);
-         lastPage = Math.ceil(amount[0].amount / 12);
+         lastPage = Math.ceil(amount[0].amount / limit);
         }
         let counter = 0;
         let result = {};

@@ -45,14 +45,14 @@ router.post('/products', async (req, res, next) => {
 
   res.json(productDetails);
 });
-  router.get('/brands', async (req,res, next) =>{
-    const result = await db.get({
-      select:'*',
-      from:'brands'
-    });
-    console.log(result);
-    res.json(result);
+router.get('/brands', async (req, res, next) => {
+  const result = await db.get({
+    select: '*',
+    from: 'brands'
   });
+  console.log(result);
+  res.json(result);
+});
 
 router.put('/products/:id', async (req, res, next) => {
   delete req.body.id;
@@ -119,7 +119,7 @@ router.get('/orders', async (req, res, next) => {
     select: {
       'orders.orderDate': 'period',
       'orders.status': 'status',
-      'count(orders.orderId)': 'numberOfOrders',
+      'count(distinct orders.orderId)': 'numberOfOrders',
       'sum(unitPrice*quantity)': 'orderValue'
     },
     from: 'orders',
@@ -129,17 +129,40 @@ router.get('/orders', async (req, res, next) => {
       'orders.orderId': '`order-details`.order'
     },
     groupby: {
-      groupby1: 'orders.orderDate',
+      groupby1: 'month(orders.orderDate)',
       groupby2: 'orders.status'
     }
   })
 
+  const secondReport = await db.get({
+    select: {
+      'orders.orderDate': 'period',
+      'snowboards.name': 'snowboardName',
+      '`order-details`.quantity': 'quantity',
+      '`order-details`.unitPrice': 'price',
+      'sum(unitPrice*quantity)': 'orderValue'
+    },
+    from: 'orders',
+    join: {
+      join1: 'inner',
+      table1: '`order-details`',
+      'orders.orderId': '`order-details`.order',
+      join2: 'inner',
+      table2: 'snowboards',
+      '`order-details`.snowboardId': 'snowboards.ID'
+    },
+    groupby: {
+      groupby1: 'month(orders.orderDate)',
+      groupby2: '`order-details`.snowboardId'
+    }
+  })
 
   orders.push(ordersByCust);
   orders.push(orderDetails);
   orders.push(totalPrice);
   orders.push(productQuantity);
   orders.push(firstReport);
+  orders.push(secondReport);
 
   res.json(orders);
 });

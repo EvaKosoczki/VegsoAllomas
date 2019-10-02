@@ -182,9 +182,21 @@ router.post('/orders', async (req, res, next) => {
       basket: basketNumber[0].basket
     }
   })
+
+  delete req.body.phone;
+  delete req.body.counter;
+  console.log('rebody: ' + Object.keys(req.body))
+  const updateUserData = await db.update({
+    table: 'users',
+    set: req.body,
+    where: {
+      userId: `${req.user.userId}`
+    },
+  });
   res.redirect('/orders')
 })
 
+//Delete the whole basket
 router.get('/delete', async (req, res, next) => {
   const basketNumber = await db.get({
     select: {
@@ -208,7 +220,6 @@ router.get('/delete', async (req, res, next) => {
       basket: basketNumber[0].basket,
     }
   });
-
 
   res.redirect('/basket')
 
@@ -332,7 +343,7 @@ router.get('/add/:address', async (req, res, next) => {
 
 
 
-//delete whole basket
+
 
 
 

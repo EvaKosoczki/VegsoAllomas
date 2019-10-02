@@ -40,7 +40,13 @@ router.get('/', async (req, res, next) => {
 		});
 		Orders.push(orderDetails);
 	}
-
+	const userData = await db.get({
+		select: '*',
+		from: 'users',
+		where: {
+			userId: `${req.user.userId}`
+		},
+	});
 
 	let orderTotals = [];
 	let orderPrice = 0;
@@ -66,6 +72,7 @@ router.get('/', async (req, res, next) => {
 		user: req.user,
 		counter: req.body.counter,
 		ordersByCust: ordersByCust,
+		userData: userData[0]
 	});
 
 });

@@ -36,27 +36,23 @@ block content
           form.form(action="/basket/orders", method="post")
             .form-group
               label First name
-              input.form-control(name="fname" value=`${user.firstName}` required)
+              input.form-control(name="firstName" value=`${user.firstName}` required)
               .form-group
               label Last name
-              input.form-control(name="lname" value=`${user.lastName}` required)
+              input.form-control(name="lastName" value=`${user.lastName}` required)
             .form-group
               label Email
-              input.form-control(type="email" name="email" value=`${user.email}` required)
+              input.form-control(type="email" name="email" value=`${user.email}` readonly)
               <small class="form-text text-muted">We will confirm your order here.</small>
             .form-group
               label Address
               input.form-control(name="address" value=`${user.address}` required)
             .form-group
               label Postal Code
-              input.form-control(name="postalCode" value=`${user.zip}` required)
+              input.form-control(name="zip" value=`${user.zip}` required)
             .form-group
               label City
               input.form-control(name="city" value=`${user.city}` required)
-            .form-group
-              label Phone Number
-              input.form-control(name="phone" required)
-              <small class="form-text text-muted">We will call you only if there is an issue with your order.</small>
             button.order-buttons.btn.btn-success.btn-large.mr-5(type="submit") Place Order
             a.order-buttons.btn.btn-danger.btn-large(href="/products") Cancel
 

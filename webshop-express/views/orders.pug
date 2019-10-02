@@ -5,6 +5,8 @@ block content
 			.row
 				.col-6.text-center
 					h1 #{title}
+				.col-6.text-center
+					h1 Shipping Address
 			.row
 				.col-6
 					table.table.table-bordered
@@ -33,5 +35,23 @@ block content
 													td #{item.name}
 													td #{item.quantity}
 													td #{item.price}
-										
+				.col-4.offset-2
+					
+					table.table.table-borderless
+						tbody
+							tr
+								th Name
+								td #{userData.firstName} #{userData.lastName}
+							tr
+								th Email
+								td #{userData.email}
+							tr
+								th Address
+								td #{userData.address}	
+							tr
+								th City
+								td #{userData.city}
+							tr
+								th Zip
+								td #{userData.zip}
 													

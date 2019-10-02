@@ -76,16 +76,19 @@ module.exports = class UserDB {
         const result = await this.conn.query(sql[0], sql[1]);
         return result[0].orderItems;
     }
-    async pagination(page = 0) {
-        let sql1 = await sqlParser({
-            select: {
-                'count(ID)': 'amount'
-            },
-            from: 'snowboards'
-        })
-        const amount = await this.conn.query(sql1[0], sql1[1]);
-        const lastPage = Math.ceil(amount[0].amount / 12);
-        console.log('laspage', lastPage);
+    async pagination(page = 0, sql) {
+        let amount =0;
+        let lastPage =0;
+        console.log('lekeres',sql);
+        if(typeof sql === 'string'){
+            let result= await this.conn.query(sql);
+            amount = result.length;
+            lastPage = Math.ceil(amount / 12);
+        } else {
+        let sql1 = await sqlParser(sql)
+         amount = await this.conn.query(sql1[0], sql1[1]);
+         lastPage = Math.ceil(amount[0].amount / 12);
+        }
         let counter = 0;
         let result = {};
         result.prev = parseInt(page) - 1;
@@ -102,22 +105,57 @@ module.exports = class UserDB {
     }
     async filter(filters) {
         let sql = 'select * from snowboards where';
-        let keys = Object.keys(filters);
-        for (let key in filters) {
-            if (key.indexOf('brand') > -1) {
-                sql += ` or brand=${filters[key]}`;
-            }
-        
-            sql = keys.indexOf('shape') ? sql+=' and ' : sql=sql; 
-            if (key.indexOf('shape')) {
-                sql += ` or shape=${filters[key]} `;
-            }    
+        let filterArray = await this.setFilterArray(filters);
+        let filterBrands = await this.setSqlArray('brand', filterArray);
+        let filterShapes = await this.setSqlArray('shape', filterArray);
+        let filterPurpose = await this.setSqlArray('purpose', filterArray);
+        if (filterBrands.length > 0) {
+            sql += await this.setSql('brand', filterBrands);
         }
-        console.log('filtersql',sql);
+        if(filterShapes.length>0){
+            if(sql.indexOf('brand')>-1){
+            sql+= ' and ';
+            }
+            sql += await this.setSql('shape', filterShapes);
+        }
+        if(filterPurpose.length>0){
+            if(sql.indexOf('brand')>-1 || sql.indexOf('shape')>-1){
+                sql+= ' and ';
+                }
+            sql += await this.setSql('purpose', filterPurpose);
+        }
+        console.log('filterSql',sql);
+        // let result = await this.conn.query(sql);
+        return sql;
     }
-    setFilterArray(filters){
-        let filterArray = [];
-        let filterObj=();
+    async setFilterArray(filters) {
         let keys = Object.keys(filters);
+        console.log('keys:', keys);
+        let filterArray = keys.map((item) => {
+            return {
+                [item]: filters[item]
+            }
+        });
+        return filterArray;
+    }
+    async setSqlArray(key, filters) {
+        let brands = filters.filter(item => {
+            if (Object.keys(item)[0].indexOf(key) > -1) {
+                return true;
+            }
+            return false;
+        })
+        return brands;
+    }
+    async setSql(filter, filterArray) {
+        let sql = ' (';
+        for (let i = 0; i < filterArray.length; i++) {
+            for (let key in filterArray[i]) {
+                sql += `or ${filter}='${filterArray[i][key]}'`
+            }
+        }
+        sql = sql.replace('or', '')+')';
+        console.log('setSql:', sql);
+        return sql;
     }
 }

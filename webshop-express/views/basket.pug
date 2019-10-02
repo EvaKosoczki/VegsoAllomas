@@ -77,6 +77,7 @@ block content
                   h4 Name: #{product.name} 
                   h5 Quantity: #{product.quantity} 
                   h5 Unit Price: #{product.price} $
+                  a.button.btn.btn-success(href=`/basket/add/${product.postfix}`) Add 
                   a.button.btn.btn-danger(href=`/basket/${product.postfix}`) Delete 
                   hr
                        

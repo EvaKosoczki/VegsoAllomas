@@ -22,6 +22,9 @@ import { BasketsTableComponent } from './pages/baskets-table/baskets-table.compo
 import { DeletedPipe } from './pipe/deleted.pipe';
 import { FirstReportComponent } from './pages/first-report/first-report.component';
 import { SecondReportComponent } from './pages/second-report/second-report.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FileSelectDirective } from 'ng2-file-upload';
+
 
 @NgModule({
   declarations: [
@@ -41,6 +44,7 @@ import { SecondReportComponent } from './pages/second-report/second-report.compo
     DeletedPipe,
     FirstReportComponent,
     SecondReportComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,

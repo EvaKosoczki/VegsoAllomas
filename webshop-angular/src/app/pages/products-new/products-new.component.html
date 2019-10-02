@@ -95,6 +95,14 @@
         <button type="button" routerLink="/products" class="btn btn-warning">Cancel</button>
 
       </form>
+      <div>
+        <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+        <button type="button" class="btn btn-success btn-s"
+        (click)="uploader.uploadAll()" 
+        [disabled]="!uploader.getNotUploadedItems().length">
+        Upload with ng-2 file uploader
+        </button>
+      </div>
     </div>
   </div>
 </div>

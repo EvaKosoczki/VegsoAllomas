@@ -9,8 +9,6 @@ import { BrandsService } from 'src/app/service/brands.service';
 import { Brand } from 'src/app/model/brand';
 
 
-const URL = 'http://localhost:3000/api';
-
 @Component({
   selector: 'app-products-new',
   templateUrl: './products-new.component.html',

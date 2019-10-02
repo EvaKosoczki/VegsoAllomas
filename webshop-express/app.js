@@ -6,6 +6,7 @@ const logger = require('morgan');
 const favicon = require('serve-favicon');
 const UserDB = require('./modules/user');
 const db = require('./modules/db');
+const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -17,6 +18,11 @@ const registerRouter = require('./routes/register');
 
 const userDb = new UserDB();
 const app = express();
+
+var corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200,
+};
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -54,6 +60,8 @@ app.use('/logout', (req, res, next) => {
   res.clearCookie('uuid');
   res.redirect('/products');
 });
+
+app.use(cors(corsOptions));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

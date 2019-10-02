@@ -18,7 +18,6 @@ router.get('/', async (req, res, next) => {
 			'orders.userId': 'users.userId'
 		},
 	});
-	console.log(ordersByCust)
 	let Orders = []
 	for (let i = 0; i < ordersByCust.length; i += 1) {
 		let orderDetails = await db.get({
@@ -38,8 +37,15 @@ router.get('/', async (req, res, next) => {
 				'snowboards.ID': '`order-details`.snowboardId'
 			},
 		});
+		orderDetails.Total = orderDetails.map(product => product.quantity * product.price)
+			.reduce((a, b) => {
+				return a + b
+			}, 0)
+		console.log(orderDetails)
 		Orders.push(orderDetails);
 	}
+
+
 	const userData = await db.get({
 		select: '*',
 		from: 'users',
@@ -48,30 +54,11 @@ router.get('/', async (req, res, next) => {
 		},
 	});
 
-	let orderTotals = [];
-	let orderPrice = 0;
-
-
-	function totalPriceCounter(array) {
-		array.map(orders => {
-			orderPrice = orders.map(item =>
-					item.price * item.quantity).reduce((a, b) => {
-					return a + b
-				}, 0),
-				orderTotals.push(orderPrice)
-		})
-		console.log(orderTotals)
-		return orderTotals
-	}
 
 	res.render('orders', {
 		title: 'My orders',
-		basket: 'Basket Summary',
-		orderTotals: totalPriceCounter(Orders),
 		Orders: Orders,
 		user: req.user,
-		counter: req.body.counter,
-		ordersByCust: ordersByCust,
 		userData: userData[0]
 	});
 

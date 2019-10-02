@@ -23,7 +23,7 @@ block content
 									tr.bg-secondary
 										td #{order[0].orderDate}
 										td #{order[0].orderId}
-										td #{orderTotals}
+										td #{order.Total} $
 										td 
 											button.btn.btn-primary Show details
 											tr
@@ -34,7 +34,7 @@ block content
 												tr
 													td #{item.name}
 													td #{item.quantity}
-													td #{item.price}
+													td #{item.price} $
 				.col-4.offset-2
 					
 					table.table.table-borderless

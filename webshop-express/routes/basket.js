@@ -137,7 +137,9 @@ router.post('/orders', async (req, res, next) => {
       'userId': `${req.user.userId}`,
     }
   })
-  const orderId = await db.get({
+  console.log('neworder ', newOrder)
+  
+  /*const orderId = await db.get({
     select: {
       'orderId': 'order'
     },
@@ -145,11 +147,11 @@ router.post('/orders', async (req, res, next) => {
     where: {
       'userId': `${req.user.userId}`,
     }
-  })
+  })*/
   let orderDetails = [];
   basketDetails.map(item => {
     orderDetails.push({
-      '`order`': orderId[0].order,
+      '`order`': newOrder.insertId,
       'snowboardId': item.snowboardId,
       'unitPrice': item.price,
       'quantity': item.quantity
@@ -185,7 +187,6 @@ router.post('/orders', async (req, res, next) => {
 
   delete req.body.phone;
   delete req.body.counter;
-  console.log('rebody: ' + Object.keys(req.body))
   const updateUserData = await db.update({
     table: 'users',
     set: req.body,

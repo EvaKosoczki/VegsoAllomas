@@ -10,7 +10,7 @@ const pool = mariadb.createPool({
   connectionLimit: 6,
 });
 
- class DB {
+class DB {
   constructor() {
     pool.getConnection().then((conn) => {
       this.conn = conn;
@@ -21,7 +21,7 @@ const pool = mariadb.createPool({
   async get(params) {
     let sql = await sqlParser(params)
     console.log(sql);
-    let result = await this.conn.query(sql[0],sql[1]);
+    let result = await this.conn.query(sql[0], sql[1]);
     return result;
   }
   async del(params) {
@@ -34,12 +34,12 @@ const pool = mariadb.createPool({
     let sql = await sqlInsert(params);
     console.log(sql);
     let result = await this.conn.query(sql);
-    return sql;
+    return result;
   }
-  async update(params){
+  async update(params) {
     let sql = await sqlUpdate(params);
     let result = await this.conn.query(sql);
     return result;
   }
 }
-module.exports= new DB();
+module.exports = new DB();

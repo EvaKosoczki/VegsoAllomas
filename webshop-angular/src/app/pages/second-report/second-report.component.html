@@ -33,6 +33,15 @@
             <td>{{item.quantity}}</td>
             <td style="text-align:right">{{item.orderValue | number: decimal }}</td>
           </tr>
+          <tr>
+            <td class="total">Total:</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="total" style="text-align:right">
+              {{ allOrder | filter:filterPhrase | sort:orderKey:orderDirection | sum:'orderValue' | number: decimal}}
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

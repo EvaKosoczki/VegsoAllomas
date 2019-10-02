@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductsTableComponent } from './pages/products-table/products-table.component';
@@ -22,6 +21,22 @@ import { BasketsTableComponent } from './pages/baskets-table/baskets-table.compo
 import { DeletedPipe } from './pipe/deleted.pipe';
 import { FirstReportComponent } from './pages/first-report/first-report.component';
 import { SecondReportComponent } from './pages/second-report/second-report.component';
+import { SumPipe } from './pipe/sum.pipe';
+import { FilterPipe } from './pipe/filter.pipe';
+import { SortPipe } from './pipe/sort.pipe';
+import { CustomDatePipe } from './pipe/custom-date.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FileSelectDirective } from 'ng2-file-upload';
+import { CommonModule } from '@angular/common';
+import {
+  MatButtonModule,
+  MatDialogModule,
+  MatListModule,
+  MatProgressBarModule,
+} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 @NgModule({
   declarations: [
@@ -41,6 +56,11 @@ import { SecondReportComponent } from './pages/second-report/second-report.compo
     DeletedPipe,
     FirstReportComponent,
     SecondReportComponent,
+    SumPipe,
+    FilterPipe,
+    SortPipe,
+    CustomDatePipe,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
@@ -48,7 +68,14 @@ import { SecondReportComponent } from './pages/second-report/second-report.compo
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    CommonModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatListModule,
+    FlexLayoutModule,
+    BrowserAnimationsModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

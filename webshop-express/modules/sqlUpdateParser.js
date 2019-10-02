@@ -3,7 +3,7 @@ module.exports = async function (update) {
   for (const key in update.set) {
     sql += `, ${key}='${update.set[key]}' `;
   }
-  sql = `${sql.replace(', ', '')  }where `;
+  sql = `${sql.replace(', ', '')}where `;
   for (const key in update.where) {
 
     if (key.indexOf('relation') > -1) {

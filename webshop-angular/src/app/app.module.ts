@@ -26,6 +26,9 @@ import { FilterPipe } from './pipe/filter.pipe';
 import { SortPipe } from './pipe/sort.pipe';
 import { CustomDatePipe } from './pipe/custom-date.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FileSelectDirective } from 'ng2-file-upload';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +51,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FilterPipe,
     SortPipe,
     CustomDatePipe,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ function firstValue(){
     for (let i = 0; i < firstQuestion.length; i++){
         if(firstQuestion[i].checked){
         value1 = firstQuestion[i].value;
+        return value1;
         }
     }
 }
@@ -18,6 +19,7 @@ function secondValue(){
     for (let i = 0; i < secondQuestion.length; i++){
         if(secondQuestion[i].checked){
         value2 = secondQuestion[i].value;
+        return value2;
         }
     }
 }
@@ -27,12 +29,17 @@ function thirdValue(){
     for (let i = 0; i < thirdQuestion.length; i++){
         if(thirdQuestion[i].checked){
         value3 = thirdQuestion[i].value;
+        return value3;
         }
     }
 }
 
 function getValues(){
-    firstValue();
-    secondValue();
-    thirdValue();
+    let value1= firstValue();
+    let value2=secondValue();
+    let value3=thirdValue();
+
+    console.log(value1);
+    console.log(value2);
+    console.log(value3);
 }

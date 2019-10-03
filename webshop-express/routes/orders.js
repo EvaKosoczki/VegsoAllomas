@@ -7,6 +7,9 @@ isHidden = true;
 
 //get all basket item and details
 router.get('/', async (req, res, next) => {
+	if (!req.user || req.user.role == 'administrator') {
+		res.redirect('/login')
+	}
 	const diffOrders = await db.get({
 		select: {
 			'OrderId': 'OrderId'

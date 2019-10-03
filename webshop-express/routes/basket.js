@@ -8,6 +8,10 @@ isHidden = true;
 
 //get all basket item and details
 router.get('/', async (req, res, next) => {
+  if (!req.user || req.user.role == 'administrator') {
+    res.redirect('/login')
+  }
+
   basketDetails = await db.get({
     select: '*',
     from: 'baskets',
@@ -137,7 +141,7 @@ router.post('/orders', async (req, res, next) => {
       'userId': `${req.user.userId}`,
     }
   })
-  
+
   let orderDetails = [];
   basketDetails.map(item => {
     orderDetails.push({

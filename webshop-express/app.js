@@ -52,7 +52,7 @@ app.use(async (req, res, next) => {
   if (user) {
     req.user = user;
     console.log('Req.user:', req.user);
-    req.body.counter = await userDb.checkBasket(req.user.userId);
+    req.body.counter = await userDb.checkBasket(req.user.userId) || 0;
   }
 
   next();

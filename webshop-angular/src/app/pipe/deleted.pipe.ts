@@ -5,10 +5,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DeletedPipe implements PipeTransform {
 
-  transform(inArray: any, searched: any): any {
-    return inArray.filter((item) => {
-      return item.searched != 'deleted';
+  transform(value: any, key: string, phrase1: string, phrase2: string, phrase3: string): any {
+    return value.filter(item => {
+      return ((item[key].indexOf(phrase1) > -1) ||
+        (item[key].indexOf(phrase2) > -1) ||
+        (item[key].indexOf(phrase3) > -1))
     });
-  }
 
+  }
 }

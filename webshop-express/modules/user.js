@@ -48,9 +48,9 @@ module.exports = class UserDB {
                 cookie: `${req.cookies.uuid}`
             }
         });
-        console.log('Checklogin: ', sql);
+        //console.log('Checklogin: ', sql);
         const result = await this.conn.query(sql[0], sql[1]);
-        console.log('Checklogin2: ', result);
+        //console.log('Checklogin2: ', result);
         return result[0];
     };
     async checkBasket(user) {
@@ -72,7 +72,7 @@ module.exports = class UserDB {
             }
 
         });
-        console.log('proba', sql);
+        //console.log('proba', sql);
         const result = await this.conn.query(sql[0], sql[1]);
         return result[0].orderItems;
     }
@@ -85,7 +85,7 @@ module.exports = class UserDB {
         })
         const amount = await this.conn.query(sql1[0], sql1[1]);
         const lastPage = Math.ceil(amount[0].amount / 12);
-        console.log('laspage',lastPage);
+        //console.log('laspage',lastPage);
         let counter = 0;
         let result = {};
         result.prev = parseInt(page) - 1;
@@ -97,7 +97,7 @@ module.exports = class UserDB {
             page.page=i;
             result.pages.push(page);
         }
-        console.log('pages:',result.pages);
+        //console.log('pages:',result.pages);
         return result;
     }
 }

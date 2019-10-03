@@ -17,6 +17,6 @@ module.exports = async function (insert) {
         }
     }
     sql += sqlValues.replace(', ', '') + ')';
-    console.log(sql);
+    //console.log(sql);
     return sql;
 }

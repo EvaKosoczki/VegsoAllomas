@@ -34,7 +34,7 @@ class DB {
     let sql = await sqlInsert(params);
     console.log(sql);
     let result = await this.conn.query(sql);
-    return sql;
+    return result;
   }
   async update(params) {
     let sql = await sqlUpdate(params);

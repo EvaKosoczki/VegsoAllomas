@@ -71,6 +71,7 @@ app.use('/api', apiRouter);
 app.use('/login', loginRouter);
 app.use('/basket', basketRouter);
 app.use('/register', registerRouter);
+app.use('/admin', loginRouter);
 app.use('/orders', ordersRouter);
 app.use('/how-to-choose', howToChooseRouter);
 

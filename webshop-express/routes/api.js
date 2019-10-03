@@ -3,7 +3,6 @@ const router = express.Router();
 const db = require('../modules/db');
 const path = require('path');
 
-const IncomingForm = require('formidable').IncomingForm;
 
 
 

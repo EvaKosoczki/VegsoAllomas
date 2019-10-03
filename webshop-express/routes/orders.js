@@ -64,7 +64,8 @@ router.get('/', async (req, res, next) => {
 	res.render('orders', {
 		title: 'My orders',
 		Orders: Orders,
-		userData: userData[0]
+		userData: userData[0],
+		user: req.user,
 	});
 
 });

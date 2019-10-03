@@ -1,0 +1,74 @@
+extends layout
+
+block content
+	div.quiz-main-div
+		.container.quiz-container
+			.row
+				.col-12.text-center
+					h2.quiz-header.mb-5.mt-5 Answer three simple questions to see what board suits you the best!
+	
+		.container.quiz-container
+			.row
+				.col-12.col-md-6.offset-md-4
+					form
+						.form-group
+							h3.quiz-question Are you new to the world of snowboarding?
+							div
+								input.mr-2(id="beginner" type="radio" name="first" value=1 required)
+								label.quiz-label(for="beginner") Yes, I'm just starting now.
+							div
+								input.mr-2(id="intermediate" type="radio" name="first" value=2 required)
+								label.quiz-label(for="intermediate") I've been snowboarding for some time.
+							div
+								input.mr-2(id="intermediate" type="radio" name="first" value=3 required)
+								label.quiz-label(for="intermediate") I've been snowboarding for some time.
+						.form-group
+							h3.quiz-question Where do you see yourself boarding?
+							div
+								input.mr-2(id="starting" type="radio" name="second" value=4 required)
+								label.quiz-label(for="starting") I don't know, I'm just starting it.
+							div
+								input.mr-2(id="freestyle" type="radio" name="second" value=5 required)
+								label.quiz-label(for="freestyle") In the fun park, where I can practice my tricks!
+							div
+								input.mr-2(id="freeride" type="radio" name="second" value=6 required)
+								label.quiz-label(for="freeride") I love the fresh snow, and the mountains where no one's been before.
+						.form-group
+							h3.quiz-question What is your height?
+							div
+								input.mr-2(id="short" type="radio" name="third" value=7 required)
+								label.quiz-label(for="short") Between 150-170 cm.
+							div
+								input.mr-2(id="average" type="radio" name="third" value=8 required)
+								label.quiz-label(for="average") Between 170-180 cm.
+							div
+								input.last-input.mr-2(id="tall" type="radio" name="third" value=9 required)
+								label.quiz-label(for="tall") Above 180 cm.
+						.form-group.text-right
+							button.btn.btn-success.quiz-button.btn-lg(type="button" onclick="getValues()") Show me!
+						.form-group.text-right
+							button.btn.btn-warning.text-white.quiz-button-retake.btn-lg(type="button" onclick="resetQuiz()") Retake!
+		.container.quiz-container
+			.row
+				.col-12.bg-primary.text-white.missing-answer.result-display We can only help you if you answer all the questions. Please, retake the quiz.
+				.col-12.bg-primary.text-white.beginner-mountain.result-display As a beginner, if you listen to us, we would advise an all-mountain board with twin shape. These boards are suitable for learning the basics of snowboarding and they will be your best buddies even as you progess and gain more skills.
+				.col-12.bg-primary.text-white.beginner-trick.result-display Since you will be new to snowboarding we wouldn't recommend tricks. Start with the basics and as you gain more skills and confidence you will be good to go. If you choose a board from our all-mountain twin shapes, it will not let you down even when you're advancing.
+				.col-12.bg-primary.text-white.beginner-snow.result-display Since you will be new to snowboarding we wouldn't recommend fresh snow as they can be dangerous to beginners. Start with the basics and as you gain more skills and confidence you will be good to go.
+				.col-12.bg-primary.text-white.inter-freestyle.result-display Good to hear you're on the right track. For tricks we recommend our freestyle boards with twin shapes. They are softer than the average boards, making it easier to jump and do a bunch of cool tricks!
+				.col-12.bg-primary.text-white.inter-snow.result-display Awesome, nothing beats the fresh snow! However they are often challening to advanced riders as well. At first we would advise an all-mountain board with twin shape. You can use it in fresh snow as well just to get the sense of it, later you can change for a more aggressive one that can tackle a mountain.
+				.col-12.bg-primary.text-white.adv-freestyle.result-display We think you already know what you're looking for, but checkout our top-quality freestyle brands with twin shapes!
+				.col-12.bg-primary.text-white.adv-snow.result-display Once you smelled the fresh snow there is no turning back! Check out our top-quality freeride boards. We'd recommend a directional snowboard to get the most out of the mountain.
+				.col-12.bg-primary.text-white.short.result-display The ideal length of a snowboard is 15-20 centimeters shorter than your height, so we would advise the ones with the lengths of around 140-160 centimeters.
+				.col-12.bg-primary.text-white.average.result-display The ideal length of a snowboard is 15-20 centimeters shorter than your height, so we would advise the ones with the lengths of around 150-165 centimeters.
+				.col-12.bg-primary.text-white.tall.result-display The ideal length of a snowboard is 15-20 centimeters shorter than your height, so we would advise the ones with the lengths of around 150-165 centimeters.
+				.col-12.bg-primary.beginner.result-display.mb-5
+					a.btn.btn-light.mb-3.mt-3.quiz-button-offers.btn-lg(href="/products?filter=1&page=0&brand0=1&brand1=2&brand2=3&brand3=4&brand4=5&brand5=6&brand6=7&brand7=8&brand8=9&brand9=10&brand10=11&shape1=Twin&purpose0=All-mountain") Check out the boards to begin with!
+				.col-12.bg-primary.intermediate-1.result-display.mb-5
+					a.btn.btn-light.mb-3.mt-3.quiz-button-offers.btn-lg(href="/products?filter=1&page=0&brand0=1&brand1=2&brand2=3&brand3=4&brand4=5&brand5=6&brand6=7&brand7=8&brand8=9&brand9=10&brand10=11&shape1=Twin&purpose2=Freestyle") Check out the boards for tricks!
+				.col-12.bg-primary.intermediate-2.result-display.mb-5
+					a.btn.btn-light.mb-3.mt-3.quiz-button-offers.btn-lg(href="/products?filter=1&page=0&brand0=1&brand1=2&brand2=3&brand3=4&brand4=5&brand5=6&brand6=7&brand7=8&brand8=9&brand9=10&brand10=11&shape1=Twin&purpose0=All-mountain") Check out the intermediate boards for powder!
+				.col-12.bg-primary.advanced-1.result-display.mb-5
+					a.btn.btn-light.mb-3.mt-3.quiz-button-offers.btn-lg(href="/products?filter=1&page=0&brand0=1&brand1=2&brand2=3&brand5=6&shape1=Twin&purpose2=Freestyle") Check out our advanced boards for tricks!
+				.col-12.bg-primary.advanced-2.result-display.mb-5
+					a.btn.btn-light.mb-3.mt-3.quiz-button-offers.btn-lg(href="/products?filter=1&page=0&brand0=1&brand1=2&brand2=3&brand5=6&brand6=7&shape0=Directional&purpose1=Freeride") Check out our advanced boards for powder!
+	script(src="/javascripts/how-to-choose.js")

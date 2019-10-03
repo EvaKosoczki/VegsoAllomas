@@ -816,3 +816,26 @@ footer {
   background-image: url("./../image/photos/snowboarding-1920x1080-winter-snow-4k-17399.jpg");
   height: 300px;
 }
+
+
+.result-display{
+  display: none;
+  font-size: 30px;
+  text-align: center;
+}
+
+.quiz-button-retake{
+  display: none;
+}
+
+.quiz-button-offers:hover{
+  font-weight: bold;
+}
+
+.quiz-question{
+  margin-bottom: 20px;
+}
+
+.quiz-label{
+  font-size: 20px;
+}

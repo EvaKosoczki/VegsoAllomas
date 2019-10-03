@@ -209,7 +209,7 @@ router.put('/users/:id', async (req, res, next) => {
 })
 
 router.put('/users', async (req, res, next) => {
-  delete req.body.cookie;
+  
   const userDetails = await db.update({
     table: "users",
     set: req.body,
@@ -217,6 +217,7 @@ router.put('/users', async (req, res, next) => {
       userId: `${req.body.userId}`
     }
   })
+  //res.clearCookie('uuid');
   res.json(userDetails);
 })
 

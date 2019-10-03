@@ -52,7 +52,7 @@ const routes: Routes = [{
   component: UsersEditComponent
 },
 {
-  path: 'admin/dashboard',
+  path: 'dashboard',
   component: DashboardComponent
 },
 {
@@ -60,11 +60,11 @@ const routes: Routes = [{
   component: BasketsTableComponent
 },
 {
-  path: 'admin/reports/orders',
+  path: 'reports/orders',
   component: FirstReportComponent
 },
 {
-  path: 'admin/reports/products',
+  path: 'reports/products',
   component: SecondReportComponent
 },
 ];

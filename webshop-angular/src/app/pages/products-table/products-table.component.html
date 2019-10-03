@@ -6,14 +6,14 @@
       </strong>
     </div>
   </div>
-  <div class="row mt-2 mb-4">
+  <div class="row mb-4">
     <div class="col-2 offset-10">
       <button class="btn btn-primary btn-block" routerLink="new">Add new product</button>
     </div>
   </div>
   <div class="row">
     <div class="col-12 tableBack">
-      <table class="table text-active">
+      <table class="table text-active mt-3">
         <thead class="">
           <tr>
             <th *ngFor="let row of allData[0] | keyvalue">{{row.key}}</th>

@@ -11,7 +11,7 @@
       <div class="container">
         <div class="row">
           <div class="col-4">
-            <a href="/users">
+            <a routerLink="/users">
               <div class="card">
                 <img src="https://img.icons8.com/color/240/000000/user-group-man-woman.png" class="card-img-top"
                   alt="...">
@@ -24,9 +24,9 @@
             </a>
           </div>
           <div class="col-4">
-            <a href="/products">
+            <a routerLink="/products">
               <div class="card">
-                <img src="https://img.icons8.com/color/240/000000/ski-rental.png" class="card-img-top" alt="...">
+                <img src="/assets/images/snowboard2.png" class="card-img-top" alt="...">
                 <div class="card-body bg-primary">
                   <h5 class="card-title">Products</h5>
                   <h6 class="card-text">All products: {{ numberOfProducts() }}</h6>
@@ -36,7 +36,7 @@
             </a>
           </div>
           <div class="col-4">
-            <a href="/orders">
+            <a routerLink="/orders">
               <div class="card">
                 <img src="https://img.icons8.com/color/240/000000/purchase-order.png" class="card-img-top" alt="...">
                 <div class="card-body bg-primary">
@@ -49,16 +49,18 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-3 offset-3">
-            <a name="" id="report-button" class="btn btn-lg btn-info" href="/admin/reports/orders" role="button">Report
+          <div class="col-3 offset-3 mt-4">
+            <a name="" class="btn btn-lg btn-info report-button" routerLink="/reports/orders"
+              role="button">Report
               of all orders per status</a>
           </div>
-          <div class="col-3">
-            <a name="" id="report-button" class="btn btn-lg btn-info" href="/admin/reports/products"
-              role="button">Report of delivered orders</a>
+          <div class="col-3 mt-4">
+            <a name="" class="btn btn-lg btn-info report-button" routerLink="/reports/products"
+              role="button">Report of
+              delivered orders</a>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>

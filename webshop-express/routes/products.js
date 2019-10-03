@@ -102,6 +102,7 @@ router.post('/', async (req, res, next) => {
   const page = req.query.page || 0;
   let sql = await userDb.filter(req.body);
   req.filter = sql;
+  
   const productDetails = await db.getFilteredItems(sql, {
     start: page * 12,
     limit: 12

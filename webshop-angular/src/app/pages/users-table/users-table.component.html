@@ -8,30 +8,21 @@
   </div>
 
   <div class="row">
-    <!-- <div class="col-12 mt-5">
-      <h4>Add new customer</h4>
-      <button class="btn btn-info" routerLink="new">New user</button>
-    </div> -->
     <div class="col-12 tableBack mt-5">
       <table class="table text-active">
         <thead class="">
           <tr>
             <th>Fullname</th>
             <th>Email</th>
-            <th>Password</th>
             <th>Address</th>
             <th>Role</th>
             <th></th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let item of allData | deleted:firstName">
+        <tbody *ngFor="let item of allData">
+          <tr *ngIf="item.firstName!='deleted'">
             <td>{{item.firstName}} {{item.lastName}}</td>
             <td>{{item.email}}</td>
-            <td (click)="toggleView(item.userId)">
-              <p class="stars">*******</p>
-              <p class="passwordHidden noShow">{{item.password}}</p>
-            </td>
             <td>{{item.zip}} {{item.city}} {{item.address}}</td>
             <td>{{item.role}}</td>
             <td class="btn-group">

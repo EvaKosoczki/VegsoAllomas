@@ -1,9 +1,3 @@
-<!-- <div class="row mt-5 text-light">
-  <div class="col-12">
-    <h4>Add new order</h4>
-    <button class="btn btn-info" routerLink="new">New order</button>
-  </div>
-</div> -->
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 title-design">
@@ -22,12 +16,12 @@
             <th class="col-2">Order Date</th>
             <th class="col-2">Quantity</th>
             <th class="col-2">Total price</th>
-            <th class="col-2" (click)="setSorterKey('status')">Status</th>
+            <th class="col-2" (click)="setSorterKey()">Status</th>
             <th class="col-2"></th>
           </tr>
         </thead>
         <tbody>
-          <tr class="row" *ngFor="let item of allData; let i = index">
+          <tr class="row" *ngFor="let item of allData | deleted:filterKey:filterPhrase1:filterPhrase2:filterPhrase3; let i = index">
             <td class="col-2">{{item.firstName}} {{item.lastName}}</td>
             <td class="col-2">{{item.orderDate | datePipe }}</td>
             <td class="col-2">{{productsQuantityArr[i].productQuantity}}</td>
@@ -41,12 +35,10 @@
               <p *ngIf="item.status=='deleted'" class="text-inactive">deleted</p>
             </td>
             <td class="col-2 btn-group">
-              <!-- <button type="button" class="btn btn-success" routerLink="/orders/edit/{{item.orderId}}">Edit</button> -->
-              <!-- <button class="btn btn-danger" type="button" (click)="onDelete(item)">Delete</button> -->
               <button class="btn btn-info" (click)="toggleView(item.orderId)">Details</button>
               <button class="btn btn-warning" (click)="onStatusChange(item)">Inactivate</button>
             </td>
-            <div class="expandRow" id="expandRow{{item.orderId}}">
+            <div class="expandRow noShow" id="expandRow{{item.orderId}}">
           <tr>
             <th class="expandedData">Product</th>
             <th class="expandedData">Unit price</th>

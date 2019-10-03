@@ -22,14 +22,19 @@ export class ProductsTableComponent implements OnInit {
   ngOnInit() {
   }
   onDelete(picked: Product) {
-    this.productService.delete(picked.ID).subscribe(
+
+    picked.postfix = 'deleted';
+    this.productService.update(picked).subscribe(
       response => {
-        let index = this.allData.indexOf(picked);
-        this.allData.splice(index, 1);
         this.changeCounter++;
       },
-      err => console.error(err)
+      err => console.error(err),
     )
+  }
+
+  showDetails(id){
+    document.getElementById(`details${id}`).classList.toggle("show");  
+    document.getElementById(`details${id}`).classList.toggle("noShow");  
   }
 
 }

@@ -40,7 +40,7 @@ block content
               each shape in shapes
                 -let shapeName = `shape${shapeIndex++}`
                 -let shapeChecked = keys.indexOf(`${shapeName}`) > -1 ? true : false
-                  .col-3
+                  .col-4
                     input.form-check-input(id=`${shape.shape}` type="checkbox" name=`${shapeName}` value=`${shape.shape}` checked=shapeChecked )
                     label.form-check-label.pr-5(for=`${shape.shape}`) #{shape.shape}
 
@@ -50,7 +50,7 @@ block content
               each purpose in purposes
                 -let purposeName = `purpose${purposeIndex++}`
                 -let purposeChecked = keys.indexOf(`${purposeName}`) > -1 ? true : false
-                  .col-5
+                  .col-4
                     input.form-check-input(id=`${purpose.purpose}` type="checkbox" name=`${purposeName}` value=`${purpose.purpose}` checked=purposeChecked )
                     label.form-check-label.pr-5(for=`${purpose.purpose}`) #{purpose.purpose}
 

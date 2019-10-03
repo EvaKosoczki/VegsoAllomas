@@ -32,7 +32,8 @@ html
                 a.basket-link(href="/basket")
                   img.basket(src="/image/icons/basket1.png")
                   span.counter #{counter}
-                a.btn.btn-info(href="/logout") logout
+                a.btn.btn-info(href="/logout") Logout
+                a.btn.btn-warning(href="/orders") My orders
             if user.userId && user.role == 'administrator'
               li
                 span.user-name #{ user.firstName }
@@ -74,3 +75,5 @@ html
     script(src="/javascripts/main.js")
     script(src="/javascripts/addToBasket.js")
     script(src="/javascripts/productFunctions.js")
+    script(src="/javascripts/toggleOrders.js")
+    

@@ -4,21 +4,21 @@ block content
   h1.page-title= title
 
   .container-fluid
-    .row
-      .dropdown
-        button#dropdownMenuButton.btn.btn-info.dropdown-toggle(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-          | Products per page
-        .dropdown-menu(aria-labelledby='dropdownMenuButton')
-          a.dropdown-item(href='#') 4
-          a.dropdown-item(href='#') 8
-          a.dropdown-item(href='#') 12
-          a.dropdown-item(href='#') 20
-          a.dropdown-item(href='#') All
-        br    
+      
     .row
       .col-xs-12.col-sm-2.col-md-3.col-lg-3
         .col-12.sticky-top.sidenav
           form(method='GET' action='/products' role='form')
+            h4.filter-heading.mb-3.mt-3.font-weight-bold Products per page
+            -let num = ['4','8','12'];
+            div.customized-select(style='width: 200px')
+              select(name='prodsPerPage' style='width: 100px')
+                each perPage in num
+                  if limit==perPage
+                    option(value=perPage selected) #{perPage}
+                  else 
+                    option(value=perPage) #{perPage}
+
             input(type="hidden", name="filter", value="1")
             input(type="hidden", name="page", value="0")
             .form-group.form-check
@@ -73,7 +73,7 @@ block content
     .row
       .col-lg-2.offset-5
         nav(aria-label='Page navigation example')
-          ul.pagination
+          ul.pagination.justify-content-center
             if pagination.prev==-1
               li.page-item.disabled
                 a.page-link(href=`/products?page=${pagination.prev}` aria-label='Previous')
@@ -102,3 +102,5 @@ block content
               - let link = query.replace(/page\=[^\&]/, `page=${pagination.next}`) || `page=${pagination.next}`;
                 a.page-link(href=`/products?${link}` aria-label='Next')
                   span(aria-hidden='true') &raquo;
+            
+            

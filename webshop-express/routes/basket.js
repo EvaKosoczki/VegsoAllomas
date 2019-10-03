@@ -137,19 +137,11 @@ router.post('/orders', async (req, res, next) => {
       'userId': `${req.user.userId}`,
     }
   })
-  const orderId = await db.get({
-    select: {
-      'orderId': 'order'
-    },
-    from: 'orders',
-    where: {
-      'userId': `${req.user.userId}`,
-    }
-  })
+  
   let orderDetails = [];
   basketDetails.map(item => {
     orderDetails.push({
-      '`order`': orderId[0].order,
+      '`order`': newOrder.insertId,
       'snowboardId': item.snowboardId,
       'unitPrice': item.price,
       'quantity': item.quantity
@@ -182,8 +174,47 @@ router.post('/orders', async (req, res, next) => {
       basket: basketNumber[0].basket
     }
   })
-  res.redirect('/order')
+
+  delete req.body.phone;
+  delete req.body.counter;
+  const updateUserData = await db.update({
+    table: 'users',
+    set: req.body,
+    where: {
+      userId: `${req.user.userId}`
+    },
+  });
+  res.redirect('/orders')
 })
+
+//Delete the whole basket
+router.get('/delete', async (req, res, next) => {
+  const basketNumber = await db.get({
+    select: {
+      'basket': 'basket'
+    },
+    from: 'baskets',
+    where: {
+      user: `${req.user.userId}`
+    },
+    join: {
+      join: 'inner',
+      table: '`basket-details`',
+      'baskets.basketId': '`basket-details`.basket',
+    }
+  });
+
+  console.log('deleteBasket ' + basketNumber[0].basket)
+  const deleteBasket = await db.del({
+    table: '`basket-details`',
+    where: {
+      basket: basketNumber[0].basket,
+    }
+  });
+
+  res.redirect('/basket')
+
+});
 
 //Delete a snowboard from basket
 router.get('/:address', async (req, res, next) => {
@@ -247,6 +278,60 @@ router.get('/:address', async (req, res, next) => {
 
   res.redirect('/basket')
 })
+
+
+// add one snowboard
+router.get('/add/:address', async (req, res, next) => {
+  const basketNumber = await db.get({
+    select: {
+      'basket': 'basket'
+    },
+    from: 'baskets',
+    where: {
+      user: `${req.user.userId}`
+    },
+    join: {
+      join: 'inner',
+      table: '`basket-details`',
+      'baskets.basketId': '`basket-details`.basket',
+    }
+  });
+  const SnowboardId = await db.get({
+    select: {
+      'ID': 'ID'
+    },
+    from: 'snowboards',
+    where: {
+      postfix: `${req.params.address}`
+    },
+  });
+
+  const Quantity = await db.get({
+    select: {
+      'quantity': 'quantity'
+    },
+    from: '`basket-details`',
+    where: {
+      basket: basketNumber[0].basket,
+      relation: 'and',
+      snowboardId: SnowboardId[0].ID,
+    }
+  });
+  let addedQuantity = Quantity[0].quantity + 1
+  const addOneProduct = await db.update({
+    table: '`basket-details`',
+    set: {
+      'quantity': addedQuantity
+    },
+    where: {
+      basket: basketNumber[0].basket,
+      relation: 'and',
+      snowboardId: SnowboardId[0].ID,
+    }
+  });
+  res.redirect('/basket')
+})
+
 
 
 

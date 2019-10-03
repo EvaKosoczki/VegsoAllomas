@@ -15,6 +15,7 @@ const apiRouter = require('./routes/api');
 const loginRouter = require('./routes/login');
 const basketRouter = require('./routes/basket');
 const registerRouter = require('./routes/register');
+const ordersRouter = require('./routes/orders');
 const howToChooseRouter = require('./routes/how-to-choose');
 
 const userDb = new UserDB();
@@ -51,7 +52,7 @@ app.use(async (req, res, next) => {
   if (user) {
     req.user = user;
     console.log('Req.user:', req.user);
-    req.body.counter = await userDb.checkBasket(req.user.userId);
+    req.body.counter = await userDb.checkBasket(req.user.userId) || 0;
   }
 
   next();
@@ -71,6 +72,7 @@ app.use('/login', loginRouter);
 app.use('/basket', basketRouter);
 app.use('/register', registerRouter);
 app.use('/admin', loginRouter);
+app.use('/orders', ordersRouter);
 app.use('/how-to-choose', howToChooseRouter);
 
 // catch 404 and forward to error handler

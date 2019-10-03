@@ -27,6 +27,8 @@ export class UsersTableComponent implements OnInit {
     }
     user.firstName = 'deleted';
     user.lastName = 'user';
+    user.email += ' deleted';
+    
     this.userService.updateID(user.userId, user)
       .subscribe(
         response => {

@@ -11,6 +11,7 @@ const addToBasket = function (productId, userId) {
     snowboardId: productId,
     quantity: quantity,
   };
+  console.log(data);
 
   // Fetch http req
   fetch(url, {
@@ -27,6 +28,5 @@ const addToBasket = function (productId, userId) {
       setTimeout(function () {
         document.querySelector('span.counter').classList.remove('explode')
       }, 1000);
-      console.log(response)
     })
 }

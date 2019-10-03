@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5 mb-5">
   <div class="row">
     <div class="col-12">
       <h1>New Product</h1>
@@ -90,6 +90,12 @@
                 <fa-icon [icon]="faTimesCircle" style="color:  firebrick" *ngIf="picture.errors?.pattern && picture.touched"></fa-icon>
                 <span *ngIf="picture.errors?.pattern && picture.touched">Invalid name format. Valid characters: letters, numbers and hyphens. Extensions: .jpg or .png</span>
             </span>
+        </div>
+    
+        <div class="form-group">
+          <label for="picture">Details</label>
+          <textarea rows="10" class="form-control" id="details" name="details"
+            placeholder="Details" [(ngModel)]="addedProduct.details"></textarea>
         </div>
         <button type="submit" [disabled]=newProductForm.form.invalid class="btn btn-primary">Send</button>
         <button type="button" routerLink="/products" class="btn btn-warning">Cancel</button>

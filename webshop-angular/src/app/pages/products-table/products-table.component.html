@@ -16,16 +16,37 @@
       <table class="table text-active mt-3">
         <thead class="">
           <tr>
-            <th *ngFor="let row of allData[0] | keyvalue">{{row.key}}</th>
-            <th></th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Purpose</th>
+            <th>Shape</th>
+            <th>Size</th>
+            <th>Postfix</th>
+            <th>Price</th>
+            <th>Picture</th>
+            <th>Details</th>
             <th></th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let item of allData">
-            <td *ngFor="let data of item | keyvalue">{{data.value}}</td>
-            <td><button type="button" class="btn btn-success" routerLink="/products/edit/{{item.ID}}">Edit</button></td>
-            <td><button class="btn btn-danger" type="button" (click)="onDelete(item)">Delete</button></td>
+        <tbody *ngFor="let item of allData">
+          <tr *ngIf="item.postfix!='deleted'">
+            <td>{{item.ID}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.brand}}</td>
+            <td>{{item.purpose}}</td>
+            <td>{{item.shape}}</td>
+            <td>{{item.size}}</td>
+            <td>{{item.postfix}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.picture}}</td>
+            <td>
+              <button class="btn btn-light" (click)="showDetails(item.ID)">Details</button>
+              <span id="details{{item.ID}}" class="noShow">{{item.details}}</span></td>
+            <td class="btn-group">
+              <button type="button" class="btn btn-info" routerLink="/products/edit/{{item.ID}}">Edit</button>
+              <button class="btn btn-danger" type="button" (click)="onDelete(item)">Delete</button>
+            </td>
           </tr>
         </tbody>
       </table>

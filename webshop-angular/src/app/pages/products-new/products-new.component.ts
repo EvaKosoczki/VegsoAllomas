@@ -21,26 +21,27 @@ export class ProductsNewComponent implements OnInit {
   originalName: string = '';
   replacedName: string = '';
   brands: Brand[];
-  selectedBrand:number;
+  selectedBrand: number;
 
 
   constructor(private productService: ProductsService,
     private router: Router, private brandService: BrandsService) {
-      
-     }
+
+  }
 
   ngOnInit() {
     this.addedProduct = new Product();
-    this.brandService.getBrands().forEach(brands =>{
-      this.brands =brands;
+    this.brandService.getBrands().forEach(brands => {
+      this.brands = brands;
     });
-    }
-  
+  }
+
   onSubmit(ev: Event): void {
     ev.preventDefault();
     console.log(this.addedProduct);
     console.log(this.selectedBrand);
-    this.addedProduct.brand=this.selectedBrand;
+    this.addedProduct.brand = this.selectedBrand;
+    delete this.addedProduct.status;
     this.productService.create(this.addedProduct).subscribe(
       response => {
         console.log('sikeres');
@@ -58,23 +59,26 @@ export class ProductsNewComponent implements OnInit {
     this.addedProduct.postfix = data.target.value
   }
 
-  sizeValidator(control: AbstractControl){
-    
-      let regex = new RegExp('^(1[0-9]{2}|20[0-9]|210)$')
-      if(!regex.test(control.value) || control.value === ''){
-        return {isError: true}
-      }
-    
+  sizeValidator(control: AbstractControl) {
+
+    let regex = new RegExp('^(1[0-9]{2}|20[0-9]|210)$')
+    if (!regex.test(control.value) || control.value === '') {
+      return { isError: true }
+    }
+
     return null
   }
 
-  priceValidator(control: AbstractControl){
-    if(control && control.value !== null || control.value !== undefined){
+  priceValidator(control: AbstractControl) {
+    if (control && control.value !== null || control.value !== undefined) {
       let regex = new RegExp('^([1-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-5][0-9]{3}|6[0-4][0-9]{2}|65[0-7][0-9]|6580)$')
-      if(!regex.test(control.value) || control.value === ''){
-        return {isError: true}
+      if (!regex.test(control.value) || control.value === '') {
+        return { isError: true }
       }
     }
     return null
+  }
+  onCancel() {
+    this.router.navigateByUrl("/products");
   }
 }

@@ -18,6 +18,10 @@ export class OrdersTableComponent implements OnInit {
   totalPriceArr: [] = [];
   orderDetails: any[] = [];
   statusArray: string[] = ['received', 'processed', 'shipped', 'delivered'];
+  filterKey: string = 'status';
+  filterPhrase1: string = '';
+  filterPhrase2: string = '';
+  filterPhrase3: string = '';
 
   constructor(
     private orderService: OrderService
@@ -35,6 +39,18 @@ export class OrdersTableComponent implements OnInit {
 
   }
 
+  setSorterKey() {
+    if (this.filterPhrase1 == '') {
+      this.filterPhrase1 = 'received';
+      this.filterPhrase2 = 'processed';
+      this.filterPhrase3 = 'shipped';
+    } else {
+      this.filterPhrase1 = '';
+      this.filterPhrase2 = '';
+      this.filterPhrase3 = '';
+    }
+  }
+
   onDelete(picked: any) {
     this.orderService.delete(picked.orderDetailsId).subscribe(
       response => {
@@ -49,6 +65,7 @@ export class OrdersTableComponent implements OnInit {
 
   toggleView(id) {
     document.getElementById(`expandRow${id}`).classList.toggle("show");
+    document.getElementById(`expandRow${id}`).classList.toggle("noShow");
   }
 
   onStatusChange(order: any) {
@@ -71,8 +88,5 @@ export class OrdersTableComponent implements OnInit {
     )
   }
 
-  setSorterKey(status){
-
-  }
 
 }

@@ -1,5 +1,5 @@
 const {
-  body,
+  check,
   validationResult
 } = require('express-validator')
 
@@ -7,14 +7,14 @@ let isHidden = true;
 
 const userValidationRules = () => {
   return [
-    body('password').isLength({
+    check('password').isLength({
       min: 8
     }).matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,12}$")
     .withMessage('It must be at least 8 charachters'),
-    body('firstName').isLength({
+    check('firstName').isLength({
       min: 3
     }).withMessage('First name must be at least 3 charachters'),
-    body('passwordagain').custom((value, {
+    check('passwordagain').custom((value, {
       req
     }) => {
       if (value !== req.body.password) {

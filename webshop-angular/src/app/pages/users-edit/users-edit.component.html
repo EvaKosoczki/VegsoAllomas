@@ -11,15 +11,9 @@
           autofocus="">
       </div>
       <div class="input-group">
-        <input name="email" [(ngModel)]="user.email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required=""
+        <input name="email" disabled [(ngModel)]="user.email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required=""
           autofocus="">
       </div>
-      <div class="input-group">
-        <input name="password" [(ngModel)]="user.password" id="inputPassword" class="form-control" placeholder="Password">
-      </div>
-      <div class="input-group">
-          <input name="passwordAgain" [(ngModel)]="user.passwordagain" id="inputPasswordAgain" class="form-control" placeholder="Password again">
-        </div>
       <div class="input-group">
         <input name="address" [(ngModel)]="user.address" type="text" id="inputAddress" class="form-control" placeholder="Address" required=""
           autofocus="">

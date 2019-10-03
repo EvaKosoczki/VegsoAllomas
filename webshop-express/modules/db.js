@@ -20,19 +20,16 @@ class DB {
 
   async get(params) {
     let sql = await sqlParser(params)
-    console.log(sql);
     let result = await this.conn.query(sql[0], sql[1]);
     return result;
   }
   async del(params) {
     let sql = await sqlDel(params);
-    console.log(sql);
     let result = await this.conn.query(sql);
     return result;
   }
   async create(params) {
     let sql = await sqlInsert(params);
-    console.log(sql);
     let result = await this.conn.query(sql);
     return result;
   }
@@ -43,7 +40,6 @@ class DB {
   }
   async getFilteredItems(sql, limit) {
     sql += `limit ${limit.start}, ${limit.limit}`;
-    console.log(sql);
     let result = await this.conn.query(sql);
     return result;
   }

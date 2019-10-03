@@ -9,7 +9,7 @@ export class CustomDatePipe implements PipeTransform {
     let yearMonth = JSON.stringify(value)
       .replace(/"[^"]*"\:/g, '')
       .replace(/[",\{\}]/g, '')
-      .replace(/\-..T22:00:00.000Z/, '');
+      .replace(/\-..T..:00:00.000Z/, '');
     return yearMonth;
   }
 

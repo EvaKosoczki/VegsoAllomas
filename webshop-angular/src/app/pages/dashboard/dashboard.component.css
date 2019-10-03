@@ -40,7 +40,6 @@ a {
   text-decoration: none;
 }
 
-#report-button {
-  margin-top: 60px;
+.report-button {
   border-color: #fff;
 }

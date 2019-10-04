@@ -1,20 +1,17 @@
-h1 {
-  color: #fff;
-  text-align: center;
-  margin: 20px;
-  padding: 5px;
-  font-size: 45px;
-}
-
 h4 {
   color: #fff;
   text-align: center;
-  margin-top: 20px;
-  padding: 5px;
+  margin: 2rem;
+}
+
+h1 {
+  color: #fff;
+  text-align: center;
+  margin: 3rem;
+  font-size: 45px;
 }
 
 .card {
-  margin: auto;
   border-radius: 7px;
 }
 

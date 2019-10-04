@@ -1,38 +1,37 @@
 extends layout
 
 block content
-  h1.text-center.mt-5 #{product.name}
+  h1.text-center.mt-5.mb-5 #{product.name}
   .container.mt-5.mb-5
-    .row#alertDiv.hide
-      .alert.alert-primary(role='alert') You can't leave a review, until you purchased the product.
     .row
-      .col-12.col-md-6
+      .col-12.col-md-6.mt-md-5.mt-lg-0
         img.uniquePic(src=imgRoot)
-      .col-12.col-md-6.mt-5
-        .col-12.mb-5
-          img.brandIcon(src=iconRoot)
-        .col-12
-          h4 #{product.shape}
-          h4 #{product.size}
-          h4 #{product.purpose}
-          h2 #{product.price} $
-        .col-12
-          p.text-success ✔ Delivery time 3-5 business days
+      .col-12.col-md-6.mt-5.mt-md-0
+        .row
+          .col-6.col-md-12.col-lg-12.mb-5.mb-md-0.mb-xl-5
+            .col-10.col-md-8
+              img.col-6.mb-2.brandIcon(src=iconRoot)
+            h4.col-12 #{product.shape}
+            h4.col-12 #{product.size}
+            h4.col-12 #{product.purpose}
+            h2.col-12 #{product.price} $
+            p.col-12.text-success ✔ Delivery time 3-5 business days
+          .col-6.col-md-12.mt-5.mt-md-0.mt-xl-4
+            if user
+              if user.userId && user.role == 'customer'
+                .mb-2.col-8.mt-5.mt-md-0
+                  .btn-toolbar(role='toolbar' aria-label='Toolbar with button groups')
+                    .btn-group.mr-2(role='group' aria-label='First group')
+                      button.btn.btn-secondary.plus(type='button' onclick='descValue()') ⯆
+                      input.prodNumber.text-center(type='text' value='1')
+                      button.btn.btn-secondary.minus(type='button' onclick='incValue()') ⯅
+                .mb-2.col-8.col-md-6
+                  button.btn.btn-dark.btn-block.basketButton(onclick=`addToBasket(${product.ID})`) Add to Basket
+                .mb-2.mt-5.col-8.mt-md-0.col-md-6
+                  button.btn.btn-info.btn-block.basketButton(onclick=`toggleReview(${product.ID})`) Leave a review
+    .row#alertDiv.hide.mt-5
+      .alert.alert-primary(role='alert') You can't leave a review, until you purchased the product.
 
-        if user
-          if user.userId && user.role == 'customer'
-            .row
-              .col-3.col-sm-3.mb-2
-                .btn-toolbar(role='toolbar' aria-label='Toolbar with button groups')
-                  .btn-group.mr-2(role='group' aria-label='First group')
-                    button.btn.btn-secondary.plus(type='button' onclick='descValue()') ⯆
-                    input.prodNumber.text-center(type='text' value='1')
-                    button.btn.btn-secondary.minus(type='button' onclick='incValue()') ⯅
-              .col-5.col-sm-5
-                button.btn.btn-dark.btn-block.basketButton(onclick=`addToBasket(${product.ID})`) Add to Basket
-            .row
-              .col-3.offset-5
-                button.btn.btn-info.btn-block.basketButton(onclick=`toggleReview(${product.ID})`) Leave a review
       .col-12.mt-5#review.hide
         h2 Leave a review
         textarea.form-control.mb-3(name='text' placeholder='Write something...')

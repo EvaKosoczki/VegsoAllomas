@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC:700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Big+Shoulders+Display|Josefin+Sans|Roboto+Condensed&display=swap');
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
 /* font-family: 'Big Shoulders Display', cursive;
 font-family: 'Roboto Condensed', sans-serif;
@@ -181,8 +182,9 @@ footer {
 }
 
 .brandIcon {
-  width: 20%;
-  min-height: 20px;
+  width: 60%;
+  min-width: 20%;
+  max-width: 150px;
 }
 
 .prodNumber {
@@ -839,7 +841,7 @@ footer {
 .quiz-label{
   font-size: 20px;
 }
-@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
 
 fieldset, label { margin: 0; padding: 0; }
 
@@ -889,3 +891,4 @@ fieldset, label { margin: 0; padding: 0; }
 .oneReview p {
   font-size: 15pt;
 }
+

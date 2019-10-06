@@ -52,15 +52,26 @@ body {
   border-top-right-radius: 0;
 }
 
-.login-background {
+/* .login-background {
   margin: 0;
   border: 0;
   height: 100vh;
   background-image: url("./../image/photos/photo-1504480899134-8d1752cc1162.jpg");
   background-size: cover;
   background-position-y: -75px;
-}
+} */
 
 #sign-up {
   font-size: 20px;
+}
+
+#myVideoBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  z-index: -100;
+  opacity: 0.9;
 }

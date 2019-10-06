@@ -1,3 +1,5 @@
+let origDetails = '';
+
 const toggleReview = function (productId, userId) {
 
   // Data creating
@@ -44,7 +46,7 @@ const leaveReview = function (productId, userId) {
       rate = parseFloat(radios[i].value);
     }
   }
-  const details = document.querySelector('textarea').value;
+  const details = document.querySelector('textarea.writeSmth').value;
 
   // Data creating
   var url = 'http://localhost:3000/products/reviews';
@@ -68,4 +70,74 @@ const leaveReview = function (productId, userId) {
   // toggle back
   document.getElementById("review").classList.toggle("show");
   document.getElementById("review").classList.toggle("hide");
+  location.reload();
+}
+
+const editReview = function (revId) {
+
+  const rev = document.querySelector(`#oneReview${revId}>textarea`);
+  origDetails = rev.value;
+  rev.removeAttribute("disabled");
+  $(`.revBut${revId}`).toggleClass("hide");
+
+}
+
+const cancelReview = function (revId) {
+
+  const rev = document.querySelector(`#oneReview${revId}>textarea`);
+  rev.value = origDetails;
+  rev.setAttribute("disabled", "disabled");
+  $(`.revBut${revId}`).toggleClass("hide");
+
+}
+
+const saveReview = function (revId) {
+
+  const details = document.querySelector(`#oneReview${revId}>textarea`).value;
+
+  // Data creating
+  var url = 'http://localhost:3000/products/reviews';
+  var data = {
+    reviewId: revId,
+    details: details
+  };
+
+  // Fetch http req
+  fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error));
+
+  document.querySelector(`#oneReview${revId}>textarea`).setAttribute("disabled", "disabled");
+  $(`.revBut${revId}`).toggleClass("hide");
+
+}
+
+const deleteReview = function (revId) {
+
+
+
+   // Data creating
+   var url = 'http://localhost:3000/products/reviews';
+   var data = {
+     reviewId: revId
+   };
+
+  // Fetch http req
+  fetch(url, {
+    method: 'DELETE',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json())
+  .catch(error => console.error('Error:', error))
+  .then(response => {
+    document.querySelector(`#wholeRev${revId}`).setAttribute('style', 'display: none');
+  });
+
 }

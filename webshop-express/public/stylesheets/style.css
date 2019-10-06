@@ -883,12 +883,17 @@ fieldset, label { margin: 0; padding: 0; }
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
 
 .oneReview {
-  background-color: rgb(238, 235, 235);
+  background-color: rgb(247, 251, 252);
   padding: 20px;
   border-radius: 10px;
 }
 
-.oneReview p {
+.oneReview p, textarea {
   font-size: 15pt;
+}
+
+.oneReview textarea {
+  border: none;
+  background-color: transparent;
 }
 

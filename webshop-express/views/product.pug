@@ -32,9 +32,9 @@ block content
     .row#alertDiv.hide.mt-5
       .alert.alert-primary(role='alert') You can't leave a review, until you purchased the product.
 
-      .col-12.mt-5#review.hide
+    .col-12.mt-5#review.hide
         h2 Leave a review
-        textarea.form-control.mb-3(name='text' placeholder='Write something...')
+        textarea.writeSmth.form-control.mb-3(name='text' placeholder='Write something...')
         .col-3
           h4 Rate it
           fieldset.rating
@@ -59,7 +59,7 @@ block content
             input#starhalf(type='radio' name='rating' value='0.5')
             label.half(for='starhalf' title='No good - 0.5 stars')
         .col-2.offset-10
-          button.btn.btn-dark.btn-block.basketButton(onclick=`leaveReview(${product.ID})`) Send
+          button.btn.btn-dark.btn-block.basketButton(href='#' type='button' onclick=`leaveReview(${product.ID})`) Send  
 
 
   .container-fluid.toggleDiv
@@ -76,12 +76,19 @@ block content
       .row
         if reviews!=0
           .col-6.offset-3
-            h3 Reviews
+            h3.mb-5 Reviews
               each review in reviews
-                h6 Someone said about it:
-                .oneReview.mt-2
-                  p #{review.details}
-                p.mb-5.ml-2 #{review.rate} &star;
+                .col-12.mb-5(id=`wholeRev${review.reviewId}`)
+                  h6 Someone said about it:
+                  .oneReview.row.mt-2(id=`oneReview${review.reviewId}`)
+                    textarea.col-10(disabled) #{review.details}
+                    p.col-2 #{review.rate} &star;
+                  if user
+                    if user.userId == review.userId
+                      button.col-1.btn.btn-light.offset-10.mt-2.col-md-2.offset-md-8(class=`revBut${review.reviewId}` href='#' type='button' onclick=`editReview(${review.reviewId})`) Edit
+                      button.col-1.btn.btn-danger.mt-2.col-md-2(class=`revBut${review.reviewId}` href='#' type='button' onclick=`deleteReview(${review.reviewId})`) Delete
+                      button.hide.col-1.btn.btn-light.offset-10.mt-2.col-md-2.offset-md-8(class=`revBut${review.reviewId}` href='#' type='button' onclick=`cancelReview(${review.reviewId})`) Cancel
+                      button.hide.col-1.btn.btn-danger.mt-2.col-md-2(class=`revBut${review.reviewId}` href='#' type='button' onclick=`saveReview(${review.reviewId})`) Save
         else
           .col-6.offset-3
             h4 No reviews of this product yet.

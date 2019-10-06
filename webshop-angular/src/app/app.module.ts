@@ -12,10 +12,7 @@ import { ProductsNewComponent } from './pages/products-new/products-new.componen
 import { PostfixPipe } from './pipe/postfix.pipe';
 import { OrdersTableComponent } from './pages/orders-table/orders-table.component';
 import { UsersTableComponent } from './pages/users-table/users-table.component';
-import { OrdersNewComponent } from './pages/orders-new/orders-new.component';
-import { OrdersEditComponent } from './pages/orders-edit/orders-edit.component';
 import { UsersEditComponent } from './pages/users-edit/users-edit.component';
-import { UsersNewComponent } from './pages/users-new/users-new.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { BasketsTableComponent } from './pages/baskets-table/baskets-table.component';
 import { DeletedPipe } from './pipe/deleted.pipe';
@@ -48,10 +45,7 @@ import { DatePipePipe } from './pipe/date-pipe.pipe';
     PostfixPipe,
     OrdersTableComponent,
     UsersTableComponent,
-    OrdersNewComponent,
-    OrdersEditComponent,
     UsersEditComponent,
-    UsersNewComponent,
     DashboardComponent,
     BasketsTableComponent,
     DeletedPipe,

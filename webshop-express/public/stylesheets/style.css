@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC:700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Big+Shoulders+Display|Josefin+Sans|Roboto+Condensed&display=swap');
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
 /* font-family: 'Big Shoulders Display', cursive;
 font-family: 'Roboto Condensed', sans-serif;
@@ -181,8 +182,9 @@ footer {
 }
 
 .brandIcon {
-  width: 20%;
-  min-height: 20px;
+  width: 60%;
+  min-width: 20%;
+  max-width: 150px;
 }
 
 .prodNumber {
@@ -840,7 +842,6 @@ footer {
   font-size: 20px;
 }
 
-@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
 fieldset,
 label {
@@ -899,11 +900,16 @@ label {
 }
 
 .oneReview {
-  background-color: rgb(238, 235, 235);
+  background-color: rgb(247, 251, 252);
   padding: 20px;
   border-radius: 10px;
 }
 
-.oneReview p {
+.oneReview p, textarea {
   font-size: 15pt;
+}
+
+.oneReview textarea {
+  border: none;
+  background-color: transparent;
 }

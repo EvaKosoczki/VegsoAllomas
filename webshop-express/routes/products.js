@@ -38,20 +38,14 @@ router.get('/:postfix', async (req, res, next) => {
       }
     })
 
-    let reviewDets = await db.get({
+    let reviewD = await db.get({
       select: '*',
-      from: '`review-details`',
-      join: {
-        join: 'inner',
-        table: 'reviews',
-        '`review-details`.review': 'reviews.reviewId',
-      },
+      from: 'reviews',
       where: {
         'reviews.snowboardId': `${productDetails[0].ID}`
       }
     })
-    console.log("REVIEWDETS", reviewDets);
-    let reviewD = reviewDets;
+
     if (reviewD == undefined) {
       reviewD = 0;
     }
@@ -216,6 +210,8 @@ router.post('/', async (req, res, next) => {
 //   });
 // });
 
+
+
 // can you review?
 router.put('/reviews', async (req, res, next) => {
   const user = req.user;
@@ -253,61 +249,48 @@ router.put('/reviews', async (req, res, next) => {
 // new review added
 router.post('/reviews', async (req, res, next) => {
   delete req.body.counter;
-  const allData = [];
+  let allData = [];
   const user = req.user;
-  // req.body.userId = user.userId;
 
-  const reviewsTable = await db.get({
-    select: {
-      '`reviews`.snowboardId': 'ids',
-    },
-    from: '`reviews`',
-  });
-  console.log(reviewsTable);
-  const reviewsTableNums = [];
-  for (let i = 0; i < reviewsTable.length; i++) {
-    reviewsTableNums.push(reviewsTable[i].ids);
-  }
-  console.log(reviewsTableNums);
+  if (req.body.snowboardId == undefined) {
+    let allData = await db.update({
+      table: "reviews",
+      set: {
+        details: `${req.body.details}`
+      },
+      where: {
+        reviewId: `${req.body.reviewId}`
+      }
+    });
 
-  if (reviewsTableNums.indexOf(req.body.snowboardId) == -1) {
+  } else {
 
-    const review = await db.create({
+    let allData = await db.create({
       table: 'reviews',
       values: {
         snowboardId: `${req.body.snowboardId}`,
-        userId : user.userId,
+        userId: user.userId,
+        rate: `${req.body.rate}`,
+        details: `${req.body.details}`
       },
     });
 
-    allData.push(review);
+
   }
-
-
-  const reviewNum = await db.get({
-    select: {
-      '`reviews`.reviewId': 'reviewId',
-    },
-    from: '`reviews`',
-    where: {
-      snowboardId: `${req.body.snowboardId}`,
-    },
-  });
-
-  const updateReviews = await db.create({
-    table: '`review-details`',
-    values: {
-      review: `${reviewNum[0].reviewId}`,
-      rate: `${req.body.rate}`,
-      details: `${req.body.details}`,
-    },
-  });
-
-  console.log(object);
-
-  allData.push(updateReviews);
   res.json(allData);
 });
+
+router.delete('/reviews', async (req, res, next) => {
+
+  const deleted = await db.del({
+    table: 'reviews',
+    where: {
+      reviewId: `${req.body.reviewId}`
+    }
+  })
+
+  res.json(deleted);
+})
 
 
 module.exports = router;

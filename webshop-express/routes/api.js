@@ -121,7 +121,15 @@ router.get('/orders', async (req, res, next) => {
       '`order`': 'order'
     },
     from: '`order-details`',
-    groupby: '`order`'
+    join: {
+      join1: 'inner',
+      table1: 'orders',
+      '`order-details`.order': 'orders.orderId',
+    },
+    groupby: '`order`',
+    orderby: {
+      orderDate: 'desc'
+    }
   })
 
   const productQuantity = await db.get({
@@ -129,7 +137,15 @@ router.get('/orders', async (req, res, next) => {
       'sum(quantity)': 'productQuantity'
     },
     from: '`order-details`',
-    groupby: '`order-details`.order'
+    join: {
+      join1: 'inner',
+      table1: 'orders',
+      '`order-details`.order': 'orders.orderId',
+    },
+    groupby: '`order-details`.order',
+    orderby: {
+      orderDate: 'desc'
+    }
   })
 
   const firstReport = await db.get({
@@ -276,7 +292,7 @@ router.put('/users/:id', async (req, res, next) => {
 })
 
 router.put('/users', async (req, res, next) => {
-  
+
   const userDetails = await db.update({
     table: "users",
     set: req.body,

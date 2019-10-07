@@ -23,7 +23,7 @@
           <tr *ngIf="item.firstName!='deleted'">
             <td>{{item.firstName}} {{item.lastName}}</td>
             <td>{{item.email}}</td>
-            <td>{{item.zip}} {{item.city}} {{item.address}}</td>
+            <td>{{item.zip}} {{item.city}}, {{item.address}}</td>
             <td>{{item.role}}</td>
             <td class="btn-group">
               <button type="button" class="btn btn-info" routerLink="/users/edit/{{item.userId}}">Edit</button>

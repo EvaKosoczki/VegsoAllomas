@@ -27,7 +27,7 @@
             <td class="col-2">{{item.firstName}} {{item.lastName}}</td>
             <td class="col-2">{{item.orderDate | datePipe }}</td>
             <td class="col-2">{{productsQuantityArr[i].productQuantity}}</td>
-            <td class="col-2">{{totalPriceArr[i].totalPrice}}</td>
+            <td class="col-2">{{totalPriceArr[i].totalPrice}} $</td>
             <td class="col-2">
               <select *ngIf="item.status!='deleted'" name="status" class="custom-select"
                 (change)="onChange($event.target.value, item)">
@@ -49,7 +49,7 @@
           </tr>
           <tr *ngFor="let row of orderDetails">
             <td class="expandedData" *ngIf="row.order==item.orderId">{{row.name}}</td>
-            <td class="expandedData" *ngIf="row.order==item.orderId">{{row.unitPrice}}</td>
+            <td class="expandedData" *ngIf="row.order==item.orderId">{{row.unitPrice}} $</td>
             <td class="expandedData" *ngIf="row.order==item.orderId">{{row.quantity}}</td>
             <td class="expandedData" *ngIf="row.order==item.orderId"><button class="btn btn-danger" type="button"
                 (click)="onDelete(row)">Delete</button></td>

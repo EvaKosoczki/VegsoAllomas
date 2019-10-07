@@ -6,7 +6,7 @@ const sqlUpdate = require('../modules/sqlUpdateParser');
 const pool = mariadb.createPool({
   user: 'root',
   password: 'root',
-  database: 'webshop',
+  database: 'snowboards',
   connectionLimit: 6,
 });
 

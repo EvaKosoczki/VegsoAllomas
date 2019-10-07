@@ -8,7 +8,7 @@ const db = require('../modules/db');
 const pool = mariadb.createPool({
   user: 'root',
   password: 'root',
-  database: 'webshop',
+  database: 'snowboards',
   connectionLimit: 6,
 });
 

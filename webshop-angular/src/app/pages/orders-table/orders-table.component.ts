@@ -22,50 +22,28 @@ export class OrdersTableComponent implements OnInit {
   filterPhrase1: string = '';
   filterPhrase2: string = '';
   filterPhrase3: string = '';
+  selectedRow: number = -1;
 
   constructor(
     private orderService: OrderService
   ) {
-    this.orderService.getAll().subscribe(orders => {
+  }
+
+  ngOnInit() {
+    this.orderService.readAll();
+    this.orderService.list.subscribe(orders => {
       this.allData = orders[0];
       this.orderDetails = orders[1];
       this.totalPriceArr = orders[2];
       this.productsQuantityArr = orders[3];
     }
-    );
-  }
-
-  ngOnInit() {
-
-  }
-
-  setSorterKey() {
-    if (this.filterPhrase1 == '') {
-      this.filterPhrase1 = 'received';
-      this.filterPhrase2 = 'processed';
-      this.filterPhrase3 = 'shipped';
-    } else {
-      this.filterPhrase1 = '';
-      this.filterPhrase2 = '';
-      this.filterPhrase3 = '';
-    }
-  }
-
-  onDelete(picked: any) {
-    this.orderService.delete(picked.orderDetailsId).subscribe(
-      response => {
-        let index = this.orderDetails.indexOf(picked);
-        this.orderDetails.splice(index, 1);
-        this.changeCounter++;
-      },
-      err => console.error(err)
     )
   }
 
-
-  toggleView(id) {
-    document.getElementById(`expandRow${id}`).classList.toggle("show");
-    document.getElementById(`expandRow${id}`).classList.toggle("noShow");
+  onDelete(picked: any) {
+    const id = picked.order;
+    this.orderService.deleteBS(picked.orderDetailsId);
+    document.getElementById(`expandRow${id}`).classList.add("show");
   }
 
   onStatusChange(order: any) {
@@ -88,5 +66,24 @@ export class OrdersTableComponent implements OnInit {
     )
   }
 
+  selectedRowFunc(id) {
+    if (this.selectedRow == -1) {
+      this.selectedRow = id;
+    } else {
+      this.selectedRow = -1
+    }
+  }
+
+  setSorterKey() {
+    if (this.filterPhrase1 == '') {
+      this.filterPhrase1 = 'received';
+      this.filterPhrase2 = 'processed';
+      this.filterPhrase3 = 'shipped';
+    } else {
+      this.filterPhrase1 = '';
+      this.filterPhrase2 = '';
+      this.filterPhrase3 = '';
+    }
+  }
 
 }

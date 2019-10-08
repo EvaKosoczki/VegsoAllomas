@@ -35,11 +35,6 @@ export class BasketsTableComponent implements OnInit {
     )
   }
 
-
-  toggleView(id) {
-    document.getElementById(`expandRow${id}`).classList.toggle("show");
-  }
-
   onDelete(picked: any) {
     const id = picked.basket;
     this.basketService.updateBS(picked);

@@ -37,10 +37,10 @@
               <p *ngIf="item.status=='deleted'" class="text-inactive">deleted</p>
             </td>
             <td class="col-2 btn-group">
-              <button class="btn btn-info" (click)="toggleView(item.orderId)">Details</button>
+              <button class="btn btn-info" (click)="selectedRowFunc(item.orderId)">Details</button>
               <button class="btn btn-warning" (click)="onStatusChange(item)">Inactivate</button>
             </td>
-            <div class="expandRow noShow" id="expandRow{{item.orderId}}">
+            <div class="expandRow" id="expandRow{{item.orderId}}" *ngIf="item.orderId==selectedRow">
           <tr>
             <th class="expandedData">Product</th>
             <th class="expandedData">Unit price</th>

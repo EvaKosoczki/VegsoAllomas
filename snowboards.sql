@@ -23,9 +23,9 @@ CREATE TABLE IF NOT EXISTS `basket-details` (
   `snowboardId` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   PRIMARY KEY (`basketDetailsId`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
--- Tábla adatainak mentése snowboards.basket-details: ~9 rows (hozzávetőleg)
+-- Tábla adatainak mentése snowboards.basket-details: ~6 rows (hozzávetőleg)
 /*!40000 ALTER TABLE `basket-details` DISABLE KEYS */;
 INSERT IGNORE INTO `basket-details` (`basketDetailsId`, `basket`, `snowboardId`, `quantity`) VALUES
 	(1, 2, 8, 6),
@@ -34,9 +34,7 @@ INSERT IGNORE INTO `basket-details` (`basketDetailsId`, `basket`, `snowboardId`,
 	(4, 2, 13, 4),
 	(5, 2, 4, 1),
 	(6, 2, 3, 3),
-	(12, 4, 2, 3),
-	(13, 4, 16, 2),
-	(15, 4, 1, 2);
+	(22, 7, 4, 1);
 /*!40000 ALTER TABLE `basket-details` ENABLE KEYS */;
 
 -- Struktúra mentése tábla snowboards. baskets
@@ -44,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `baskets` (
   `basketId` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) NOT NULL,
   PRIMARY KEY (`basketId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- Tábla adatainak mentése snowboards.baskets: ~4 rows (hozzávetőleg)
 /*!40000 ALTER TABLE `baskets` DISABLE KEYS */;
@@ -54,7 +52,8 @@ INSERT IGNORE INTO `baskets` (`basketId`, `user`) VALUES
 	(3, 5),
 	(4, 7),
 	(5, 8),
-	(6, 10);
+	(6, 10),
+	(7, 11);
 /*!40000 ALTER TABLE `baskets` ENABLE KEYS */;
 
 -- Struktúra mentése tábla snowboards. brands
@@ -92,9 +91,9 @@ CREATE TABLE IF NOT EXISTS `order-details` (
   `unitPrice` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   PRIMARY KEY (`orderDetailsId`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
--- Tábla adatainak mentése snowboards.order-details: ~17 rows (hozzávetőleg)
+-- Tábla adatainak mentése snowboards.order-details: ~24 rows (hozzávetőleg)
 /*!40000 ALTER TABLE `order-details` DISABLE KEYS */;
 INSERT IGNORE INTO `order-details` (`orderDetailsId`, `order`, `snowboardId`, `unitPrice`, `quantity`) VALUES
 	(1, 1, 16, 499, 1),
@@ -115,7 +114,19 @@ INSERT IGNORE INTO `order-details` (`orderDetailsId`, `order`, `snowboardId`, `u
 	(16, 12, 3, 499, 3),
 	(17, 12, 1, 400, 2),
 	(18, 13, 2, 499, 1),
-	(19, 14, 2, 499, 1);
+	(19, 14, 2, 499, 1),
+	(20, 15, 2, 499, 3),
+	(21, 15, 16, 499, 2),
+	(22, 15, 1, 400, 2),
+	(23, 16, 4, 441, 1),
+	(24, 17, 81, 349, 1),
+	(25, 18, 4, 441, 2),
+	(26, 19, 4, 441, 4),
+	(28, 20, 35, 299, 1),
+	(29, 20, 95, 249, 1),
+	(30, 21, 12, 549, 2),
+	(31, 22, 8, 469, 1),
+	(32, 22, 2, 499, 1);
 /*!40000 ALTER TABLE `order-details` ENABLE KEYS */;
 
 -- Struktúra mentése tábla snowboards. orders
@@ -125,9 +136,9 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `orderDate` datetime NOT NULL DEFAULT current_timestamp(),
   `status` varchar(50) NOT NULL DEFAULT 'received',
   PRIMARY KEY (`orderId`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
--- Tábla adatainak mentése snowboards.orders: ~13 rows (hozzávetőleg)
+-- Tábla adatainak mentése snowboards.orders: ~18 rows (hozzávetőleg)
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
 INSERT IGNORE INTO `orders` (`orderId`, `userId`, `orderDate`, `status`) VALUES
 	(1, 3, '2019-09-15 00:00:00', 'received'),
@@ -136,39 +147,39 @@ INSERT IGNORE INTO `orders` (`orderId`, `userId`, `orderDate`, `status`) VALUES
 	(4, 3, '2019-08-28 00:00:00', 'shipped'),
 	(5, 7, '2019-08-28 00:00:00', 'delivered'),
 	(6, 8, '2019-08-28 00:00:00', 'delivered'),
-	(7, 5, '2019-09-15 00:00:00', 'delivered'),
+	(7, 5, '2019-09-15 00:00:00', 'shipped'),
 	(8, 5, '2019-10-02 00:00:00', 'received'),
 	(9, 5, '2019-08-10 00:00:00', 'received'),
 	(10, 4, '2019-10-02 00:00:00', 'deleted'),
 	(11, 7, '2018-11-14 00:00:00', 'delivered'),
 	(12, 7, '2019-10-03 00:00:00', 'received'),
 	(13, 7, '2019-10-03 00:00:00', 'received'),
-	(14, 7, '2019-10-03 13:07:28', 'received');
+	(14, 7, '2019-10-03 13:07:28', 'received'),
+	(15, 7, '2019-10-06 17:30:29', 'received'),
+	(16, 7, '2019-10-06 17:31:09', 'deleted'),
+	(17, 3, '2018-09-15 00:00:00', 'delivered'),
+	(18, 7, '2019-10-07 13:58:10', 'received'),
+	(19, 7, '2019-10-08 12:11:29', 'received'),
+	(20, 11, '2019-10-09 09:22:02', 'received'),
+	(21, 7, '2019-10-09 09:22:44', 'received'),
+	(22, 7, '2019-10-09 10:47:44', 'received');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
-
--- Struktúra mentése tábla snowboards. review-details
-CREATE TABLE IF NOT EXISTS `review-details` (
-  `reviewDetailsId` int(11) NOT NULL AUTO_INCREMENT,
-  `review` int(11) NOT NULL DEFAULT 0,
-  `rate` int(11) NOT NULL DEFAULT 0,
-  `details` varchar(500) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`reviewDetailsId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Tábla adatainak mentése snowboards.review-details: ~0 rows (hozzávetőleg)
-/*!40000 ALTER TABLE `review-details` DISABLE KEYS */;
-/*!40000 ALTER TABLE `review-details` ENABLE KEYS */;
 
 -- Struktúra mentése tábla snowboards. reviews
 CREATE TABLE IF NOT EXISTS `reviews` (
   `reviewId` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL DEFAULT 0,
   `snowboardId` int(11) NOT NULL DEFAULT 0,
-  `userId` int(11) NOT NULL,
+  `rate` float NOT NULL DEFAULT 0,
+  `details` varchar(500) NOT NULL DEFAULT '0',
   PRIMARY KEY (`reviewId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Tábla adatainak mentése snowboards.reviews: ~0 rows (hozzávetőleg)
 /*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
+INSERT IGNORE INTO `reviews` (`reviewId`, `userId`, `snowboardId`, `rate`, `details`) VALUES
+	(1, 7, 4, 3.5, ''),
+	(2, 7, 1, 5, '');
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 
 -- Struktúra mentése tábla snowboards. snowboards
@@ -306,17 +317,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `role` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`userId`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- Tábla adatainak mentése snowboards.users: ~5 rows (hozzávetőleg)
+-- Tábla adatainak mentése snowboards.users: ~6 rows (hozzávetőleg)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT IGNORE INTO `users` (`userId`, `firstName`, `lastName`, `email`, `address`, `zip`, `city`, `password`, `passwordagain`, `cookie`, `role`) VALUES
-	(3, 'Edina', 'Szépvölgyi', 'sz.edina@gmail.com', 'Alsóerdősor u. 54.', 2030, 'Érd', 'customer', '0', '0', 'administrator'),
-	(4, 'Tamás', 'Takács', 't.tomi@gmail.com', 'Váci u. 21.', 1051, 'Budapest', 'admin', '0', 'ITXFUAPYIQDTNVHRDOKX', 'administrator'),
+	(3, 'Edina', 'Szépvölgyi', 'sz.edina@gmail.com', 'Alsóerdősor u. 54.', 2030, 'Érd', 'customer', '0', '0', 'customer'),
+	(4, 'Tamás', 'Takács', 't.tomi@gmail.com', 'Váci u. 21.', 1051, 'Budapest', 'admin', '0', 'ITXFUAPYIQDTNVHRDOKX', 'customer'),
 	(5, 'Krisztina', 'Karámi', 'kovacskrisztinamonika@gmail.com', 'Citromfa u. 70.', 2030, 'Érd', 'Tina1975', '0', 'DFKGKCAHYNKPJQVEJHLO', 'customer'),
-	(7, 'Boglárka', 'Kiss', 'bogi@gmail.com', 'Puli stny. 5.', 1213, 'Budapest', '527c46b45b675a1a2e812472943f3d37129606b4', '527c46b45b675a1a2e812472943f3d37129606b4', 'LJQGITFEFGKSPPJSHBCA', 'customer'),
-	(8, 'Lóránt', 'Lajos', 'loci@gmail.com', 'Citromfa u. 70.', 2030, 'Érd', '145c23d1acfd1349c5cb0a067e2c2db2a9757e15', '145c23d1acfd1349c5cb0a067e2c2db2a9757e15', 'UFWNOBKBQIYFFNPLLKPK', 'administrator'),
-	(10, 'Réka', 'Bartus', 'b.reka@gmail.com', 'Templom u. 31.', 1211, 'Budapest', '22730807e0ed9a777906abc82f866247108c230f', '22730807e0ed9a777906abc82f866247108c230f', 'SCRJCNUMSOIHOVFEOGBE', 'administrator');
+	(7, 'Boglárka', 'Kiss', 'bogi@gmail.com', 'Puli stny. 5.', 1213, 'Budapest', '527c46b45b675a1a2e812472943f3d37129606b4', '527c46b45b675a1a2e812472943f3d37129606b4', 'YAUQFAQJVXXGJMBGXDDW', 'customer'),
+	(8, 'Lóránt', 'Lajos', 'loci@gmail.com', 'Citromfa u. 70.', 2030, 'Érd', '145c23d1acfd1349c5cb0a067e2c2db2a9757e15', '145c23d1acfd1349c5cb0a067e2c2db2a9757e15', 'YRGDUJLJOOBZFFUHKSIK', 'administrator'),
+	(10, 'Réka', 'Bartus', 'reka@gmail.com', 'Templom u. 31.', 1211, 'Budapest', '22730807e0ed9a777906abc82f866247108c230f', '22730807e0ed9a777906abc82f866247108c230f', 'JOVXOPRTDBBEECSHWRCB', 'administrator'),
+	(11, 'Bodó', 'Márti', 'marti@gmail.com', 'Szabadság u. 1.', 6230, 'Szeged', 'de80857f8c3927f980e49dcffcabc9b5bb3b860a', 'de80857f8c3927f980e49dcffcabc9b5bb3b860a', 'SSRJHZCLHHKPVBBYVJWV', 'customer');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

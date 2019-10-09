@@ -1,3 +1,146 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.show {
+  display: block;
+}
+
+.adminPage {
+  font-family: "Robato", sans-serif;
+  font-size: 15px;
+  width: 100%;
+  height: 100vh;
+}
+
+.text-inactive {
+  color: #a8b8c0;
+}
+
+.text-active {
+  color: #d7e4eb;
+}
+
+.adminBackBlue {
+  background: -webkit-linear-gradient(0deg, #66a6ff 0%, #89f7fe 100%);
+}
+
+.adminBackSand {
+  background: -webkit-linear-gradient(0deg, #66a6ff 0%, #FFCF71 100%);
+}
+
+
+.adminBackDark {
+  background: -webkit-linear-gradient(0deg, #66a6ff 0%, #494f52 100%);
+}
+
+.adminBackGreen {
+  background: -webkit-linear-gradient(0deg, #66a6ff 0%, #04a877 100%);
+}
+
+.tableBack {
+  background-color: #596164;
+  padding: 0 20px;
+  border-radius: 10px;
+}
+
+#logreg-forms form {
+  width: 100%;
+  max-width: 70vw;
+  padding: 15px;
+  margin: auto;
+}
+
+#logreg-forms .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+
+.submit {
+  border-radius: 25px;
+  color: #fff;
+}
+
+/* Mobile */
+
+@media screen and (max-width:500px) {
+  #logreg-forms {
+    width: 300px;
+  }
+
+  #logreg-forms .social-login {
+    width: 200px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+}
+
+#logreg-forms .input-group {
+  margin: 20px 0;
+}
+
+.cancel {
+  border-radius: 25px;
+}
+
+.icon {
+  width: 70px;
+  margin: 30px 40px;
+}
+
+/* The sidebar menu */
+.sidenav {
+  height: 100%;
+  /* Full-height: remove this if you want "auto" height */
+  width: 160px;
+  /* Set the width of the sidebar */
+  position: fixed;
+  /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1;
+  /* Stay on top */
+  top: 0;
+  /* Stay at the top */
+  left: 0;
+  background-color: #dae2e7;
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+
+/* Style page content */
+.main {
+  margin-left: 160px;
+  /* Same as the width of the sidebar */
+  padding: 0px 10px;
+}
+
+.expandedData {
+  width: 80vw;
+}
+
+.expandRow {
+  background-color: #363a3b;
+}
+
+.title-design {
+  text-align: center;
+  padding: 40px;
+  color: #fff;
+}
+
+.noShow {
+  display: none;
+}
+
+thead tr th {
+  color: #ff0;
+}
+
+
 h4 {
   color: #fff;
   text-align: center;
@@ -40,3 +183,4 @@ a {
 .report-button {
   border-color: #fff;
 }
+

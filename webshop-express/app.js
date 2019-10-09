@@ -13,6 +13,7 @@ const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 const apiRouter = require('./routes/api');
 const loginRouter = require('./routes/login');
+const adminRouter = require('./routes/admin');
 const basketRouter = require('./routes/basket');
 const registerRouter = require('./routes/register');
 const ordersRouter = require('./routes/orders');
@@ -72,6 +73,7 @@ app.use('/login', loginRouter);
 app.use('/basket', basketRouter);
 app.use('/register', registerRouter);
 app.use('/admin', loginRouter);
+app.use('/admin/', adminRouter);
 app.use('/orders', ordersRouter);
 app.use('/how-to-choose', howToChooseRouter);
 

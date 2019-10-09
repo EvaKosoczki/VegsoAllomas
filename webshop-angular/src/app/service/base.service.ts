@@ -11,7 +11,7 @@ import { Brand } from '../model/brand';
 export class BaseService {
   routeUrl: string = '';
   entity: string;
-  baseUrl = 'http://localhost:3000/api/';
+  baseUrl = 'http://localhost:3001/api/';
   list: BehaviorSubject<any> = new BehaviorSubject([]);
   constructor(protected http: HttpClient) { }
 

@@ -5,8 +5,8 @@ const addToBasket = function (productId, userId) {
 
 
   // Data creating
-  var url = 'http://localhost:3000/basket';
-  var data = {
+  const url = 'http://localhost:3001/basket';
+  const data = {
     user: userId,
     snowboardId: productId,
     quantity: quantity,
@@ -15,12 +15,12 @@ const addToBasket = function (productId, userId) {
 
   // Fetch http req
   fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(res => res.json())
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(response => {
       document.querySelector('span.counter').innerHTML = response.count;

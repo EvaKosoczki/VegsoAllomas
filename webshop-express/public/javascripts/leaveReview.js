@@ -3,20 +3,20 @@ let origDetails = '';
 const toggleReview = function (productId, userId) {
 
   // Data creating
-  var url = 'http://localhost:3000/products/reviews';
-  var data = {
+  const url = 'http://localhost:3001/products/reviews';
+  const data = {
     user: userId,
     snowboardId: productId,
   };
 
   // Fetch http req
   fetch(url, {
-      method: 'PUT',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(res => res.json())
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(response => {
       if (response) {
@@ -49,8 +49,8 @@ const leaveReview = function (productId, userId) {
   const details = document.querySelector('textarea.writeSmth').value;
 
   // Data creating
-  var url = 'http://localhost:3000/products/reviews';
-  var data = {
+  const url = 'http://localhost:3001/products/reviews';
+  const data = {
     user: userId,
     snowboardId: productId,
     details: details,
@@ -59,12 +59,12 @@ const leaveReview = function (productId, userId) {
 
   // Fetch http req
   fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(res => res.json())
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json())
     .catch(error => console.error('Error:', error));
 
   // toggle back
@@ -96,20 +96,20 @@ const saveReview = function (revId) {
   const details = document.querySelector(`#oneReview${revId}>textarea`).value;
 
   // Data creating
-  var url = 'http://localhost:3000/products/reviews';
-  var data = {
+  const url = 'http://localhost:3001/products/reviews';
+  const data = {
     reviewId: revId,
     details: details
   };
 
   // Fetch http req
   fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(res => res.json())
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json())
     .catch(error => console.error('Error:', error));
 
   document.querySelector(`#oneReview${revId}>textarea`).setAttribute("disabled", "disabled");
@@ -121,11 +121,11 @@ const deleteReview = function (revId) {
 
 
 
-   // Data creating
-   var url = 'http://localhost:3000/products/reviews';
-   var data = {
-     reviewId: revId
-   };
+  // Data creating
+  const url = 'http://localhost:3001/products/reviews';
+  const data = {
+    reviewId: revId
+  };
 
   // Fetch http req
   fetch(url, {
@@ -135,9 +135,9 @@ const deleteReview = function (revId) {
       'Content-Type': 'application/json'
     }
   }).then(res => res.json())
-  .catch(error => console.error('Error:', error))
-  .then(response => {
-    document.querySelector(`#wholeRev${revId}`).setAttribute('style', 'display: none');
-  });
+    .catch(error => console.error('Error:', error))
+    .then(response => {
+      document.querySelector(`#wholeRev${revId}`).setAttribute('style', 'display: none');
+    });
 
 }
